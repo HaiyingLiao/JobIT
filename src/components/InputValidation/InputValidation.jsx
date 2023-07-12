@@ -8,7 +8,7 @@ const schema = z.object({
   jobTitle: z.string().trim().nonempty({ message: "Job title is required" }),
   jobType: z.string().trim().nonempty({ message: "Job type is required" }),
   email: z.string().trim().nonempty("Email is required").email(),
-  radius: z
+  radius: z.coerce
     .number({
       required_error: "Radius is required and must be a positive number",
     })
@@ -88,11 +88,7 @@ const InputValidation = () => {
           {...register("location")}
           helperText={errors.location?.message}
         />
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ mt: 3, mb: 2, width: "50%" }}
-        >
+        <Button type="submit" variant="contained" sx={{ width: "50%" }}>
           Submit
         </Button>
       </form>
