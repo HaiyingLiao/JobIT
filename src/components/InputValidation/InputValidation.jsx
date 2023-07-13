@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, TextField, Button } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,6 +15,12 @@ const schema = z.object({
     .min(0),
   location: z.string().trim().nonempty("Please choose a location"),
 });
+
+// BONUS: further location validation
+// location: z.string().trim().nonempty("Please choose a location").refine(async (location) => {
+//     let result = await someCallToAnAPI(location);
+//     return result; // true or false, false will show the error message, true will pass the validation
+//   }, "Not a valid location"),
 
 const InputValidation = () => {
   const {
