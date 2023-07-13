@@ -3,7 +3,11 @@
 import React from "react";
 
 const Home = () => {
-  return <div>Home/Overview Page</div>;
+  return (
+    <div>
+      <Buttons title="Visit Now" variant="outlined" color="secondarydark" />
+    </div>
+  );
 };
 
 export default Home;
