@@ -9,7 +9,7 @@ export default function Loader() {
 				alignItems: 'center',
 				height: '100vh',
 				width: '100%',
-				backgroundColor: theme.palette.mode === 'light' ? '#fff' : '#000',
+				backgroundColor: theme.palette.mode === 'light' ? '#FAFAFB' : '#13131A',
 				position: 'fixed',
 				top: '0',
 				zIndex: '10',
