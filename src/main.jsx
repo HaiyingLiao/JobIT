@@ -6,7 +6,7 @@ import App from './app';
 import './index.css';
 
 const root = createRoot(document.getElementById('root'));
-let ele = 'Suraj';
+const ele = 'Suraj';
 console.log(ele);
 
 root.render(
