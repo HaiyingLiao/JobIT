@@ -9,7 +9,6 @@ const root = createRoot(document.getElementById('root'));
 
 root.render(
   <BrowserRouter>
-    {/* <CssBaseline /> */}
     <App />
   </BrowserRouter>,
 );
