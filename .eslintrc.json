@@ -15,6 +15,9 @@
     }
   },
   "rules": {
-    "quotes": ["error", "single"]
+    "quotes": ["error", "single"],
+    "no-undef": "error",
+    "no-unused-vars": "error",
+    "react/prop-types": "off"
   }
 }
