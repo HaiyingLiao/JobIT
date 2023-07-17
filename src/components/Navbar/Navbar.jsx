@@ -7,13 +7,13 @@ const NavBar = () => {
       <h3>Navbar</h3>
       <ul>
         <li>
-          <Link to="/">Overview</Link>
+          <Link to='/'>Overview</Link>
         </li>
         <li>
-          <Link to="/job-search">Job Search</Link>
+          <Link to='/job-search'>Job Search</Link>
         </li>
         <li>
-          <Link to="/estimated-salary">Estimated Salary</Link>
+          <Link to='/estimated-salary'>Estimated Salary</Link>
         </li>
       </ul>
     </div>
