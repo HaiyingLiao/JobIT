@@ -3,6 +3,7 @@
   "editor.formatOnSave": true,
   // prettier common setup to use single quote
   "prettier.jsxSingleQuote": true,
+  "json.schemaDownload.enable": true,
   "prettier.singleQuote": true,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true,
