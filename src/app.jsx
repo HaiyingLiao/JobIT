@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './app.css';
 import { Routes, Route } from 'react-router-dom';
-// import Switch from '@mui/material/Switch';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 
 import { InputValidation, Navbar, SwitchButton } from './components';
