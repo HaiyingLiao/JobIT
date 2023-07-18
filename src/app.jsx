@@ -1,8 +1,8 @@
-import './app.css';
-import { Routes, Route } from 'react-router-dom';
+import "./app.css";
+import { Routes, Route } from "react-router-dom";
 
-import { Navbar } from './components';
-import { Home, JobSearch, EstimatedSalary } from './pages';
+import { Navbar } from "./components";
+import { Home, JobSearch, EstimatedSalary } from "./pages";
 
 export function App() {
   return (
