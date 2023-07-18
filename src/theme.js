@@ -13,7 +13,7 @@ const theme = createTheme({
     },
     secondary: {
       main: '#F5F5F8',
-      contrastText: '#696974',
+      contrastText: '#92929D',
     },
     secondaryoutlined: {
       main: '#696974',
