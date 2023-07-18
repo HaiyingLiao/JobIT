@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import './app.css';
 import { Routes, Route } from 'react-router-dom';
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
@@ -8,7 +8,7 @@ import { Home, JobSearch, EstimatedSalary } from './pages';
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
-  const theme = createTheme({
+  const themeSec = createTheme({
     palette: {
       mode: darkMode ? 'dark' : 'light',
     },
@@ -19,7 +19,7 @@ export default function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeSec}>
       <>
         <CssBaseline />
         <SwitchButton checkMode={darkMode} changeMode={handleChange} />
