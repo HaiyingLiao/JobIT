@@ -1,7 +1,7 @@
 import { createTheme } from '@mui/material/styles';
 
 const typography = {
-  fontFamily: "'Manrope', sans-serif",
+  fontFamily: '"Manrope", sans-serif',
   h1: {
     fontSize: '2rem',
     fontWeight: 700,
