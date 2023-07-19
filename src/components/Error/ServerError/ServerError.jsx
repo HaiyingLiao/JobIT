@@ -1,4 +1,5 @@
 import { Box, Container, Typography, Button } from '@mui/material';
+
 import { ErrorImage } from './style';
 
 export default function ServerError() {
