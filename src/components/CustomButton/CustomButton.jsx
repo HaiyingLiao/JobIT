@@ -15,10 +15,12 @@ const variants = {
   primaryOutlined: {
     color: 'primary',
     variant: 'outlined',
+    padding: '7px 10px',
   },
   primaryLighter: {
     color: 'primaryLight',
     variant: 'contained',
+    padding: '8px 14px',
   },
   secondary: {
     color: 'secondary',
