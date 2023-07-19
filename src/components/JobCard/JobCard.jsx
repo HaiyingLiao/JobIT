@@ -4,17 +4,13 @@ import {
   CardContent,
   CardActions,
   IconButton,
-  Avatar,
   Typography,
   Box,
 } from '@mui/material';
 
-import {
-  SmallButton,
-  PrimaryButton,
-  SecondaryButton,
-} from '../Buttons/Buttons';
+import { CustomButton } from '..';
 import icons from '../../assets/icons';
+import demoImg from '../../assets/images/companyLogo.png';
 
 const demoTech = ['PHP', 'CSS', 'React', 'Laravel'];
 const bull = (
@@ -30,72 +26,50 @@ const styleSpaceBetween = {
   justifyContent: 'space-between',
 };
 
-export const PrimaryJobCard = () => {
+const JobCard = ({ type }) => {
   return (
-    <Card sx={{ maxWidth: 430, p: 1 }}>
+    <Card sx={{ maxWidth: type === 'homeJobCard' ? 450 : 950, p: 1 }}>
       <CardHeader
-        avatar={<Avatar aria-label='recipe'>H</Avatar>}
-        title={<Typography variant='h2'>Passionate programmer</Typography>}
-        subheader={demoTech.map((tech, i) => (
-          <SmallButton title={tech} key={i} margin='2px' />
-        ))}
-        action={
-          <IconButton aria-label='settings'>
-            <img src={icons.isMore} alt='isMore' />
-          </IconButton>
+        avatar={
+          <Box
+            sx={{
+              padding: '8px 8px 2px',
+              borderRadius: '10px',
+              background: 'rgba(23, 23, 37, 0.06)',
+            }}
+          >
+            <img src={demoImg} alt='logo' />
+          </Box>
         }
-      />
-      <CardContent>
-        <Typography variant='bodyM_4' color='text.secondary'>
-          Here at Microsoft, we are a passionate, fun-loving, growing team. We
-          are looking for passionate programmers who want to solve technical
-          challenges and learn and incorporate new technologies into their
-          skillset to join our team and grow with us.
-        </Typography>
-      </CardContent>
-      <CardContent sx={styleSpaceBetween}>
-        <SmallButton
-          title='Full time'
-          startIcon={<img src={icons.briefcase} alt='briefcase' />}
-        />
-        <SmallButton
-          title='45 applied'
-          startIcon={<img src={icons.people} alt='people' />}
-        />
-        <SmallButton
-          title='3 days left'
-          startIcon={<img src={icons.clock} alt='clock' />}
-        />
-      </CardContent>
-      <CardActions sx={styleSpaceBetween}>
-        <Typography variant='bodyL_2'>
-          $15k-20k
-          <Typography variant='bodyL_4' component='span' color='text.secondary'>
-            /month
-          </Typography>
-        </Typography>
-        <PrimaryButton title='Apply Now' />
-      </CardActions>
-    </Card>
-  );
-};
-
-export const SecondaryJobCard = () => {
-  return (
-    <Card sx={{ maxWidth: 950, p: 1 }}>
-      <CardHeader
-        avatar={<Avatar aria-label='recipe'>H</Avatar>}
         title={<Typography variant='h2'>Passionate programmer</Typography>}
         subheader={
-          <Typography variant='bodyM3_3' color='text.secondary'>
-            UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
-          </Typography>
+          type === 'homeJobCard' ? (
+            demoTech.map((tech, i) => (
+              <CustomButton
+                variant='small'
+                title={tech}
+                key={i}
+                sx={{ margin: '2px' }}
+              />
+            ))
+          ) : (
+            <Typography variant='bodyM3_3' color='text.secondary'>
+              UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
+            </Typography>
+          )
         }
         action={
-          <SmallButton
-            title='Save job'
-            endIcon={<img src={icons.icSaved} alt='icSaved' />}
-          />
+          type === 'homeJobCard' ? (
+            <IconButton aria-label='settings'>
+              <img src={icons.isMore} alt='isMore' />
+            </IconButton>
+          ) : (
+            <CustomButton
+              variant='small'
+              title='Save job'
+              endIcon={<img src={icons.icSaved} alt='icSaved' />}
+            />
+          )
         }
       />
       <CardContent>
@@ -106,11 +80,36 @@ export const SecondaryJobCard = () => {
           skillset to join our team and grow with us.
         </Typography>
       </CardContent>
-      <CardContent>
-        {demoTech.map((tech, i) => (
-          <SmallButton title={tech} key={i} margin='3px' />
-        ))}
-      </CardContent>
+      {type === 'homeJobCard' ? (
+        <CardContent sx={styleSpaceBetween}>
+          <CustomButton
+            variant='small'
+            title='Full time'
+            startIcon={<img src={icons.briefcase} alt='briefcase' />}
+          />
+          <CustomButton
+            variant='small'
+            title='45 applied'
+            startIcon={<img src={icons.people} alt='people' />}
+          />
+          <CustomButton
+            variant='small'
+            title='3 days left'
+            startIcon={<img src={icons.clock} alt='clock' />}
+          />
+        </CardContent>
+      ) : (
+        <CardContent>
+          {demoTech.map((tech, i) => (
+            <CustomButton
+              variant='small'
+              title={tech}
+              key={i}
+              sx={{ margin: '3px' }}
+            />
+          ))}
+        </CardContent>
+      )}
       <CardActions sx={styleSpaceBetween}>
         <Box sx={{ display: 'flex', gap: '35px' }}>
           <Typography variant='bodyL_2'>
@@ -124,23 +123,37 @@ export const SecondaryJobCard = () => {
             </Typography>
           </Typography>
 
-          <Typography variant='bodyL_2'>
-            54{' '}
-            <Typography
-              variant='bodyL_4'
-              component='span'
-              color='text.secondary'
-            >
-              People Applied
+          {type === 'homeJobCard' ? (
+            ''
+          ) : (
+            <Typography variant='bodyL_2'>
+              54{' '}
+              <Typography
+                variant='bodyL_4'
+                component='span'
+                color='text.secondary'
+              >
+                People Applied
+              </Typography>
             </Typography>
-          </Typography>
+          )}
         </Box>
 
         <Box sx={{ display: 'flex', gap: '10px' }}>
-          <SecondaryButton title='Message' />
-          <PrimaryButton title='Apply Now' width='180px' />
+          {type === 'homeJobCard' ? (
+            ''
+          ) : (
+            <CustomButton variant='secondary' title='Message' />
+          )}
+          <CustomButton
+            variant='primary'
+            title='Apply Now'
+            sx={{ minwidth: type === 'homeJobCard' ? '' : '180px' }}
+          />
         </Box>
       </CardActions>
     </Card>
   );
 };
+
+export default JobCard;

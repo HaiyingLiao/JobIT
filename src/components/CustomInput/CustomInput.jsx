@@ -1,6 +1,6 @@
 import TextField from '@mui/material/TextField';
 
-const CssTextField = ({ defaultValue }) => {
+const CustomInput = ({ defaultValue, sx = {} }) => {
   return (
     <TextField
       hiddenLabel
@@ -9,6 +9,7 @@ const CssTextField = ({ defaultValue }) => {
       size='small'
       sx={{
         '& fieldset': { border: 'none' },
+        ...sx,
       }}
       InputProps={{
         style: {
@@ -21,4 +22,4 @@ const CssTextField = ({ defaultValue }) => {
   );
 };
 
-export default CssTextField;
+export default CustomInput;
