@@ -4,7 +4,7 @@ import React from 'react';
 import { toast } from 'react-hot-toast';
 
 const Home = () => {
-	return <div>Home/Overview Page</div>;
+  return <div>Home/Overview Page</div>;
 };
 
 export default Home;
