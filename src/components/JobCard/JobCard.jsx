@@ -125,9 +125,7 @@ const JobCard = ({ type }) => {
             </Typography>
           </Typography>
 
-          {cardType ? (
-            ''
-          ) : (
+          {cardType && (
             <Typography variant='bodyL_2'>
               54{' '}
               <Typography
@@ -142,11 +140,11 @@ const JobCard = ({ type }) => {
         </Box>
 
         <Box sx={{ display: 'flex', gap: '10px' }}>
-          {cardType ? '' : <CustomButton variant='secondary' title='Message' />}
+          {cardType && <CustomButton variant='secondary' title='Message' />}
           <CustomButton
             variant='primary'
             title='Apply Now'
-            sx={{ minwidth: cardType ? '' : '180px' }}
+            sx={{ minwidth: cardType && '180px' }}
           />
         </Box>
       </CardActions>
