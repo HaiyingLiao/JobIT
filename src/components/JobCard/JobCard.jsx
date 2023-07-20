@@ -27,8 +27,10 @@ const styleSpaceBetween = {
 };
 
 const JobCard = ({ type }) => {
+  const cardType = type === 'homeJobCard';
+
   return (
-    <Card sx={{ maxWidth: type === 'homeJobCard' ? 450 : 950, p: 1 }}>
+    <Card sx={{ maxWidth: cardType ? 450 : 950, p: 1 }}>
       <CardHeader
         avatar={
           <Box
@@ -43,7 +45,7 @@ const JobCard = ({ type }) => {
         }
         title={<Typography variant='h2'>Passionate programmer</Typography>}
         subheader={
-          type === 'homeJobCard' ? (
+          cardType ? (
             demoTech.map((tech, i) => (
               <CustomButton
                 variant='small'
@@ -59,7 +61,7 @@ const JobCard = ({ type }) => {
           )
         }
         action={
-          type === 'homeJobCard' ? (
+          cardType ? (
             <IconButton aria-label='settings'>
               <img src={icons.isMore} alt='isMore' />
             </IconButton>
@@ -80,7 +82,7 @@ const JobCard = ({ type }) => {
           skillset to join our team and grow with us.
         </Typography>
       </CardContent>
-      {type === 'homeJobCard' ? (
+      {cardType ? (
         <CardContent sx={styleSpaceBetween}>
           <CustomButton
             variant='small'
@@ -123,7 +125,7 @@ const JobCard = ({ type }) => {
             </Typography>
           </Typography>
 
-          {type === 'homeJobCard' ? (
+          {cardType ? (
             ''
           ) : (
             <Typography variant='bodyL_2'>
@@ -140,15 +142,11 @@ const JobCard = ({ type }) => {
         </Box>
 
         <Box sx={{ display: 'flex', gap: '10px' }}>
-          {type === 'homeJobCard' ? (
-            ''
-          ) : (
-            <CustomButton variant='secondary' title='Message' />
-          )}
+          {cardType ? '' : <CustomButton variant='secondary' title='Message' />}
           <CustomButton
             variant='primary'
             title='Apply Now'
-            sx={{ minwidth: type === 'homeJobCard' ? '' : '180px' }}
+            sx={{ minwidth: cardType ? '' : '180px' }}
           />
         </Box>
       </CardActions>
