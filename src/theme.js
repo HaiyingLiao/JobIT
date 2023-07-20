@@ -141,4 +141,30 @@ export const lightTheme = createTheme({
   },
 });
 
-export const darkTheme = createTheme({});
+export const darkTheme = createTheme({
+   palette: {
+    primary: {
+      main: '#0BAB7C',
+      contrastText: '#fff',
+    },
+    primaryLight: {
+      main: '#0BAB7C1A',
+      contrastText: '#0BAB7C',
+    },
+    secondary: {
+      main: '#21212B',
+      contrastText: '#696974',
+    },
+    secondaryoutlined: {
+      main: '#696974',
+    },
+    text: {
+      primary: '#171725',
+      secondary: '#696974',
+      natural6: '#92929D',
+    },
+  },
+  typography: {
+    ...typography,
+  }, 
+});
