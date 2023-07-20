@@ -5,13 +5,10 @@ import { ErrorImage } from './style';
 export default function ServerError() {
 	return (
 		<Box
-			sx={(theme) => ({
+			sx={{
 				height: '100%',
 				width: '100%',
-				position: 'fixed',
-				top: '0',
-				backgroundColor: theme.palette.mode === 'light' ? '#FAFAFB' : '#13131A',
-			})}
+			}}
 		>
 			<Container
 				maxWidth='sm'
@@ -31,7 +28,7 @@ export default function ServerError() {
 					width={577}
 					height={400}
 				/>
-				<Typography align='center' variant='h4' sx={{ fontWeight: '700' }}>
+				<Typography align='center' variant='h3' sx={{ fontWeight: '700' }}>
 					Something went wrong!
 				</Typography>
 				<Typography align='center' paragraph sx={{ fontSize: '13px' }}>
@@ -44,10 +41,7 @@ export default function ServerError() {
 					onClick={() => window.location.reload()}
 					variant='contained'
 					sx={{
-						backgroundColor: '#0BAB7C',
-						':hover': {
-							backgroundColor: '#00c98d',
-						},
+						backgroundColor: 'primary',
 					}}
 				>
 					Reload
