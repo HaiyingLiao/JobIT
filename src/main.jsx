@@ -5,7 +5,6 @@ import theme from './theme';
 import App from './app';
 import './index.css';
 import { ThemeProvider } from '@emotion/react';
-
 const root = createRoot(document.getElementById('root'));
 
 root.render(
