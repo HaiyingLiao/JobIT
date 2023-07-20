@@ -70,7 +70,7 @@ const InlineJobCard = ({ type }) => {
         </Stack>
       </CardContent>
 
-      {cardType && (
+      {!cardType && (
         <CardActions sx={{ display: 'flex', justifyContent: 'space-between' }}>
           <Box>
             <Typography variant='bodyL_4' color='text.natural6'>
