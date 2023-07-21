@@ -21,3 +21,22 @@ const ColorModeProvider = ({ children }) => {
 };
 
 export default ColorModeProvider;
+
+const ColorModeProvider = ({ children }) => {
+  const [isDarkMode, setDarkMode] = useState(false);
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
+  };
+
+  console.log(theme);
+
+  return (
+    <ColorModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </ColorModeContext.Provider>
+  );
+};
+
+export default ColorModeProvider;

@@ -136,6 +136,10 @@ export const lightTheme = createTheme({
     customColor: {
       cardBg: '#fffff',
     },
+<<<<<<< HEAD
+=======
+
+>>>>>>> 310c676c620a24ecef26bd8075b801d6ad0b5ea2
     text: {
       primary: '#171725',
       secondary: '#696974',
