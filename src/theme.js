@@ -134,6 +134,7 @@ export const lightTheme = createTheme({
     text: {
       primary: '#171725',
       secondary: '#696974',
+      natural6: '#92929D',
     },
   },
   typography: {
