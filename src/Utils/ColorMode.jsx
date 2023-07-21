@@ -13,8 +13,6 @@ const ColorModeProvider = ({ children }) => {
     setDarkMode((prevMode) => !prevMode);
   };
 
-  console.log(theme);
-
   return (
     <ColorModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>

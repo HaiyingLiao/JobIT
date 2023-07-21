@@ -120,6 +120,7 @@ export const lightTheme = createTheme({
       main: '#0BAB7C',
       contrastText: '#fff',
     },
+
     mode: 'light',
     primaryLight: {
       main: '#0BAB7C1A',
@@ -132,9 +133,13 @@ export const lightTheme = createTheme({
     secondaryoutlined: {
       main: '#696974',
     },
+    customColor: {
+      cardBg: '#fffff',
+    },
     text: {
       primary: '#171725',
       secondary: '#696974',
+      natural6: '#92929D',
     },
   },
   typography: {
@@ -160,9 +165,12 @@ export const darkTheme = createTheme({
     secondaryoutlined: {
       main: '#696974',
     },
+    customColor: {
+      cardBg: '#1c1c24',
+    },
     text: {
-      primary: '#171725',
-      secondary: '#696974',
+      primary: '#FFFFFF',
+      secondary: '#92929D',
       natural6: '#92929D',
     },
   },
