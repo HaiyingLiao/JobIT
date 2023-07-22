@@ -1,1 +1,1 @@
-export const navMenuItems = ["Overview", "Estimated Salaries", "Job Search"];
+export const navMenuItems = ['Overview', 'Estimated Salaries', 'Job Search'];

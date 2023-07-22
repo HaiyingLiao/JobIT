@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState } from 'react';
 import {
   Drawer,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  Typography,
   IconButton,
   AppBar,
   Toolbar,
-} from "@mui/material";
+  Box,
+} from '@mui/material';
 
-import { hamburger, closeIcon } from "../../assets/icons";
-import { navMenuItems } from "../../constants";
-import Logo from "./Logo";
+import { hamburger, closeIcon } from './../../assets/icons/index';
+import { navMenuItems } from '../../constants';
+import { Logo, SwitchButton } from '../../components';
 
 const NavMobile = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
@@ -23,77 +23,92 @@ const NavMobile = () => {
 
   return (
     <>
-      {/* Mobile Drawer (nav menu that slides in from right on mobile)*/}
+      {/* Mobile Drawer (nav menu that slides in from right on mobile) */}
       <Drawer
-        variant="temporary"
-        anchor="right"
+        variant='temporary'
+        anchor='right'
         open={isDrawerOpen}
         onClose={handleDrawer}
-        role="dialog"
-        PaperProps={{ sx: { width: "70%" } }}
-        BackdropProps={{ sx: { bgcolor: "rgba(0, 0, 0, 0.1)" } }}
+        role='dialog'
+        PaperProps={{ sx: { width: '70%' } }}
+        BackdropProps={{ sx: { bgcolor: 'rgba(0, 0, 0, 0.1)' } }}
       >
         <List
           sx={{
-            padding: "13px",
-            my: "auto",
+            padding: '13px',
+            my: 'auto',
           }}
         >
-          {navMenuItems.map((menuItem) => (
+          {navMenuItems.map((menuItem, i) => (
             <ListItemButton
               key={menuItem}
               onClick={handleDrawer}
-              sx={{ padding: "12px", lineHeight: "16px" }}
+              sx={{
+                padding: '12px',
+                lineHeight: '16px',
+                bgcolor: i === 0 ? '#F4F4F4' : '',
+                borderRadius: i === 0 ? '6px' : '',
+                '&:selected': {
+                  bgcolor: '#F4F4F4',
+                  borderRadius: '6px',
+                },
+              }}
               aria-label={`Go to ${menuItem} page`}
             >
               <ListItemIcon>
-                <ListItemText>{menuItem}</ListItemText>
+                <ListItemText
+                  sx={{
+                    color: i === 0 ? 'primary.main' : '',
+                  }}
+                >
+                  {menuItem}
+                </ListItemText>
               </ListItemIcon>
             </ListItemButton>
           ))}
-          <Typography color="red" sx={{ padding: "12px", lineHeight: "16px" }}>
-            Dark Mode
-          </Typography>
+          <Box sx={{ paddingLeft: '12px', marginTop: '36px' }}>
+            <SwitchButton />
+          </Box>
         </List>
       </Drawer>
 
-      {/* Nav Mobile Top*/}
+      {/* Nav Mobile Top */}
       {!isDrawerOpen && (
-        <IconButton onClick={handleDrawer} sx={{ marginRight: "auto" }}>
+        <IconButton onClick={handleDrawer} sx={{ marginRight: 'auto' }}>
           <img
             src={hamburger}
-            alt="Mobile navigation hamburger icon"
-            aria-label="Open Navigation Menu"
-            data-testid="hamburger-icon"
+            alt='Mobile navigation hamburger icon'
+            aria-label='Open Navigation Menu'
+            data-testid='hamburger-icon'
           />
         </IconButton>
       )}
 
       {!isDrawerOpen ? (
-        <Typography color="red">Dark Mode</Typography>
+        <SwitchButton />
       ) : (
         <AppBar
-          component="nav"
+          component='nav'
           sx={{
-            bgcolor: "white",
+            bgcolor: 'white',
           }}
-          position="fixed"
+          position='fixed'
           elevation={0}
         >
           <Toolbar
             sx={{
-              height: "70px",
+              height: '70px',
             }}
           >
             <Logo />
-            <IconButton sx={{ marginLeft: "auto" }}>
+            <IconButton sx={{ marginLeft: 'auto' }}>
               <img
-                style={{ width: "16px", height: "16px" }}
+                style={{ width: '16px', height: '16px' }}
                 src={closeIcon}
-                alt="Mobile navigation close icon"
+                alt='Mobile navigation close icon'
                 onClick={handleDrawer}
-                aria-label="Close Navigation Menu"
-                data-testid="close-icon"
+                aria-label='Close Navigation Menu'
+                data-testid='close-icon'
               />
             </IconButton>
           </Toolbar>
