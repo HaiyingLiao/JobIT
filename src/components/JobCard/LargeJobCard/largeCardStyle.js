@@ -28,7 +28,6 @@ export const CompanyLogo = styled('img')({
   borderRadius: '10px',
 })
 
-
 export const CardContentInner = styled('div')({
   display: 'flex',
   flexWrap: 'wrap',
@@ -38,7 +37,7 @@ export const CardContentInner = styled('div')({
 
 export const CardTitleWrapper = styled('div')({
   display: 'flex',
-  gap: '0.5rem',
+  gap: '6px',
   alignItems: 'center',
   height: '100%'
 })
@@ -64,18 +63,19 @@ export const MenuBtn = styled('button')({
 
 export const RequirementWrapper = styled('div')({
   display: 'grid',
-  backgroundColor: '#FAFAFB',
+  backgroundColor: 'customColor.requirementBg', // this will be added in theme.js later by hana and suraj
   borderRadius: '10px',
+  padding: '15px',
   gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
   width: '100%',
-  gap: '1rem',
-  marginTop: '1rem'
+  gap: '16px',
+  marginTop: '2.5rem'
 })
 
 export const Wrapper = styled('div')(props => ({
   display: 'flex',
   alignItems: 'center',
-  gap: '1rem',
+  gap: '16px',
   flexWrap: props.wrap ? 'wrap' : 'inherit',
   justifyContent: 'space-between',
 }))
