@@ -1,15 +1,19 @@
-import { AppBar, Toolbar, useTheme, useMediaQuery } from '@mui/material'; //
+import { useContext } from 'react';
+import { AppBar, Toolbar, useTheme, useMediaQuery } from '@mui/material';
+
 import {
   NavMobile,
   NavMenuDesktop,
   Logo,
   SwitchButton,
 } from '../../components';
+import { ColorModeContext } from '../../Utils/ColorMode';
 
 const NavBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   // const isMobile = window.innerWidth < 900; // Use this for testing
+  const { isDarkMode, toggleDarkMode } = useContext(ColorModeContext);
 
   return (
     <AppBar

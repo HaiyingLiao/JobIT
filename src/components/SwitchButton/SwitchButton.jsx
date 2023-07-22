@@ -2,7 +2,7 @@ import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import { Box } from '@mui/material';
 
-import { moon, sun } from '../../assets/icons';
+import icons from '../../assets/icons';
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName='.Mui-focusVisible' disableRipple {...props} />
@@ -33,7 +33,7 @@ const IOSSwitch = styled((props) => (
     '&.Mui-disabled .MuiSwitch-thumb': {
       color:
         theme.palette.mode === 'light'
-          ? theme.palette.grey[100]
+          ? 'theme.palette.grey[100]'
           : theme.palette.grey[600],
     },
     '&.Mui-disabled + .MuiSwitch-track': {
@@ -44,10 +44,12 @@ const IOSSwitch = styled((props) => (
     boxSizing: 'border-box',
     width: 22,
     height: 22,
+    backgroundColor: '#0BAB7C',
   },
   '& .MuiSwitch-track': {
     borderRadius: 26 / 2,
-    backgroundColor: theme.palette.mode === 'light' ? '#E9E9EA' : '#39393D',
+    backgroundColor:
+      theme.palette.mode === 'light' ? '#F1F1F5' : '#21212B !important',
     opacity: 1,
     transition: theme.transitions.create(['background-color'], {
       duration: 500,
@@ -59,11 +61,11 @@ const SwitchButton = ({ checkMode, changeMode }) => {
   return (
     <Box display='flex' alignItems='center'>
       <Box component='span' sx={{ marginTop: '5px' }}>
-        <img src={sun} alt='moon' />
+        <img src={icons.sun} alt='moon' />
       </Box>
       <IOSSwitch sx={{ m: 1 }} onChange={changeMode} checked={checkMode} />
       <Box component='span' sx={{ marginTop: '5px' }}>
-        <img src={moon} alt='sun' />
+        <img src={icons.moon} alt='sun' />
       </Box>
     </Box>
   );

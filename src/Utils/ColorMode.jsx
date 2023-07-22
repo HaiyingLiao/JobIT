@@ -1,28 +1,23 @@
-import React, { useState, createContext, useMemo } from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { createContext, useState } from 'react';
 
-export const ColorModeContext = createContext();
+import { ThemeProvider } from '@emotion/react';
+import { darkTheme, lightTheme } from '../theme';
 
-const ColorMode = ({ children }) => {
-  const [mode, setMode] = useState('light');
-  const toggleColorMode = () => {
-    setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+export const ColorModeContext = createContext({});
+
+const ColorModeProvider = ({ children }) => {
+  const [isDarkMode, setDarkMode] = useState(false);
+  const theme = isDarkMode ? darkTheme : lightTheme;
+
+  const toggleDarkMode = () => {
+    setDarkMode((prevMode) => !prevMode);
   };
-  const theme = useMemo(
-    () =>
-      createTheme({
-        palette: {
-          mode,
-        },
-      }),
-    [mode],
-  );
 
   return (
-    <ColorModeContext.Provider value={{ mode, setMode, toggleColorMode }}>
+    <ColorModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </ColorModeContext.Provider>
   );
 };
 
-export default ColorMode;
+export default ColorModeProvider;
