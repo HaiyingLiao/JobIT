@@ -1,5 +1,11 @@
+import { LargeJobCard } from '../../components';
+
 const Home = () => {
-  return <div>home</div>;
+  return (
+    <div>
+      <LargeJobCard />
+    </div>
+  );
 };
 
 export default Home;
