@@ -1,5 +1,6 @@
 import { Box } from '@mui/material';
 import { AnimationContainer, AnimationBox, Square } from './style';
+
 export default function Loader() {
   return (
     <Box

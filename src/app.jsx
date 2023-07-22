@@ -1,6 +1,6 @@
-// import { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
+import { Toaster } from 'react-hot-toast';
 
 import { Navbar } from './components';
 
@@ -18,6 +18,7 @@ export default function App() {
         <Route exact path='/job-search' element={<JobSearch />} />
         <Route exact path='/estimated-salary' element={<EstimatedSalary />} />
       </Routes>
+      <Toaster />
     </>
   );
 }

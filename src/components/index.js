@@ -10,3 +10,5 @@ export { default as InlineJobCard } from './InlineJobCard/InlineJobCard';
 export { default as NavMobile } from './Navbar/NavMobile';
 export { default as Logo } from './Navbar/Logo';
 export { default as NavMenuDesktop } from './Navbar/NavMenuDesktop';
+export { default as Loader } from './Loader/Loader';
+export { default as LargeJobCard } from './JobCard/LargeJobCard/LargeJobCard';
