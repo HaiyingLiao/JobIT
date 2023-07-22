@@ -139,6 +139,7 @@ export const lightTheme = createTheme({
       backdrop: 'rgba(0, 0, 0, 0.1)',
       activeDrawer: '#F4F4F4',
       requirementBg: '#FAFAFB',
+      pageBG: '#F9FAFC',
     },
     text: {
       primary: '#171725',
@@ -176,6 +177,7 @@ export const darkTheme = createTheme({
       backdrop: 'rgba(255, 255, 255, 0.10)',
       activeDrawer: '#21212B',
       requirementBg: '#21212B',
+      pageBG: '#13131A',
     },
     text: {
       primary: '#FFFFFF',
