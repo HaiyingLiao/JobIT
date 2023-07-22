@@ -2,7 +2,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { CssBaseline } from '@mui/material';
 
-import { InputValidation, Navbar } from './components';
+import { Navbar } from './components';
 
 import { Home, JobSearch, EstimatedSalary } from './pages';
 
@@ -18,7 +18,6 @@ export default function App() {
         <Route exact path='/job-search' element={<JobSearch />} />
         <Route exact path='/estimated-salary' element={<EstimatedSalary />} />
       </Routes>
-      <InputValidation />
     </>
   );
 }

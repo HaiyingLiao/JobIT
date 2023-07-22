@@ -20,13 +20,10 @@ const NavMenuDesktop = () => {
     >
       {navMenuItems.map((menuItem) => (
         <Tab
-          key={menuItem}
-          label={menuItem}
+          key={menuItem.name}
+          label={menuItem.name}
           component={Link}
-          to={`/${menuItem
-            .split(' ')
-            .map((word) => word.toLowerCase())
-            .join('-')}`}
+          to={menuItem.link}
           sx={{
             textTransform: 'capitalize',
             fontSize: '16px',
@@ -34,7 +31,7 @@ const NavMenuDesktop = () => {
             padding: '0px',
             marginRight: '30px',
             lineHeight: '24px',
-            color: '#92929D',
+            color: 'secondary.contrastText',
             '&.Mui-selected': {
               color: '#0BAB7C',
             },

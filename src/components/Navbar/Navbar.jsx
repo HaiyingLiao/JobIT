@@ -19,10 +19,10 @@ const NavBar = () => {
     <AppBar
       component='nav'
       sx={{
-        bgcolor: theme.palette.mode === 'light' ? '#FFF' : '#13131A',
+        bgcolor: 'customColor.navBarBg',
         zIndex: '2000',
         px: isMobile ? '0' : '78px',
-        boxShadow: 'rgba(0, 0, 0, 0.2) 0px 1px 1px 0px',
+        boxShadow: '0px 0px 1px 0px #92929D',
       }}
       position='fixed'
       elevation={0}
@@ -34,7 +34,7 @@ const NavBar = () => {
           <>
             <Logo />
             <NavMenuDesktop />
-            <SwitchButton />
+            <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
           </>
         )}
       </Toolbar>
