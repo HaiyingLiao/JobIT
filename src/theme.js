@@ -116,6 +116,7 @@ const typography = {
 
 export const lightTheme = createTheme({
   palette: {
+    mode: 'light',
     primary: {
       main: '#0BAB7C',
       contrastText: '#fff',
@@ -131,6 +132,11 @@ export const lightTheme = createTheme({
     secondaryoutlined: {
       main: '#696974',
     },
+    customColor: {
+      jobCardBg: '#FFF',
+      companyJobCardBg: '#FFF',
+      navBarBg: '#FFF',
+    },
     text: {
       primary: '#171725',
       secondary: '#696974',
@@ -142,4 +148,36 @@ export const lightTheme = createTheme({
   },
 });
 
-export const darkTheme = createTheme({});
+export const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#0BAB7C',
+      contrastText: '#fff',
+    },
+    primaryLight: {
+      main: '#0BAB7C1A',
+      contrastText: '#0BAB7C',
+    },
+    secondary: {
+      main: '#21212B',
+      contrastText: '#696974',
+    },
+    secondaryoutlined: {
+      main: '#696974',
+    },
+    customColor: {
+      jobCardBg: '#1c1c24',
+      companyJobCardBg: '#21212B',
+      navBarBg: '#13131A',
+    },
+    text: {
+      primary: '#FFFFFF',
+      secondary: '#92929D',
+      natural6: '#92929D',
+    },
+  },
+  typography: {
+    ...typography,
+  },
+});
