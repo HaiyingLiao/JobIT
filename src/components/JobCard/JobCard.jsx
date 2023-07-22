@@ -14,7 +14,10 @@ import demoImg from '../../assets/images/companyLogo.png';
 
 const demoTech = ['PHP', 'CSS', 'React', 'Laravel'];
 const bull = (
-  <Box component='span' sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}>
+  <Box
+    component='span'
+    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
+  >
     •
   </Box>
 );
@@ -44,7 +47,12 @@ const JobCard = ({ type }) => {
         subheader={
           cardType ? (
             demoTech.map((tech, i) => (
-              <CustomButton variant='small' title={tech} key={i} sx={{ margin: '2px' }} />
+              <CustomButton
+                variant='small'
+                title={tech}
+                key={i}
+                sx={{ margin: '2px' }}
+              />
             ))
           ) : (
             <Typography variant='bodyM3_3' color='text.secondary'>
@@ -68,9 +76,10 @@ const JobCard = ({ type }) => {
       />
       <CardContent>
         <Typography variant='bodyM_4' color='text.secondary'>
-          Here at Microsoft, we are a passionate, fun-loving, growing team. We are looking for
-          passionate programmers who want to solve technical challenges and learn and incorporate
-          new technologies into their skillset to join our team and grow with us.
+          Here at Microsoft, we are a passionate, fun-loving, growing team. We
+          are looking for passionate programmers who want to solve technical
+          challenges and learn and incorporate new technologies into their
+          skillset to join our team and grow with us.
         </Typography>
       </CardContent>
       {cardType ? (
@@ -94,7 +103,12 @@ const JobCard = ({ type }) => {
       ) : (
         <CardContent>
           {demoTech.map((tech, i) => (
-            <CustomButton variant='small' title={tech} key={i} sx={{ margin: '3px' }} />
+            <CustomButton
+              variant='small'
+              title={tech}
+              key={i}
+              sx={{ margin: '3px' }}
+            />
           ))}
         </CardContent>
       )}
@@ -102,7 +116,11 @@ const JobCard = ({ type }) => {
         <Box sx={{ display: 'flex', gap: '35px' }}>
           <Typography variant='bodyL_2'>
             $15k-20k
-            <Typography variant='bodyL_4' component='span' color='text.secondary'>
+            <Typography
+              variant='bodyL_4'
+              component='span'
+              color='text.secondary'
+            >
               /month
             </Typography>
           </Typography>
@@ -110,7 +128,11 @@ const JobCard = ({ type }) => {
           {!cardType && (
             <Typography variant='bodyL_2'>
               54{' '}
-              <Typography variant='bodyL_4' component='span' color='text.secondary'>
+              <Typography
+                variant='bodyL_4'
+                component='span'
+                color='text.secondary'
+              >
                 People Applied
               </Typography>
             </Typography>
@@ -122,7 +144,7 @@ const JobCard = ({ type }) => {
           <CustomButton
             variant='primary'
             title='Apply Now'
-            sx={{ minWidth: !cardType && '180px' }}
+            sx={{ minWidth: cardType ? 'unset' : '180px' }}
           />
         </Box>
       </CardActions>
