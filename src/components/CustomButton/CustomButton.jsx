@@ -27,7 +27,7 @@ const variants = {
     variant: 'contained',
   },
   secondaryOutlined: {
-    color: 'secondary',
+    color: 'secondaryoutlined',
     variant: 'outlined',
   },
   small: {
