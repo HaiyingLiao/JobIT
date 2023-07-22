@@ -12,12 +12,19 @@ import { Box } from '@mui/system';
 export default function App() {
   return (
     <>
+      <CssBaseline />
+      <Navbar />
       <Box
         className='mainContainer'
-        sx={{ display: 'flex', height: '100%', backgroundColor: '#f9fafc' }}
+        sx={(theme) => ({
+          height: '100%',
+          width: '100%',
+          maxWidth: '1470px',
+          margin: '0 auto',
+
+          backgroundColor: theme.palette.customColor.pageBG,
+        })}
       >
-        <CssBaseline />
-        <Navbar />
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/job-search' element={<JobSearch />} />
