@@ -14,6 +14,9 @@ import burgerMenu from './burgerMenu.png';
 import search from './search.png';
 import archive from './archive.png';
 import isMore from './ic_More.png';
+import moreVertical from './more-vertical.png'
+import oval from './Oval.png'
+
 export default {
   sun,
   moon,
@@ -31,4 +34,6 @@ export default {
   search,
   archive,
   isMore,
+  moreVertical,
+  oval
 };

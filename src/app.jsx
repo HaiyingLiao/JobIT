@@ -27,7 +27,7 @@ export default function App() {
 					<Route exact path='/job-search' element={<JobSearch />} />
 					<Route exact path='/estimated-salary' element={<EstimatedSalary />} />
 				</Routes>
-				<InputValidation />
+				{/* <InputValidation /> */}
 			</>
 		</ThemeProvider>
 	);
