@@ -1,8 +1,11 @@
-// install es7 snippets extension for VS Code https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
+import { LargeJobCard } from '../../components';
 
-// type rafce and press Enter
 const Home = () => {
-  return <div>home</div>;
+  return (
+    <div>
+      <LargeJobCard />
+    </div>
+  );
 };
 
 export default Home;

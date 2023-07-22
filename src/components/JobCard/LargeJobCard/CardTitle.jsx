@@ -1,10 +1,10 @@
 import { Typography } from '@mui/material';
 
 import {
-  CardContentInner,
   CardTitleWrapper,
   ButtonWrapper,
   MenuBtn,
+  Wrapper,
 } from './largeCardStyle';
 import Requirement from './Requirement';
 import { CustomButton } from '../../';
@@ -13,7 +13,7 @@ import icons from '../../../assets/icons';
 export default function CardTitle({ title, address }) {
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <CardContentInner>
+      <Wrapper wrap>
         <CardTitleWrapper>
           <div>
             <Typography
@@ -63,7 +63,7 @@ export default function CardTitle({ title, address }) {
           <img src={icons.moreVertical} alt='more icon' />
         </MenuBtn>
         <Requirement />
-      </CardContentInner>
+      </Wrapper>
     </div>
   );
 }

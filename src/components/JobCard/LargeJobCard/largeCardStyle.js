@@ -28,13 +28,6 @@ export const CompanyLogo = styled('img')({
   borderRadius: '10px',
 })
 
-export const CardContentInner = styled('div')({
-  display: 'flex',
-  flexWrap: 'wrap',
-  alignItems: 'center',
-  justifyContent: 'space-between',
-})
-
 export const CardTitleWrapper = styled('div')({
   display: 'flex',
   gap: '6px',
@@ -75,7 +68,7 @@ export const RequirementWrapper = styled('div')({
 export const Wrapper = styled('div')(props => ({
   display: 'flex',
   alignItems: 'center',
-  gap: '16px',
+  gap: props.gap ? props.gap : '0',
   flexWrap: props.wrap ? 'wrap' : 'inherit',
   justifyContent: 'space-between',
 }))
