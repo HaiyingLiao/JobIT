@@ -139,6 +139,8 @@ export const lightTheme = createTheme({
       backDrop: 'rgba(0, 0, 0, 0.1)',
       activeDrawer: '#F4F4F4',
       requirementBg: '#FAFAFB',
+      toggleBtn: '#f1f1f5 !important',
+      toggleBtn2: '#65C466',
     },
     text: {
       primary: '#171725',
@@ -176,6 +178,8 @@ export const darkTheme = createTheme({
       backDrop: 'rgba(255, 255, 255, 0.10)',
       activeDrawer: '#21212B',
       requirementBg: '#21212B',
+      toggleBtn: '#21212B !important',
+      toggleBtn2: '#2ECA45',
     },
     text: {
       primary: '#FFFFFF',
