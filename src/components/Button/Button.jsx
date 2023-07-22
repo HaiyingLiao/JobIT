@@ -64,7 +64,13 @@ export const SecondaryButton = ({ title, href, width }) => {
   );
 };
 
-export const SecondaryOutlineButton = ({ title, href, startIcon, endIcon, width }) => {
+export const SecondaryOutlineButton = ({
+  title,
+  href,
+  startIcon,
+  endIcon,
+  width,
+}) => {
   return (
     <Button
       color='secondaryoutlined'
@@ -80,7 +86,14 @@ export const SecondaryOutlineButton = ({ title, href, startIcon, endIcon, width 
   );
 };
 
-export const SmallButton = ({ title, href, width, startIcon, endIcon, margin }) => {
+export const SmallButton = ({
+  title,
+  href,
+  width,
+  startIcon,
+  endIcon,
+  margin,
+}) => {
   return (
     <Button
       color='secondary'
