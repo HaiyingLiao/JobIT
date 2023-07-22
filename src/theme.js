@@ -136,6 +136,9 @@ export const lightTheme = createTheme({
       jobCardBg: '#FFF',
       companyJobCardBg: '#FFF',
       navBarBg: '#FFF',
+      backdrop: 'rgba(0, 0, 0, 0.1)',
+      activeDrawer: '#F4F4F4',
+      requirementBg: '#FAFAFB',
     },
     text: {
       primary: '#171725',
@@ -170,6 +173,9 @@ export const darkTheme = createTheme({
       jobCardBg: '#1c1c24',
       companyJobCardBg: '#21212B',
       navBarBg: '#13131A',
+      backdrop: 'rgba(255, 255, 255, 0.10)',
+      activeDrawer: '#21212B',
+      requirementBg: '#21212B',
     },
     text: {
       primary: '#FFFFFF',
