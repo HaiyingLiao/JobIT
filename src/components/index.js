@@ -7,4 +7,5 @@ export { default as CustomButton } from './CustomButton/CustomButton';
 export { default as CustomInput } from './CustomInput/CustomInput';
 export { default as JobCard } from './JobCard/JobCard';
 export { default as InlineJobCard } from './InlineJobCard/InlineJobCard';
+export { default as Loader } from './Loader/Loader';
 export { default as LargeJobCard } from './JobCard/LargeJobCard/LargeJobCard'
