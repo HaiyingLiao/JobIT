@@ -16,15 +16,15 @@ export const AnimationBox = styled('div')({
   transform: 'rotate(45deg)',
 });
 const animation = keyframes`
-   0%{  left: 0;top: 0;}
-   12.5%, 23% { left: 32px;top: 0;}
-   25%, 35.5% { left: 64px; top: 0%; }
-   37.5% { left: 64px; top: 32px; }
-   48% { left: 64px; top: 32px; }
-   50%, 60% { left: 32px; top: 32px; }
-   62.5%, 73.5% { left: 32px; top: 64px; }
-   75%, 85%, 98% { left: 0; top: 32px; }
-   0%, 10% { left:0; top: 0; }
+  0%{  left: 0;top: 0;}
+  12.5%, 23% { left: 32px;top: 0;}
+  25%, 35.5% { left: 64px; top: 0%; }
+  37.5% { left: 64px; top: 32px; }
+  48% { left: 64px; top: 32px; }
+  50%, 60% { left: 32px; top: 32px; }
+  62.5%, 73.5% { left: 32px; top: 64px; }
+  75%, 85%, 98% { left: 0; top: 32px; }
+  0%, 10% { left:0; top: 0; }
 `;
 export const Square = styled('div')({
   position: 'absolute',

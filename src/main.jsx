@@ -12,5 +12,5 @@ root.render(
     <ColorModeProvider>
       <App />
     </ColorModeProvider>
-  </BrowserRouter>,
+  </BrowserRouter>
 );

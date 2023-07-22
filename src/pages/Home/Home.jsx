@@ -4,7 +4,6 @@ import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import { JobCard } from '../../components';
 
-// type rafce and press Enter
 const Home = () => {
   return (
     <Box
