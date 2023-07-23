@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-import { RequirementWrapper } from './largeCardStyle';
+import { RequirementWrapper } from './style';
 
 export default function Requirement() {
   const exampleData = [
@@ -25,26 +25,14 @@ export default function Requirement() {
   return (
     <RequirementWrapper>
       {exampleData.map((data) => (
-        <div key={data.title}>
-          <Typography
-            color='lightslategrey'
-            variant='subtitle1'
-            sx={{
-              fontSize: '0.7rem',
-              fontWeight: '400',
-              color: 'text.primary',
-            }}
-          >
+        <div
+          key={data.title}
+          style={{ display: 'flex', flexDirection: 'column' }}
+        >
+          <Typography variant='bodyM3_4' color='secondary.contrastText'>
             {data.title}
           </Typography>
-          <Typography
-            variant='h5'
-            sx={{
-              fontSize: '0.8rem',
-              fontWeight: '600',
-              color: 'secondary',
-            }}
-          >
+          <Typography color='text.secondary' variant='bodyM_2'>
             {data.value}
           </Typography>
         </div>

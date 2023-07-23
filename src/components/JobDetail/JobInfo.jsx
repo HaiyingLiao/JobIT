@@ -1,19 +1,16 @@
 import { Typography } from '@mui/material';
 
-import {
-  CardTitleWrapper,
-  ButtonWrapper,
-  MenuBtn,
-  Wrapper,
-} from './largeCardStyle';
+import { CardTitleWrapper, ButtonWrapper, MenuBtn, Wrapper } from './style';
 import Requirement from './Requirement';
-import { CustomButton } from '../../';
-import icons from '../../../assets/icons';
+import { CustomButton } from '..';
+import icons from '../../assets/icons';
 
 export default function CardTitle({ title, address }) {
+  const isWrap = 'true';
+
   return (
     <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Wrapper wrap>
+      <Wrapper wrap={isWrap}>
         <CardTitleWrapper>
           <div>
             <Typography
@@ -23,23 +20,17 @@ export default function CardTitle({ title, address }) {
                 [breakpoints.down('sm')]: {
                   fontSize: '1rem',
                 },
-                [breakpoints.up('md')]: {
-                  fontSize: '2rem',
-                },
               })}
             >
               {title}
             </Typography>
             <Typography
-              variant='subtitle2'
-              color={'text.secondary'}
+              variant='bodyM_2'
+              color='text.secondary'
               sx={({ breakpoints }) => ({
-                fontWeight: '400',
                 [breakpoints.down('sm')]: {
-                  fontSize: '0.9rem',
-                },
-                [breakpoints.up('md')]: {
-                  fontSize: '1rem',
+                  fontSize: '0.8125rem',
+                  fontWeight: '500',
                 },
               })}
             >

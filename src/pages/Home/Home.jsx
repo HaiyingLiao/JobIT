@@ -1,9 +1,9 @@
-import { LargeJobCard } from '../../components';
+import { JobDetail } from '../../components';
 
 const Home = () => {
   return (
     <div>
-      <LargeJobCard />
+      <JobDetail />
     </div>
   );
 };

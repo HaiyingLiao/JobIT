@@ -69,6 +69,6 @@ export const Wrapper = styled('div')(props => ({
   display: 'flex',
   alignItems: 'center',
   gap: props.gap ? props.gap : '0',
-  flexWrap: props.wrap ? 'wrap' : 'inherit',
+  flexWrap: props?.wrap ? 'wrap' : 'inherit',
   justifyContent: 'space-between',
 }))
