@@ -19,7 +19,6 @@ const IOSSwitch = styled((props) => (
       color: '#fff',
       '& + .MuiSwitch-track': {
         backgroundColor: theme.palette.customColor.toggleBtn,
-        backgroundColor: theme.palette.customColor.toggleBtn,
         opacity: 1,
         border: 0,
       },
