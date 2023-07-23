@@ -6,13 +6,7 @@ import { JobCard } from '../../components';
 
 const Home = () => {
   return (
-    <Box
-      id='homePage'
-      sx={{
-        width: '100%',
-        maxWidth: '1470px',
-      }}
-    >
+    <Box id='homePage' sx={{}}>
       <Box>
         <Typography sx={(theme) => ({ fontSize: theme.typography.h1 })}>
           Welcome to the Job Search Platform for Developers

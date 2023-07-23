@@ -18,7 +18,7 @@ export default function App() {
         className='mainContainer'
         sx={(theme) => ({
           height: '100%',
-          width: '100%',
+          width: '95%',
           maxWidth: '1470px',
           margin: '0 auto',
 

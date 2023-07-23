@@ -140,6 +140,8 @@ export const lightTheme = createTheme({
       activeDrawer: '#F4F4F4',
       requirementBg: '#FAFAFB',
       pageBG: '#F9FAFC',
+      toggleBtn: '#f1f1f5 !important',
+      toggleBtn2: '#65C466',
     },
     text: {
       primary: '#171725',
@@ -178,6 +180,8 @@ export const darkTheme = createTheme({
       activeDrawer: '#21212B',
       requirementBg: '#21212B',
       pageBG: '#13131A',
+      toggleBtn: '#21212B !important',
+      toggleBtn2: '#2ECA45',
     },
     text: {
       primary: '#FFFFFF',
