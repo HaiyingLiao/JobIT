@@ -30,7 +30,7 @@ const JobCard = ({ type }) => {
   const cardType = type === 'homeJobCard';
 
   return (
-    <Card sx={{ maxWidth: cardType ? 450 : 950, p: 1 }}>
+    <Card sx={(theme) => ({ maxWidth: cardType ? '100%' : 950, p: 1 })}>
       <CardHeader
         avatar={
           <Box

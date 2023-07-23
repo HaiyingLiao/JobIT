@@ -14,16 +14,17 @@ export default function App() {
     <>
       <CssBaseline />
       <Navbar />
+
       <Box
         className='mainContainer'
-        sx={(theme) => ({
+        sx={{
           height: '100%',
-          width: '95%',
+          width: '100%',
           maxWidth: '1470px',
           margin: '0 auto',
-
-          backgroundColor: theme.palette.customColor.pageBG,
-        })}
+          padding: '1.5%',
+          backgroundColor: 'customColor.pageBG',
+        }}
       >
         <Routes>
           <Route exact path='/' element={<Home />} />

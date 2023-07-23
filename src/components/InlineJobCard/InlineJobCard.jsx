@@ -24,12 +24,15 @@ const InlineJobCard = ({ type }) => {
 
   return (
     <Card
-      sx={{
-        maxWidth: '380px',
-        backgroundColor: cardType ? '#FAFAFB' : '#FFF',
-        padding: '10px ',
+      sx={(theme) => ({
+        [theme.breakpoints.up('lg')]: { maxWidth: '420px' },
+        [theme.breakpoints.down('lg')]: { maxWidth: '380px' },
+        backgroundColor: 'customColor.pageBG',
+        padding: '10px',
         borderRadius: '10px',
-      }}
+        width: '100%',
+        margin: '10px auto',
+      })}
     >
       <CardContent
         sx={{

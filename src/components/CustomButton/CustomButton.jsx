@@ -47,6 +47,7 @@ const CustomButton = ({
   ...restProps
 }) => {
   const variantStyles = variants[variant] || variants.primary;
+
   const { color, variant: buttonVariant, ...otherStyles } = variantStyles;
 
   const styles = {

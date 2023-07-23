@@ -2,40 +2,67 @@
 
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { JobCard } from '../../components';
+import { CustomButton, InlineJobCard, JobCard } from '../../components';
 
 const Home = () => {
   return (
     <Box id='homePage' sx={{}}>
-      <Box>
-        <Typography sx={(theme) => ({ fontSize: theme.typography.h1 })}>
+      <Box sx={{ marginTop: '70px' }}>
+        <Typography
+          sx={(theme) => ({
+            fontSize: theme.typography.h1,
+            padding: '20px 0',
+          })}
+        >
           Welcome to the Job Search Platform for Developers
         </Typography>
         <Typography
           sx={(theme) => ({
             fontSize: theme.typography.bodyL_3,
             color: theme.palette.text.natural6,
-            margin: '20px 0 35px',
+            margin: '0 0 35px',
           })}
         >
           {new Date().toDateString()}
         </Typography>
-        <Box
-          id='homePageContainer'
-          display='flex'
-          justifyContent='space-between'
-        >
-          <Grid container xs={12} lg={8} md={6} spacing={5}>
-            <Box id='latestJobSection'>
-              <Typography
-                sx={(theme) => ({
-                  fontSize: theme.typography.h4,
-                })}
-              >
-                Latest Job Posts
-              </Typography>
 
-              <Grid container spacing={2}>
+        <Grid container id='homePageContainer'>
+          <Grid
+            item
+            lg={8}
+            sx={(theme) => ({
+              [theme.breakpoints.up('lg')]: {
+                paddingRight: '2rem',
+              },
+            })}
+          >
+            <Box id='latestJobSection'>
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                }}
+              >
+                <Typography
+                  sx={(theme) => ({
+                    fontSize: theme.typography.h4,
+                    marginBottom: '30px',
+                  })}
+                >
+                  Latest Job Posts
+                </Typography>
+                <CustomButton
+                  variant='small'
+                  title='See All'
+                  sx={{
+                    backgroundColor: 'customColor.companyJobCardBg',
+                    border: '1px solid',
+                  }}
+                />
+              </Box>
+
+              <Grid container spacing={4}>
                 <Grid item xs={12} md={6} lg={6}>
                   <JobCard type='homeJobCard' />
                 </Grid>
@@ -52,12 +79,58 @@ const Home = () => {
             </Box>
           </Grid>
 
-          <Grid container xs={12} lg={4} md={6}>
-            <Box id='recommendedJobSectio'>
-              <h2>Recommened Job</h2>
+          <Grid
+            item
+            lg={4}
+            sm={12}
+            sx={(theme) => ({
+              [theme.breakpoints.down('lg')]: { marginTop: '2rem' },
+            })}
+          >
+            <Box
+              id='recommendedJobSection'
+              sx={{
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+            >
+              <Typography
+                sx={(theme) => ({
+                  fontSize: theme.typography.h4,
+                  marginBottom: '30px',
+                })}
+              >
+                Recommened Job
+              </Typography>
+              <CustomButton
+                variant='small'
+                title='See All'
+                sx={{
+                  backgroundColor: 'customColor.companyJobCardBg',
+                  border: '1px solid',
+                }}
+              />
             </Box>
+
+            <Grid
+              container
+              sx={(theme) => ({
+                padding: '0.5rem 0',
+                backgroundColor: theme.palette.customColor.jobCardBg,
+                borderRadius: '10px',
+                justifyContent: 'space-between',
+              })}
+            >
+              <InlineJobCard type='homeInlineCard' />
+              <InlineJobCard type='homeInlineCard' />
+              <InlineJobCard type='homeInlineCard' />
+              <InlineJobCard type='homeInlineCard' />
+              <InlineJobCard type='homeInlineCard' />
+              <InlineJobCard type='homeInlineCard' />
+            </Grid>
           </Grid>
-        </Box>
+        </Grid>
       </Box>
     </Box>
   );
