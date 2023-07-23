@@ -19,6 +19,7 @@ const IOSSwitch = styled((props) => (
       color: '#fff',
       '& + .MuiSwitch-track': {
         backgroundColor: theme.palette.customColor.toggleBtn,
+        backgroundColor: theme.palette.customColor.toggleBtn,
         opacity: 1,
         border: 0,
       },
@@ -33,7 +34,7 @@ const IOSSwitch = styled((props) => (
     '&.Mui-disabled .MuiSwitch-thumb': {
       color:
         theme.palette.mode === 'light'
-          ? 'theme.palette.grey[100]'
+          ? theme.palette.grey[100]
           : theme.palette.grey[600],
     },
     '&.Mui-disabled + .MuiSwitch-track': {

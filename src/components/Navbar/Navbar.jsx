@@ -1,29 +1,44 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { AppBar, Toolbar, useTheme, useMediaQuery } from '@mui/material';
 
-import SwitchButton from '../SwitchButton/SwitchButton';
+import {
+  NavMobile,
+  NavMenuDesktop,
+  Logo,
+  SwitchButton,
+} from '../../components';
 import { ColorModeContext } from '../../Utils/ColorMode';
 
 const NavBar = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  // const isMobile = window.innerWidth < 900; // Use this for testing
   const { isDarkMode, toggleDarkMode } = useContext(ColorModeContext);
 
   return (
-    <div>
-      <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
-
-      <h3>Navbar</h3>
-      <ul>
-        <li>
-          <Link to='/'>Overview</Link>
-        </li>
-        <li>
-          <Link to='/job-search'>Job Search</Link>
-        </li>
-        <li>
-          <Link to='/estimated-salary'>Estimated Salary</Link>
-        </li>
-      </ul>
-    </div>
+    <AppBar
+      component='nav'
+      sx={{
+        bgcolor: 'customColor.navBarBg',
+        zIndex: '2000',
+        px: isMobile ? '0' : '78px',
+        boxShadow: '0px 0px 1px 0px #92929D',
+      }}
+      position='fixed'
+      elevation={0}
+    >
+      <Toolbar sx={{ height: '70px' }}>
+        {isMobile ? (
+          <NavMobile />
+        ) : (
+          <>
+            <Logo />
+            <NavMenuDesktop />
+            <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
+          </>
+        )}
+      </Toolbar>
+    </AppBar>
   );
 };
 
