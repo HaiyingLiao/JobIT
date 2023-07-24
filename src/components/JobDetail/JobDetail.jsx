@@ -29,7 +29,6 @@ export default function LargeJobCard() {
         width: '100%',
         height: '100%',
         padding: '12px',
-        marginTop: '200px',
         maxWidth: '53rem',
         backgroundImage: 'none',
         backgroundColor: 'customColor.jobCardBg',

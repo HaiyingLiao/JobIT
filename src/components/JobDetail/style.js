@@ -6,17 +6,17 @@ export const CardHeaderContainer = styled('div')({
   height: '100%'
 })
 
-export const CardHeaderImage = styled('img')(({ theme }) => ({
+export const CardHeaderImage = styled('img')({
   width: '100%',
   objectFit: 'cover',
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
   height: '12rem',
-}))
+})
 
 export const CompanyLogo = styled('img')({
   position: 'absolute',
-  left: '30px',
+  left: '20px',
   bottom: '-30px',
   border: '2px solid #fff',
   borderRadius: '10px',
