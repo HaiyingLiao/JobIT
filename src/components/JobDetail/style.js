@@ -9,21 +9,15 @@ export const CardHeaderContainer = styled('div')({
 export const CardHeaderImage = styled('img')(({ theme }) => ({
   width: '100%',
   objectFit: 'cover',
-  [theme.breakpoints.down('sm')]: {
-    borderTopLeftRadius: '0',
-    borderTopRightRadius: '0',
-  },
-  [theme.breakpoints.up('sm')]: {
-    borderTopLeftRadius: '15px',
-    borderTopRightRadius: '15px',
-  },
+  borderTopLeftRadius: '20px',
+  borderTopRightRadius: '20px',
   height: '12rem',
 }))
 
 export const CompanyLogo = styled('img')({
   position: 'absolute',
   left: '30px',
-  bottom: '-17px',
+  bottom: '-30px',
   border: '2px solid #fff',
   borderRadius: '10px',
 })
@@ -31,44 +25,51 @@ export const CompanyLogo = styled('img')({
 export const CardTitleWrapper = styled('div')({
   display: 'flex',
   gap: '6px',
-  alignItems: 'center',
-  height: '100%'
+  alignItems: 'start',
+  width: 'fit-content',
+  height: '100%',
+  paddingTop: '30px '
 })
 
 export const ButtonWrapper = styled('div')(({ theme }) => ({
   display: 'flex',
-  gap: '0.5rem',
-  [theme.breakpoints.down(600)]: {
+  gap: '1rem',
+  width: '100%',
+  maxWidth: '300px',
+  justifyContent: 'end',
+  [theme.breakpoints.down(707)]: {
     order: '1',
-    marginTop: '15px'
+    marginTop: '15px',
+    justifyContent: 'start'
   },
-  [theme.breakpoints.up(600)]: {
+  [theme.breakpoints.up(707)]: {
     order: '0',
     marginTop: '0'
   }
 }))
 
-export const MenuBtn = styled('button')({
+export const MoreButton = styled('button')({
   backgroundColor: 'transparent',
   border: 'none',
   cursor: 'pointer'
 })
-
-export const RequirementWrapper = styled('div')({
+export const RequirementWrapper = styled('div')((props) => ({
   display: 'grid',
-  backgroundColor: 'customColor.requirementBg', // this will be added in theme.js later by hana and suraj
+  backgroundColor: props.backgroundColor,
   borderRadius: '10px',
-  padding: '15px',
+  padding: '16px 0 0 16px',
+  backgroundImage: 'none',
   gridTemplateColumns: 'repeat(auto-fit, minmax(100px, 1fr))',
   width: '100%',
   gap: '16px',
-  marginTop: '2.5rem'
-})
+  lineHeight: '24px'
+}))
 
 export const Wrapper = styled('div')(props => ({
   display: 'flex',
   alignItems: 'center',
+  width: props.width ? props.width : 'auto',
   gap: props.gap ? props.gap : '0',
   flexWrap: props?.wrap ? 'wrap' : 'inherit',
-  justifyContent: 'space-between',
+  justifyContent: props.justifyContent ? props.justifyContent : 'inherit',
 }))

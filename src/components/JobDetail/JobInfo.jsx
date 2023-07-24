@@ -1,58 +1,58 @@
 import { Typography } from '@mui/material';
 
-import { CardTitleWrapper, ButtonWrapper, MenuBtn, Wrapper } from './style';
+import { CardTitleWrapper, ButtonWrapper, MoreButton, Wrapper } from './style';
 import Requirement from './Requirement';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
 
-export default function CardTitle({ title, address }) {
-  const isWrap = 'true';
-
+export default function JobInfo({ title, address }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'center' }}>
-      <Wrapper wrap={isWrap}>
+    <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
+      <Wrapper wrap={'true'} width='100%' justifyContent='space-between'>
         <CardTitleWrapper>
           <div>
             <Typography
               variant='h2'
-              mt={3}
-              sx={({ breakpoints }) => ({
-                [breakpoints.down('sm')]: {
-                  fontSize: '1rem',
+              sx={{
+                typography: {
+                  xs: 'bodyM',
+                  sm: 'h2',
                 },
-              })}
+              }}
             >
               {title}
             </Typography>
             <Typography
-              variant='bodyM_2'
+              paragraph
               color='text.secondary'
-              sx={({ breakpoints }) => ({
-                [breakpoints.down('sm')]: {
-                  fontSize: '0.8125rem',
-                  fontWeight: '500',
+              sx={{
+                typography: {
+                  xs: 'bodyM4_4',
+                  sm: 'bodyM_3',
                 },
-              })}
+                lineHeight: '32px',
+              }}
             >
-              {address}
+              {address} - 3 days ago
             </Typography>
           </div>
-          <MenuBtn>
+          <MoreButton>
             <img
+              style={{ paddingTop: '3px' }}
               src={icons.icSaved}
               alt='bookmark icon'
               width={20}
               height={20}
             />
-          </MenuBtn>
+          </MoreButton>
         </CardTitleWrapper>
         <ButtonWrapper>
           <CustomButton variant='primary' title='Apply Now' />
           <CustomButton variant='primaryOutlined' title='Message' />
         </ButtonWrapper>
-        <MenuBtn>
+        <MoreButton>
           <img src={icons.moreVertical} alt='more icon' />
-        </MenuBtn>
+        </MoreButton>
         <Requirement />
       </Wrapper>
     </div>

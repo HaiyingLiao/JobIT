@@ -7,12 +7,22 @@ import {
 } from '@mui/material';
 
 import icons from '../../assets/icons';
-import Title from './Title';
 
 export default function ListSection({ title, listData }) {
   return (
-    <div>
-      <Title title={title} />
+    <div style={{ marginTop: '30px' }}>
+      <Typography
+        variant='bodyL'
+        color='text.primary'
+        sx={{
+          typography: {
+            xs: 'bodyM',
+            sm: 'bodyL',
+          },
+        }}
+      >
+        {title}
+      </Typography>
       <List>
         {listData?.map((data) => (
           <ListItem key={data} sx={{ paddingLeft: '0px' }}>
@@ -21,14 +31,10 @@ export default function ListSection({ title, listData }) {
             </ListItemIcon>
             <ListItemText
               primary={data}
-              sx={({ breakpoints }) => ({
-                fontWeight: '400',
-                fontSize: '1rem',
+              sx={{
+                typography: 'bodyM_4',
                 color: 'text.secondary',
-                [breakpoints.down('sm')]: {
-                  fontWeight: '500',
-                },
-              })}
+              }}
             />
           </ListItem>
         ))}

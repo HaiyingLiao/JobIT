@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 
 import { RequirementWrapper } from './style';
 
@@ -21,18 +21,34 @@ export default function Requirement() {
       value: '$2150.0 / month',
     },
   ];
-
+  const {
+    palette: { customColor },
+  } = useTheme();
   return (
-    <RequirementWrapper>
+    <RequirementWrapper backgroundColor={customColor?.requirementBg}>
       {exampleData.map((data) => (
-        <div
-          key={data.title}
-          style={{ display: 'flex', flexDirection: 'column' }}
-        >
-          <Typography variant='bodyM3_4' color='secondary.contrastText'>
+        <div key={data.title}>
+          <Typography
+            color='secondary.contrastText'
+            sx={{
+              typography: {
+                xs: 'bodyM3_3',
+                sm: 'bodyM3_2',
+              },
+            }}
+          >
             {data.title}
           </Typography>
-          <Typography color='text.secondary' variant='bodyM_2'>
+          <Typography
+            paragraph
+            color='text.primary'
+            sx={{
+              typography: {
+                xs: 'bodyM3_2',
+                sm: 'bodyM_2',
+              },
+            }}
+          >
             {data.value}
           </Typography>
         </div>

@@ -9,7 +9,7 @@ import googleMeet from './google-meet.png';
 import icSaved from './ic_Saved.png';
 import people from './people.png';
 import pin from './pin.png';
-import plus from './plus.png';
+import plus from './plus.svg';
 import burgerMenu from './burgerMenu.png';
 import search from './search.png';
 import archive from './archive.png';

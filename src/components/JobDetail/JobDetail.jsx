@@ -3,10 +3,9 @@ import { Card, CardContent, Typography } from '@mui/material';
 import CardHeader from './Header';
 import JobInfo from './JobInfo';
 import ListSection from './ListSection';
-import CompanyDesc from './CompanyDesc';
+import Publisher from './Publisher';
 import { logo } from '../../assets/images';
 // example logo
-import Title from './Title';
 
 export default function LargeJobCard() {
   const exampleResponsibilities = [
@@ -25,10 +24,14 @@ export default function LargeJobCard() {
 
   return (
     <Card
+      data-testid='job-detail'
       sx={{
         width: '100%',
-        padding: '15px',
-        maxWidth: '53.75rem',
+        height: '100%',
+        padding: '12px',
+        marginTop: '200px',
+        maxWidth: '53rem',
+        backgroundImage: 'none',
         backgroundColor: 'customColor.jobCardBg',
       }}
     >
@@ -38,19 +41,30 @@ export default function LargeJobCard() {
           address='UIHUT Technologies LLC'
           title='Passionate Programmer'
         />
-        <div style={{ paddingTop: '15px' }}>
-          <Title title='About The Job' />
+        <div style={{ marginTop: '30px' }}>
+          <Typography
+            variant='bodyL'
+            color='text.primary'
+            pt={5}
+            sx={{
+              typography: {
+                xs: 'bodyM',
+                sm: 'bodyL',
+              },
+            }}
+          >
+            About The Job
+          </Typography>
           <Typography
             paragraph
             pt={1}
             color='text.secondary'
-            variant='bodyM_4'
-            sx={({ breakpoints }) => ({
-              [breakpoints.down('sm')]: {
-                fontSize: '0.875rem',
-                fontWeight: '400',
+            sx={{
+              typography: {
+                xs: 'bodyM3_4',
+                sm: 'bodyM_4',
               },
-            })}
+            }}
           >
             {exampleJobDesc}
           </Typography>
@@ -63,7 +77,7 @@ export default function LargeJobCard() {
           listData={exampleQualifications}
           title='Qualifications and Skill Sets'
         />
-        <CompanyDesc
+        <Publisher
           companyName='UIHUT'
           companydesc={
             "UIHUT is a design and coding resources platform for designers, developers and entrepreneurs. We're building a digital marketplace to simplify the creation of websites, apps and software on any device. UIHUT is based in New York City and is privately funded by some of the industry's leading investors."
