@@ -17,6 +17,7 @@ import isMore from './ic_More.png';
 import closeIcon from './close.png';
 import moreVertical from './more-vertical.png';
 import oval from './Oval.png';
+import arrow from './arror.png';
 
 export default {
   sun,
@@ -38,4 +39,5 @@ export default {
   closeIcon,
   moreVertical,
   oval,
+  arrow,
 };

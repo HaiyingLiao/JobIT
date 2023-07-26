@@ -38,6 +38,7 @@ const InlineJobCard = ({ type }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          gap: '10px',
         }}
       >
         <Box>
