@@ -1,6 +1,6 @@
-import { Typography } from '@mui/material';
+import { Typography, useTheme } from '@mui/material';
 
-import { RequirementWrapper } from './largeCardStyle';
+import { RequirementWrapper } from './style';
 
 export default function Requirement() {
   const exampleData = [
@@ -21,28 +21,32 @@ export default function Requirement() {
       value: '$2150.0 / month',
     },
   ];
-
+  const {
+    palette: { customColor },
+  } = useTheme();
   return (
-    <RequirementWrapper>
+    <RequirementWrapper backgroundColor={customColor?.requirementBg}>
       {exampleData.map((data) => (
         <div key={data.title}>
           <Typography
-            color='lightslategrey'
-            variant='subtitle1'
+            color='secondary.contrastText'
             sx={{
-              fontSize: '0.7rem',
-              fontWeight: '400',
-              color: 'text.primary',
+              typography: {
+                xs: 'bodyM3_3',
+                sm: 'bodyM3_2',
+              },
             }}
           >
             {data.title}
           </Typography>
           <Typography
-            variant='h5'
+            paragraph
+            color='text.primary'
             sx={{
-              fontSize: '0.8rem',
-              fontWeight: '600',
-              color: 'secondary',
+              typography: {
+                xs: 'bodyM3_2',
+                sm: 'bodyM_2',
+              },
             }}
           >
             {data.value}
