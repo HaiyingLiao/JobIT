@@ -29,7 +29,6 @@ const JobCard = ({ type }) => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeJobCard';
-  const test = true;
 
   return (
     <Card
