@@ -38,7 +38,7 @@ export default function JobInfo({ title, address }) {
           </div>
           <MoreButton>
             <img
-              style={{ marginTop: '3px' }}
+              style={{ marginTop: '3px', objectFit: 'contain' }}
               src={icons.icSaved}
               alt='bookmark icon'
               width={20}

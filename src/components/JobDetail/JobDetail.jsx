@@ -5,7 +5,6 @@ import JobInfo from './JobInfo';
 import ListSection from './ListSection';
 import Publisher from './Publisher';
 import { logo } from '../../assets/images';
-// example logo
 
 export default function LargeJobCard() {
   const exampleResponsibilities = [
@@ -40,7 +39,7 @@ export default function LargeJobCard() {
           address='UIHUT Technologies LLC'
           title='Passionate Programmer'
         />
-        <div style={{ marginTop: '30px' }}>
+        <section style={{ marginTop: '30px' }}>
           <Typography
             variant='bodyL'
             color='text.primary'
@@ -67,7 +66,7 @@ export default function LargeJobCard() {
           >
             {exampleJobDesc}
           </Typography>
-        </div>
+        </section>
         <ListSection
           listData={exampleResponsibilities}
           title='Responsibilities'
