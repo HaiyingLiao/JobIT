@@ -1,11 +1,11 @@
 import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
 
-import { LargeJobCard, InlineJobCard, CustomButton } from '../components';
+import { JobDetail, InlineJobCard, CustomButton } from '../components';
 import icons from '../assets/icons';
 
 const demoData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
-const JobDetail = () => {
+const JobDetailPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
@@ -37,15 +37,16 @@ const JobDetail = () => {
             sx={{ padding: '7px 10px', marginBottom: '10px' }}
           />
         )}
-        <LargeJobCard />
+        <JobDetail />
       </Grid>
 
       <Grid container item sm={12} md={4}>
         <Typography variant='bodyL' mb='20px'>
           Similar Job
         </Typography>
-        {demoData.map((index) => (
-          <Grid item sm={12} mb='15px' key={index}>
+
+        {demoData.map((_, i) => (
+          <Grid item sm={12} mb='15px' key={i}>
             <InlineJobCard />
           </Grid>
         ))}
@@ -54,4 +55,4 @@ const JobDetail = () => {
   );
 };
 
-export default JobDetail;
+export default JobDetailPage;
