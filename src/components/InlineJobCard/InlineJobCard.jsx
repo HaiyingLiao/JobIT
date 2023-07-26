@@ -26,7 +26,9 @@ const InlineJobCard = ({ type }) => {
     <Card
       sx={{
         maxWidth: '380px',
-        backgroundColor: cardType ? '#FAFAFB' : '#FFF',
+        backgroundColor: cardType
+          ? 'customColor.requirementBg'
+          : 'customColor.jobCardBg',
         padding: '10px ',
         borderRadius: '10px',
       }}
@@ -43,18 +45,23 @@ const InlineJobCard = ({ type }) => {
         </Box>
 
         <Stack spacing={1}>
-          <Typography variant='bodyM_2'>Passionate programmer</Typography>
+          <Typography variant={{ xs: 'bodyM2_2', sm: 'bodyM_2' }}>
+            Passionate programmer
+          </Typography>
 
-          <Typography variant='bodyM3_4' color='text.secondary'>
+          <Typography
+            variant={{ xs: 'bodyM4_4', sm: 'bodyM3_4' }}
+            color='text.secondary'
+          >
             Google{bull}California, USA
           </Typography>
         </Stack>
 
         <Stack spacing={1}>
-          <Typography variant='bodyM3_3'>
+          <Typography variant={{ xs: 'bodyM4_2', sm: 'bodyM3_3' }}>
             $70-80
             <Typography
-              variant='bodyM3_4'
+              variant={{ xs: 'bodyM4_4', sm: 'bodyM3_4' }}
               component='span'
               color='text.secondary'
             >
@@ -63,7 +70,9 @@ const InlineJobCard = ({ type }) => {
           </Typography>
 
           {cardType ? (
-            <Typography variant='bodyM3_4'>Full-Time</Typography>
+            <Typography variant={{ xs: 'bodyM4_4', sm: 'bodyM3_4' }}>
+              Full-Time
+            </Typography>
           ) : (
             <Box height='18px'></Box>
           )}
@@ -82,7 +91,7 @@ const InlineJobCard = ({ type }) => {
             <CustomButton
               variant='secondaryOutlined'
               title={<img src={icons.archive} alt='archive' />}
-              sx={{ padding: '8px' }}
+              sx={{ minWidth: '18px' }}
             />
 
             <CustomButton variant='primaryLighter' title='View' />
