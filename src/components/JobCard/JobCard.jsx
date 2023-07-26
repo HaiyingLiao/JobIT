@@ -6,6 +6,8 @@ import {
   IconButton,
   Typography,
   Box,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 
 import { CustomButton } from '..';
@@ -24,7 +26,10 @@ const bull = (
 );
 
 const JobCard = ({ type }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeJobCard';
+  const test = true;
 
   return (
     <Card
@@ -77,8 +82,15 @@ const JobCard = ({ type }) => {
           ) : (
             <CustomButton
               variant='small'
-              title='Save job'
-              endIcon={<img src={icons.icSaved} alt='icSaved' />}
+              title={
+                isMobile ? (
+                  <img src={icons.icSaved} alt='icSaved' />
+                ) : (
+                  'Save job'
+                )
+              }
+              endIcon={!isMobile && <img src={icons.icSaved} alt='icSaved' />}
+              sx={{ background: isMobile && 'none' }}
             />
           )
         }
