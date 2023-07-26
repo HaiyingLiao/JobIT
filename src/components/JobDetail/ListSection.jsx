@@ -6,29 +6,33 @@ import {
   ListItemIcon,
 } from '@mui/material';
 
-import icons from '../../../assets/icons';
+import icons from '../../assets/icons';
 
 export default function ListSection({ title, listData }) {
   return (
-    <div>
+    <div style={{ marginTop: '30px' }}>
       <Typography
-        variant='h3'
-        pt={5}
-        sx={{ fontSize: '1rem', fontWeight: '700' }}
+        variant='bodyL'
+        color='text.primary'
+        sx={{
+          typography: {
+            xs: 'bodyM',
+            sm: 'bodyL',
+          },
+        }}
       >
         {title}
       </Typography>
       <List>
         {listData?.map((data) => (
-          <ListItem key={data}>
-            <ListItemIcon>
+          <ListItem key={data} sx={{ paddingLeft: '0px' }}>
+            <ListItemIcon sx={{ minWidth: '22px' }}>
               <img src={icons.oval} alt='oval icon' />
             </ListItemIcon>
             <ListItemText
               primary={data}
               sx={{
-                fontWeight: '400',
-                fontSize: '0.9rem',
+                typography: 'bodyM_4',
                 color: 'text.secondary',
               }}
             />
