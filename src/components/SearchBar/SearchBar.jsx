@@ -97,7 +97,6 @@ const democountries = [
     phone: '242',
   },
   { code: 'CH', label: 'Switzerland', phone: '41' },
-  { code: 'CI', label: "Cote d'Ivoire", phone: '225' },
   { code: 'CK', label: 'Cook Islands', phone: '682' },
   { code: 'CL', label: 'Chile', phone: '56' },
   { code: 'CM', label: 'Cameroon', phone: '237' },
@@ -221,20 +220,12 @@ const democountries = [
     label: 'Saint Kitts and Nevis',
     phone: '1-869',
   },
-  {
-    code: 'KP',
-    label: "Korea, Democratic People's Republic of",
-    phone: '850',
-  },
+
   { code: 'KR', label: 'Korea, Republic of', phone: '82' },
   { code: 'KW', label: 'Kuwait', phone: '965' },
   { code: 'KY', label: 'Cayman Islands', phone: '1-345' },
   { code: 'KZ', label: 'Kazakhstan', phone: '7' },
-  {
-    code: 'LA',
-    label: "Lao People's Democratic Republic",
-    phone: '856',
-  },
+
   { code: 'LB', label: 'Lebanon', phone: '961' },
   { code: 'LC', label: 'Saint Lucia', phone: '1-758' },
   { code: 'LI', label: 'Liechtenstein', phone: '423' },
