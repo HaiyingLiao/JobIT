@@ -3,7 +3,12 @@
 
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { CustomButton, InlineJobCard, JobCard } from '../../components';
+import {
+  CustomButton,
+  InlineJobCard,
+  JobCard
+  // JobDetail
+} from '../../components';
 import { useGetJobListingsQuery } from '../../services/JSearch';
 // import axios from 'axios';
 

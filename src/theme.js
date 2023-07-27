@@ -2,10 +2,12 @@ import { createTheme } from '@mui/material/styles';
 
 const typography = {
   fontFamily: '"Manrope", sans-serif',
+  // 32px
   h1: {
     fontSize: '2rem',
     fontWeight: 700,
   },
+  // 24px
   h2: {
     fontSize: '1.5rem',
     fontWeight: 700,
@@ -14,6 +16,7 @@ const typography = {
     fontSize: '1.5rem',
     fontWeight: 600,
   },
+  // 22px
   h4: {
     fontSize: '1.375rem',
     fontWeight: 700,
@@ -132,6 +135,10 @@ export const lightTheme = createTheme({
     secondaryoutlined: {
       main: '#696974',
     },
+    small: {
+      main: '#FAFAFB',
+      contrastText: '#92929D',
+    },
     customColor: {
       jobCardBg: '#FFF',
       companyJobCardBg: '#FFF',
@@ -172,6 +179,10 @@ export const darkTheme = createTheme({
     },
     secondaryoutlined: {
       main: '#696974',
+    },
+    small: {
+      main: '#21212B',
+      contrastText: '#92929D',
     },
     customColor: {
       jobCardBg: '#1c1c24',
