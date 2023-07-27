@@ -6,11 +6,14 @@ import {
   IconButton,
   Typography,
   Box,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
 import demoImg from '../../assets/images/companyLogo.png';
+import { Stack } from '@mui/system';
 
 const demoTech = ['PHP', 'CSS', 'React', 'Laravel'];
 const bull = (
@@ -21,16 +24,20 @@ const bull = (
     •
   </Box>
 );
-const styleSpaceBetween = {
-  display: 'flex',
-  justifyContent: 'space-between',
-};
 
 const JobCard = ({ type }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeJobCard';
 
   return (
-    <Card sx={{ maxWidth: cardType ? 450 : 950, p: 1 }}>
+    <Card
+      sx={{
+        maxWidth: cardType ? '100% ' : '950px',
+        p: 1,
+        backgroundColor: 'customColor.jobCardBg',
+      }}
+    >
       <CardHeader
         avatar={
           <Box
@@ -43,7 +50,11 @@ const JobCard = ({ type }) => {
             <img src={demoImg} alt='logo' />
           </Box>
         }
-        title={<Typography variant='h2'>Passionate programmer</Typography>}
+        title={
+          <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
+            Passionate programmer
+          </Typography>
+        }
         subheader={
           cardType ? (
             demoTech.map((tech, i) => (
@@ -55,9 +66,14 @@ const JobCard = ({ type }) => {
               />
             ))
           ) : (
-            <Typography variant='bodyM3_3' color='text.secondary'>
-              UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
-            </Typography>
+            <>
+              <Typography
+                variant={isMobile ? 'bodyM4_3' : 'bodyM3_3'}
+                color='text.secondary'
+              >
+                UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
+              </Typography>
+            </>
           )
         }
         action={
@@ -68,14 +84,24 @@ const JobCard = ({ type }) => {
           ) : (
             <CustomButton
               variant='small'
-              title='Save job'
-              endIcon={<img src={icons.icSaved} alt='icSaved' />}
+              title={
+                isMobile ? (
+                  <img src={icons.icSaved} alt='icSaved' />
+                ) : (
+                  'Save job'
+                )
+              }
+              endIcon={!isMobile && <img src={icons.icSaved} alt='icSaved' />}
+              sx={{ background: isMobile && 'none' }}
             />
           )
         }
       />
       <CardContent>
-        <Typography variant='bodyM_4' color='text.secondary'>
+        <Typography
+          variant={isMobile ? 'bodyM2_4' : 'bodyM_4'}
+          color='text.secondary'
+        >
           Here at Microsoft, we are a passionate, fun-loving, growing team. We
           are looking for passionate programmers who want to solve technical
           challenges and learn and incorporate new technologies into their
@@ -83,22 +109,24 @@ const JobCard = ({ type }) => {
         </Typography>
       </CardContent>
       {cardType ? (
-        <CardContent sx={styleSpaceBetween}>
-          <CustomButton
-            variant='small'
-            title='Full time'
-            startIcon={<img src={icons.briefcase} alt='briefcase' />}
-          />
-          <CustomButton
-            variant='small'
-            title='45 applied'
-            startIcon={<img src={icons.people} alt='people' />}
-          />
-          <CustomButton
-            variant='small'
-            title='3 days left'
-            startIcon={<img src={icons.clock} alt='clock' />}
-          />
+        <CardContent>
+          <Stack direction='row' justifyContent='space-between'>
+            <CustomButton
+              variant='small'
+              title='Full time'
+              startIcon={<img src={icons.briefcase} alt='briefcase' />}
+            />
+            <CustomButton
+              variant='small'
+              title='45 applied'
+              startIcon={<img src={icons.people} alt='people' />}
+            />
+            <CustomButton
+              variant='small'
+              title='3 days left'
+              startIcon={<img src={icons.clock} alt='clock' />}
+            />
+          </Stack>
         </CardContent>
       ) : (
         <CardContent>
@@ -112,41 +140,75 @@ const JobCard = ({ type }) => {
           ))}
         </CardContent>
       )}
-      <CardActions sx={styleSpaceBetween}>
-        <Box sx={{ display: 'flex', gap: '35px' }}>
-          <Typography variant='bodyL_2'>
-            $15k-20k
-            <Typography
-              variant='bodyL_4'
-              component='span'
-              color='text.secondary'
-            >
-              /month
-            </Typography>
-          </Typography>
 
-          {!cardType && (
-            <Typography variant='bodyL_2'>
-              54{' '}
+      <CardActions>
+        {cardType ? (
+          <Stack
+            direction='row'
+            justifyContent='space-between'
+            alignItems='center'
+            flexWrap='wrap'
+            sx={{ width: '100%' }}
+          >
+            <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
+              $15k-20k
               <Typography
-                variant='bodyL_4'
+                variant={isMobile ? 'bodyM_4' : 'bodyL_4'}
                 component='span'
                 color='text.secondary'
               >
-                People Applied
+                /month
               </Typography>
             </Typography>
-          )}
-        </Box>
+            <CustomButton variant='primary' title='Apply Now' />
+          </Stack>
+        ) : (
+          <Stack
+            direction='row'
+            justifyContent='space-between'
+            alignItems='center'
+            flexWrap='wrap'
+            gap='30px'
+            sx={{ width: '100%' }}
+          >
+            <Box sx={{ display: 'flex', gap: '35px' }}>
+              <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
+                $15k-20k
+                <Typography
+                  variant={isMobile ? 'bodyM_4' : 'bodyL_4'}
+                  component='span'
+                  color='text.secondary'
+                >
+                  /month
+                </Typography>
+              </Typography>
 
-        <Box sx={{ display: 'flex', gap: '10px' }}>
-          {!cardType && <CustomButton variant='secondary' title='Message' />}
-          <CustomButton
-            variant='primary'
-            title='Apply Now'
-            sx={{ minWidth: cardType ? 'unset' : '180px' }}
-          />
-        </Box>
+              <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
+                54{' '}
+                <Typography
+                  variant={isMobile ? 'bodyM_4' : 'bodyL_3'}
+                  component='span'
+                  color='text.secondary'
+                >
+                  People Applied
+                </Typography>
+              </Typography>
+            </Box>
+
+            <Box sx={{ display: 'flex', gap: '20px' }}>
+              <CustomButton
+                variant='secondary'
+                title='Message'
+                sx={{ minWidth: { xs: '134px', sm: '125px' } }}
+              />
+              <CustomButton
+                variant='primary'
+                title='Apply Now'
+                sx={{ minWidth: { xs: '141px', sm: '180px' } }}
+              />
+            </Box>
+          </Stack>
+        )}
       </CardActions>
     </Card>
   );
