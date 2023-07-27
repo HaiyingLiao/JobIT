@@ -6,6 +6,8 @@ import {
   IconButton,
   Typography,
   Box,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 
 import { CustomButton } from '..';
@@ -24,6 +26,8 @@ const bull = (
 );
 
 const JobCard = ({ type }) => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeJobCard';
 
   return (
@@ -47,7 +51,7 @@ const JobCard = ({ type }) => {
           </Box>
         }
         title={
-          <Typography variant={{ xs: 'bodyM_2', sm: 'bodyL_2' }}>
+          <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
             Passionate programmer
           </Typography>
         }
@@ -63,7 +67,10 @@ const JobCard = ({ type }) => {
             ))
           ) : (
             <>
-              <Typography variant='bodyM3_3' color='text.secondary'>
+              <Typography
+                variant={isMobile ? 'bodyM4_3' : 'bodyM3_3'}
+                color='text.secondary'
+              >
                 UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
               </Typography>
             </>
@@ -77,15 +84,22 @@ const JobCard = ({ type }) => {
           ) : (
             <CustomButton
               variant='small'
-              title='Save job'
-              endIcon={<img src={icons.icSaved} alt='icSaved' />}
+              title={
+                isMobile ? (
+                  <img src={icons.icSaved} alt='icSaved' />
+                ) : (
+                  'Save job'
+                )
+              }
+              endIcon={!isMobile && <img src={icons.icSaved} alt='icSaved' />}
+              sx={{ background: isMobile && 'none' }}
             />
           )
         }
       />
       <CardContent>
         <Typography
-          variant={{ xs: 'bodyM2_4', sm: 'bodyM_4' }}
+          variant={isMobile ? 'bodyM2_4' : 'bodyM_4'}
           color='text.secondary'
         >
           Here at Microsoft, we are a passionate, fun-loving, growing team. We
@@ -136,10 +150,10 @@ const JobCard = ({ type }) => {
             flexWrap='wrap'
             sx={{ width: '100%' }}
           >
-            <Typography variant={{ xs: 'bodyM_2', sm: 'bodyL_2' }}>
+            <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
               $15k-20k
               <Typography
-                variant={{ xs: 'bodyM_4', sm: 'bodyL_4' }}
+                variant={isMobile ? 'bodyM_4' : 'bodyL_4'}
                 component='span'
                 color='text.secondary'
               >
@@ -158,10 +172,10 @@ const JobCard = ({ type }) => {
             sx={{ width: '100%' }}
           >
             <Box sx={{ display: 'flex', gap: '35px' }}>
-              <Typography variant='bodyL_2'>
+              <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
                 $15k-20k
                 <Typography
-                  variant='bodyL_4'
+                  variant={isMobile ? 'bodyM_4' : 'bodyL_4'}
                   component='span'
                   color='text.secondary'
                 >
@@ -169,10 +183,10 @@ const JobCard = ({ type }) => {
                 </Typography>
               </Typography>
 
-              <Typography variant='bodyL_2'>
+              <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
                 54{' '}
                 <Typography
-                  variant='bodyL_4'
+                  variant={isMobile ? 'bodyM_4' : 'bodyL_3'}
                   component='span'
                   color='text.secondary'
                 >
