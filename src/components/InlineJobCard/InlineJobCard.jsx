@@ -29,7 +29,7 @@ const InlineJobCard = ({ type }) => {
   return (
     <Card
       sx={{
-        maxWidth: '90%',
+        maxWidth: '100%',
         backgroundColor: cardType
           ? 'customColor.requirementBg'
           : 'customColor.jobCardBg',

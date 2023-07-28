@@ -26,6 +26,7 @@ const SearchBar = () => {
       sx={{
         borderRadius: '10px',
         backgroundColor: 'customColor.jobCardBg',
+        width: '100%',
       }}
     >
       <Stack
@@ -50,7 +51,7 @@ const SearchBar = () => {
             // }}
             placeholder='Job Title, Company, or Keywords'
             sx={{
-              width: 300,
+              width: '100%',
               '& fieldset': { border: 'none' },
               paddingLeft: '2rem',
             }}
@@ -63,7 +64,7 @@ const SearchBar = () => {
           </SearchIconWrapper>
           <Autocomplete
             sx={{
-              width: 300,
+              width: '100%',
               '& fieldset': { border: 'none' },
               paddingLeft: '2rem',
             }}
@@ -105,7 +106,7 @@ const SearchBar = () => {
 
           <Select
             sx={{
-              minWidth: 300,
+              width: '100%',
               paddingLeft: '2rem',
               '& fieldset': { border: 'none' },
             }}
@@ -129,7 +130,7 @@ const SearchBar = () => {
           variant='primary'
           title='Find Jobs'
           sx={{
-            minWidth: { xs: '300px', sm: '300px', md: '100px' },
+            minWidth: { xs: '330px', sm: '330px', md: '100px' },
             marginTop: { xs: '10px', sm: '10px', md: '0px' },
             marginLeft: { xs: '0px', sm: '0px', md: '10px' },
           }}
