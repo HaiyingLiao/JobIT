@@ -25,6 +25,11 @@ const typography = {
     fontSize: '1.375rem',
     fontWeight: 600,
   },
+  // 20px
+  h6: {
+    fontSize: '1.25rem',
+    fontWeight: 500,
+  },
   // 18px
   bodyL: {
     fontSize: '1.125rem',
