@@ -17,10 +17,7 @@ export const jSearchApi = createApi({
         `search?query=${query.query}&page=${query.page}&num_pages=${query.num_pages}`
     })
 
-    // Rest endpoints
-    // getJobListingById: builder.query({
-    //   query: (jobId) => `/${jobId}`,
-    // }),
+    // Hi Team do the needfull query from here. I made a sample query above.
   })
 });
 
