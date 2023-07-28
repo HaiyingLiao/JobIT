@@ -25,10 +25,7 @@ export default function LargeJobCard() {
     <Card
       data-testid='job-detail'
       sx={{
-        width: '100%',
-        height: '100%',
         padding: '12px',
-        maxWidth: '53rem',
         backgroundImage: 'none',
         backgroundColor: 'customColor.jobCardBg',
       }}
