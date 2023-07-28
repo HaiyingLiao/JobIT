@@ -13,3 +13,4 @@ export { default as Logo } from './Navbar/Logo';
 export { default as NavMenuDesktop } from './Navbar/NavMenuDesktop';
 export { default as Loader } from './Loader/Loader';
 export { default as SearchBar } from './SearchBar/SearchBar';
+export { default as FilterSideBar } from './FilterSideBar/FilterSideBar';
