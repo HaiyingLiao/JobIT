@@ -2,10 +2,10 @@ import CustomButton from '../../components/CustomButton/CustomButton';
 
 const EstimatedSalary = () => {
   return (
-    <div>
+    <section id='estimatedSalarySection'>
       <p> EstimatedSalary</p>
       <CustomButton title='Test' variant='primary' />
-    </div>
+    </section>
   );
 };
 export default EstimatedSalary;

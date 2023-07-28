@@ -1,6 +1,3 @@
-// install es7 snippets extension for VS Code https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
-// import { useEffect } from 'react';
-
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import {
@@ -13,33 +10,6 @@ import { useGetJobListingsQuery } from '../../services/JSearch';
 // import axios from 'axios';
 
 const Home = () => {
-  // const options = {
-  //   method: 'GET',
-  //   url: 'https://jsearch.p.rapidapi.com/search',
-  //   params: {
-  //     query: 'Python developer in Texas, USA',
-  //     page: '1',
-  //     num_pages: '1',
-  //   },
-  //   headers: {
-  //     'X-RapidAPI-Key': 'c36aef8c48mshf8457f610df3635p120834jsnff917fd8f9f8',
-  //     'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
-  //   },
-  // };
-
-  // const jobData = async () => {
-  //   try {
-  //     const response = await axios.request(options);
-  //     console.log(response.data);
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   jobData();
-  // }, []);
-
   const { data, error, isFetching } = useGetJobListingsQuery({
     query: 'Develper',
     page: '1',
@@ -54,7 +24,7 @@ const Home = () => {
   if (data) console.log(data);
 
   return (
-    <Box id='homePage' sx={{}}>
+    <Box id='homePage'>
       <Box sx={{ marginTop: '70px' }}>
         <Typography
           sx={theme => ({
@@ -149,7 +119,7 @@ const Home = () => {
                   marginBottom: '30px'
                 })}
               >
-                Recommened Job
+                Recommended Job
               </Typography>
               <CustomButton
                 variant='small'
