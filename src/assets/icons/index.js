@@ -17,9 +17,10 @@ import isMore from './ic_More.png';
 import closeIcon from './close.png';
 import moreVertical from './more-vertical.png';
 import oval from './Oval.png';
-import copy from './copy.svg'
-import share from './share.svg'
-import savedFill from './savedFill.svg'
+import arrow from './arror.png';
+import copy from './copy.svg';
+import share from './share.svg';
+import savedFill from './savedFill.svg';
 
 export default {
   sun,
@@ -41,7 +42,8 @@ export default {
   closeIcon,
   moreVertical,
   oval,
+  arrow,
   copy,
   share,
-  savedFill
+  savedFill,
 };
