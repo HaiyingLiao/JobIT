@@ -72,11 +72,7 @@ const FilterSideBar = () => {
   return (
     <>
       {demoListType.map((listData, index) => (
-        <List
-          sx={{ width: '100%', maxWidth: 360, bgcolor: '', marginTop: '30px' }}
-          component='nav'
-          key={index}
-        >
+        <List sx={{ width: '100%', maxWidth: 360 }} component='nav' key={index}>
           <ListItemButton onClick={handleClick}>
             <ListItemText
               primary={
