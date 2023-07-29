@@ -28,7 +28,7 @@ const EstimatedSalary = () => {
         backgroundColor: 'customColor.pageBG',
         minHeight: '100vh',
         fontFamily: '"Manrope", sans-serif',
-        padding: { xs: '80px 10px 80px 10px', lg: '120px 80px 0 80px' },
+        padding: { xs: '80px 20px 80px 20px', lg: '120px 80px 0 80px' },
       }}
     >
       <Grid
