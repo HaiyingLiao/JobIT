@@ -36,7 +36,7 @@ const JobSearchPage = () => {
         </Typography>
       </Grid>
 
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <SearchBar />
       </Grid>
 
@@ -57,7 +57,7 @@ const JobSearchPage = () => {
               variant={isMobile ? 'bodyM_3' : 'bodyL_2'}
               color='text.natural6'
             >
-              Showing:{' '}
+              Showing:
             </Typography>
             <Typography variant={isMobile ? 'bodyM_2' : 'bodyL'}>
               10 Jobs
