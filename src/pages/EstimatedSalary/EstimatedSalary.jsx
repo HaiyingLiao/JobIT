@@ -1,202 +1,57 @@
+import { Grid, Box, useTheme, useMediaQuery } from '@mui/material';
+
 import {
-  Grid,
-  Typography,
-  TextField,
-  Box,
-  ListItem,
-  useTheme,
-  useMediaQuery,
-} from '@mui/material';
-import Chart from './Chart';
+  Chart,
+  EstSalariesForm,
+  ChartLegend,
+  ChartHeader,
+  EstSalariesHeader,
+} from '../../components';
 
 const EstimatedSalary = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  const secondColumnStyles = {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'flex-start',
+    bgcolor: 'customColor.jobCardBg',
+    borderRadius: '10px',
+    padding: '36px 0',
+    marginTop: isMobile ? '0' : '45px',
+  };
+
   return (
     <Box
       sx={{
         backgroundColor: 'customColor.pageBG',
         minHeight: '100vh',
+        fontFamily: '"Manrope", sans-serif',
+        padding: { xs: '80px 10px 80px 10px', lg: '120px 80px 0 80px' },
       }}
     >
       <Grid
         container
         spacing={2}
         sx={{
-          padding: { xs: '120px 24px 0 24px', md: '120px 80px 0 80px' },
+          padding: '20px 0 0 0',
+          maxWidth: '90rem',
+          margin: '0 auto',
+          width: '100%',
         }}
       >
-        <Grid item sm={6} xs={12}>
-          <Typography variant={isMobile ? 'h4' : 'h1'} mb='12px'>
-            Estimated Salaries
-          </Typography>
-          <Typography
-            variant={isMobile ? 'bodyM_3' : 'h6'}
-            color='text.secondary'
-          >
-            Monday, 13 Jan 2023
-          </Typography>
-          <Grid
-            container
-            spacing={2}
-            sx={{ py: '38px', pr: { sm: '20px', lg: '85px' } }}
-          >
-            <Grid item xs={12}>
-              <Typography
-                variant={isMobile ? 'bodyM3_2' : 'bodyM2_2'}
-                color='secondary.contrastText'
-                sx={{ lineHeight: '24px' }}
-              >
-                Job Title
-              </Typography>
-              <TextField
-                fullWidth
-                placeholder='Senior User Experience Designer'
-                sx={{
-                  borderRadius: '12px',
-                  mt: '12px',
-                  bgcolor: 'customColor.toggleBtn',
-                  border: '1px solid rgba(226, 226, 234, 0.60)',
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography
-                variant={isMobile ? 'bodyM3_2' : 'bodyM2_2'}
-                color='secondary.contrastText'
-                sx={{ lineHeight: '24px' }}
-              >
-                Location
-              </Typography>
-              <TextField
-                fullWidth
-                placeholder='New-York, NY, USA'
-                sx={{
-                  borderRadius: '12px',
-                  bgcolor: 'customColor.toggleBtn',
-                  mt: '12px',
-                  border: '1px solid rgba(226, 226, 234, 0.60)',
-                }}
-              />
-            </Grid>
-            <Grid item xs={12} sm={6}>
-              <Typography
-                variant={isMobile ? 'bodyM3_2' : 'bodyM2_2'}
-                color='secondary.contrastText'
-                sx={{ lineHeight: '24px' }}
-              >
-                Radius
-              </Typography>
-              <TextField
-                fullWidth
-                placeholder='100'
-                sx={{
-                  borderRadius: '12px',
-                  mt: '12px',
-                  bgcolor: 'customColor.toggleBtn',
-                  border: '1px solid rgba(226, 226, 234, 0.60)',
-                }}
-              />
-            </Grid>
-          </Grid>
+        {/* First Column - Form */}
+        <Grid item sm={6} xs={12} sx={{ padding: '40px' }}>
+          <EstSalariesHeader isMobile={isMobile} />
+          <EstSalariesForm isMobile={isMobile} />
         </Grid>
-        <Grid
-          item
-          sm={6}
-          xs={12}
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItemst: 'flex-start',
-            bgcolor: 'customColor.jobCardBg',
-            borderRadius: '10px',
-            padding: '26px',
-            marginTop: isMobile ? '0' : '45px',
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: { sm: '1rem', md: '1.5rem' },
-              fontWeight: '400',
-              paddingLeft: isMobile ? '0' : '26px',
-            }}
-            mb='8px'
-          >
-            <Typography component='span' variant={isMobile ? 'bodyM' : 'h2'}>
-              Estimated Salary
-            </Typography>
-            &nbsp;for&nbsp;
-            <Typography component='span' variant={isMobile ? 'bodyM' : 'h2'}>
-              NodeJS Developer
-            </Typography>
-            &nbsp;in&nbsp;
-            <Typography component='span' variant={isMobile ? 'bodyM' : 'h2'}>
-              New York
-            </Typography>
-          </Typography>
-          <Box display='flex' paddingLeft={isMobile ? '0' : '26px'}>
-            <ListItem
-              disablePadding
-              sx={{ paddingRight: isMobile ? '6px' : '0' }}
-            >
-              <Box
-                sx={{
-                  borderRadius: '60px',
-                  bgcolor: '#FDDD8C',
-                  height: '10px',
-                  width: '10px',
-                  marginRight: isMobile ? '4px' : '8px',
-                }}
-              ></Box>
-              <Typography
-                variant={!isMobile && 'bodyM4_3'}
-                sx={{ fontSize: isMobile ? '10px' : '13px' }}
-              >
-                Minimum Salary
-              </Typography>
-            </ListItem>
-            <ListItem
-              disablePadding
-              sx={{ paddingRight: isMobile ? '6px' : '0' }}
-            >
-              <Box
-                sx={{
-                  borderRadius: '60px',
-                  bgcolor: '#0BAB7C',
-                  height: '10px',
-                  width: '10px',
-                  marginRight: isMobile ? '4px' : '8px',
-                }}
-              ></Box>
-              <Typography
-                variant={!isMobile && 'bodyM4_3'}
-                sx={{ fontSize: isMobile ? '10px' : '13px' }}
-              >
-                Maximum Salary
-              </Typography>
-            </ListItem>
-            <ListItem
-              disablePadding
-              sx={{ paddingRight: isMobile ? '6px' : '0' }}
-            >
-              <Box
-                sx={{
-                  borderRadius: '60px',
-                  bgcolor: '#FFBBD7',
-                  height: '10px',
-                  width: '10px',
-                  marginRight: isMobile ? '4px' : '8px',
-                }}
-              ></Box>
-              <Typography
-                variant={!isMobile && 'bodyM4_3'}
-                sx={{ fontSize: isMobile ? '10px' : '13px' }}
-              >
-                Median Salary
-              </Typography>
-            </ListItem>
-          </Box>
-          <Chart />
+
+        {/* Second Column - Chart */}
+        <Grid item sm={6} xs={12} sx={secondColumnStyles}>
+          <ChartHeader isMobile={isMobile} />
+          <ChartLegend isMobile={isMobile} />
+          <Chart isMobile={isMobile} />
         </Grid>
       </Grid>
     </Box>

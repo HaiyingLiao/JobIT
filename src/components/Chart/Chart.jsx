@@ -75,16 +75,16 @@ const data = {
   ],
 };
 
-export default function Chart() {
+export default function Chart({ isMobile }) {
   const isDarkTheme = useTheme().palette.mode === 'dark';
 
   return (
     <Box
       sx={{
-        width: { sm: '100%', lg: '80%' },
+        width: isMobile ? '100%' : '90%',
         margin: '0 auto',
-        height: '250px',
-        paddingTop: '30px',
+        marginTop: '35px',
+        height: '100%',
       }}
     >
       <Bar options={getOptions(isDarkTheme)} data={data} />
