@@ -3,16 +3,15 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  IconButton,
   Typography,
   Box,
 } from '@mui/material';
-
+import { Link } from 'react-router-dom';
+import { FadeIn } from '../SimilarCompany/style';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
-import demoImg from '../../assets/images/companyLogo.png';
+import { placeholder } from '../../assets/images';
 
-const demoTech = ['PHP', 'CSS', 'React', 'Laravel'];
 const bull = (
   <Box
     component='span'
@@ -21,37 +20,109 @@ const bull = (
     •
   </Box>
 );
-const styleSpaceBetween = {
-  display: 'flex',
-  justifyContent: 'space-between',
-};
 
-const JobCard = ({ type }) => {
-  const cardType = type === 'homeJobCard';
+const JobCard = (props) => {
+  const {
+    requiredTech,
+    title,
+    actionButton,
+    type,
+    variant,
+    logo,
+    jobDesc,
+    delay,
+    jobId,
+    minSalary,
+    maxSalary,
+  } = props;
+
+  const homeCard = type === 'homeJobcard';
+  const companyDetailCard = type === 'companyDetail';
+  const slicedRequiredtech = requiredTech && requiredTech.splice(0, 3);
 
   return (
-    <Card sx={{ maxWidth: cardType ? 450 : 950, p: 1 }}>
+    <Card
+      sx={{
+        padding: '1.25rem',
+        width: '100%',
+        maxWidth: homeCard || companyDetailCard ? '400px' : '950px',
+        height: '100%',
+        opacity: '0',
+        borderRadius: '15px',
+        transition: 'opacity 500ms ease',
+        animation: `${FadeIn} 1s linear ${delay}ms forwards`,
+        backgroundColor: 'customColor.jobCardBg',
+        boxShadow:
+          '0px 23px 30px 0px rgba(226, 226, 234, 0.40), -3px -2px 24px 0px rgba(0, 0, 0, 0.02)',
+      }}
+    >
       <CardHeader
+        sx={{
+          paddingBottom: '1.38rem',
+        }}
         avatar={
           <Box
             sx={{
-              padding: '8px 8px 2px',
               borderRadius: '10px',
               background: 'rgba(23, 23, 37, 0.06)',
             }}
           >
-            <img src={demoImg} alt='logo' />
+            <img
+              loading='lazy'
+              src={logo ?? placeholder}
+              alt='logo'
+              style={{
+                objectFit: 'contain',
+                width: '46px',
+                height: '46px',
+              }}
+            />
           </Box>
         }
-        title={<Typography variant='h2'>Passionate programmer</Typography>}
+        title={
+          <Link
+            href='/'
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <Typography
+              color='text.primary'
+              sx={{
+                typography: {
+                  xs: 'bodyM_2',
+                  sm: 'bodyL_2',
+                },
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                maxWidth: '220px',
+              }}
+            >
+              {title}
+            </Typography>
+          </Link>
+        }
         subheader={
-          cardType ? (
-            demoTech.map((tech, i) => (
+          homeCard || companyDetailCard ? (
+            slicedRequiredtech?.map((tech, i) => (
               <CustomButton
+                sx={{
+                  marginX: '3px',
+                  maxWidth: '40px',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  textAlign: 'left',
+                  padding: '3px 10px',
+                  whiteSpace: 'nowrap',
+                  fontSize: '10px',
+                  ':hover': {
+                    color: '#fff',
+                  },
+                }}
                 variant='small'
                 title={tech}
                 key={i}
-                sx={{ margin: '2px' }}
               />
             ))
           ) : (
@@ -60,30 +131,34 @@ const JobCard = ({ type }) => {
             </Typography>
           )
         }
-        action={
-          cardType ? (
-            <IconButton aria-label='settings'>
-              <img src={icons.isMore} alt='isMore' />
-            </IconButton>
-          ) : (
-            <CustomButton
-              variant='small'
-              title='Save job'
-              endIcon={<img src={icons.icSaved} alt='icSaved' />}
-            />
-          )
-        }
+        action={actionButton}
       />
-      <CardContent>
-        <Typography variant='bodyM_4' color='text.secondary'>
-          Here at Microsoft, we are a passionate, fun-loving, growing team. We
-          are looking for passionate programmers who want to solve technical
-          challenges and learn and incorporate new technologies into their
-          skillset to join our team and grow with us.
+      <CardContent
+        sx={{
+          maxHeight: '71px',
+        }}
+      >
+        <Typography
+          paragraph
+          variant='bodyM_4'
+          color='text.secondary'
+          sx={{
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            whiteSpace: 'wrap',
+            maxHeight: '71px',
+          }}
+        >
+          {jobDesc}
         </Typography>
       </CardContent>
-      {cardType ? (
-        <CardContent sx={styleSpaceBetween}>
+      {homeCard && (
+        <CardContent
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+          }}
+        >
           <CustomButton
             variant='small'
             title='Full time'
@@ -100,32 +175,71 @@ const JobCard = ({ type }) => {
             startIcon={<img src={icons.clock} alt='clock' />}
           />
         </CardContent>
-      ) : (
-        <CardContent>
-          {demoTech.map((tech, i) => (
+      )}
+      <CardContent>
+        {!companyDetailCard ||
+          !homeCard ||
+          slicedRequiredtech?.map((tech, i) => (
             <CustomButton
               variant='small'
               title={tech}
               key={i}
-              sx={{ margin: '3px' }}
+              sx={{
+                margin: '3px',
+                ':hover': {
+                  color: '#fff',
+                },
+              }}
             />
           ))}
-        </CardContent>
-      )}
-      <CardActions sx={styleSpaceBetween}>
+      </CardContent>
+      <CardActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingTop: '1.38rem',
+        }}
+      >
         <Box sx={{ display: 'flex', gap: '35px' }}>
-          <Typography variant='bodyL_2'>
-            $15k-20k
+          {minSalary && maxSalary ? (
             <Typography
-              variant='bodyL_4'
+              variant='bodyL_2'
+              sx={{
+                maxWidth: '150px',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                typography: {
+                  xs: ' bodyM_3',
+                  sm: ' bodyL_2',
+                },
+              }}
+            >
+              ${minSalary}k-{maxSalary}k
+              <Typography
+                sx={{
+                  typography: {
+                    xs: 'bodyM_2',
+                    sm: 'bodyL_2',
+                  },
+                }}
+                component='span'
+                color='text.secondary'
+              >
+                /month
+              </Typography>
+            </Typography>
+          ) : (
+            <Typography
+              variant='bodyM_2'
               component='span'
               color='text.secondary'
             >
-              /month
+              To Be Discussed (TBD)
             </Typography>
-          </Typography>
+          )}
 
-          {!cardType && (
+          {!homeCard && !companyDetailCard && (
             <Typography variant='bodyL_2'>
               54{' '}
               <Typography
@@ -140,11 +254,13 @@ const JobCard = ({ type }) => {
         </Box>
 
         <Box sx={{ display: 'flex', gap: '10px' }}>
-          {!cardType && <CustomButton variant='secondary' title='Message' />}
+          {!homeCard && !companyDetailCard && (
+            <CustomButton variant='secondary' title='Message' />
+          )}
           <CustomButton
-            variant='primary'
+            href={`/job/${jobId}`}
+            variant={variant}
             title='Apply Now'
-            sx={{ minWidth: cardType ? 'unset' : '180px' }}
           />
         </Box>
       </CardActions>

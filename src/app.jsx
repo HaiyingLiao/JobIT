@@ -4,7 +4,7 @@ import { Toaster } from 'react-hot-toast';
 
 import { Navbar } from './components';
 
-import { Home, JobSearch, EstimatedSalary } from './pages';
+import { Home, JobSearch, EstimatedSalary, CompanyDetail } from './pages';
 
 import './app.css';
 
@@ -17,6 +17,7 @@ export default function App() {
         <Route exact path='/' element={<Home />} />
         <Route exact path='/job-search' element={<JobSearch />} />
         <Route exact path='/estimated-salary' element={<EstimatedSalary />} />
+        <Route exact path='/company/:name' element={<CompanyDetail />} />
       </Routes>
       <Toaster />
     </>

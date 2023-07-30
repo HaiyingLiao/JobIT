@@ -20,6 +20,7 @@ import oval from './Oval.png';
 import copy from './copy.svg'
 import share from './share.svg'
 import savedFill from './savedFill.svg'
+import oval1 from './Oval1.svg'
 
 export default {
   sun,
@@ -43,5 +44,6 @@ export default {
   oval,
   copy,
   share,
-  savedFill
+  savedFill,
+  oval1
 };

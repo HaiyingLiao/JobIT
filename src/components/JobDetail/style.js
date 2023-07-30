@@ -12,6 +12,7 @@ export const CardHeaderImage = styled('img')({
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
   height: '12rem',
+  backgroundColor: '#fff'
 })
 
 export const CompanyLogo = styled('img')({
@@ -20,6 +21,10 @@ export const CompanyLogo = styled('img')({
   bottom: '-30px',
   border: '2px solid #fff',
   borderRadius: '10px',
+  objectFit: 'contain',
+  width: '64px',
+  height: '64px',
+  backgroundColor: '#fff',
 })
 
 export const CardTitleWrapper = styled('div')({
