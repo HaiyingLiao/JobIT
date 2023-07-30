@@ -187,9 +187,9 @@ const SearchBar = () => {
           title='Find Jobs'
           onClick={handleSearch}
           sx={{
-            minWidth: { xs: '330px', sm: '330px', md: '100px' },
-            marginTop: { xs: '10px', sm: '10px', md: '0px' },
-            marginLeft: { xs: '0px', sm: '0px', md: '10px' },
+            minWidth: { xs: '100%', md: '100px' },
+            marginTop: { xs: '10px', md: '0px' },
+            marginLeft: { xs: '0px', md: '10px' },
           }}
         />
       </Stack>
