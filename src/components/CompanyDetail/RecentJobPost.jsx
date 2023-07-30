@@ -52,6 +52,7 @@ export default function RecentJobPost({ recentJobs }) {
                 <img src={icons.isMore} alt='isMore' />
               </IconButton>
             }
+            btnText='Apply now'
             maxSalary={job.job_max_salary}
             minSalary={job.job_min_salary}
             jobId={job?.job_id}

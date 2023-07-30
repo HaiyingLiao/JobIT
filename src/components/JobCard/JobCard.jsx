@@ -5,8 +5,6 @@ import {
   CardActions,
   Typography,
   Box,
-  useTheme,
-  useMediaQuery,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FadeIn } from '../SimilarCompany/style';
@@ -36,6 +34,7 @@ const JobCard = (props) => {
     jobId,
     minSalary,
     maxSalary,
+    btnText,
   } = props;
 
   const homeCard = type === 'homeJobcard';
@@ -44,7 +43,7 @@ const JobCard = (props) => {
 
   return (
     <Card
-      sx={{
+      sx={(theme) => ({
         padding: '1.25rem',
         width: '100%',
         maxWidth: homeCard || companyDetailCard ? '400px' : '950px',
@@ -55,8 +54,10 @@ const JobCard = (props) => {
         animation: `${FadeIn} 1s linear ${delay}ms forwards`,
         backgroundColor: 'customColor.jobCardBg',
         boxShadow:
-          '0px 23px 30px 0px rgba(226, 226, 234, 0.40), -3px -2px 24px 0px rgba(0, 0, 0, 0.02)',
-      }}
+          theme.palette.mode === 'light'
+            ? '0px 23px 30px 0px rgba(226, 226, 234, 0.40), -3px -2px 24px 0px rgba(0, 0, 0, 0.02)'
+            : 'none',
+      })}
     >
       <CardHeader
         sx={{
@@ -129,10 +130,7 @@ const JobCard = (props) => {
             ))
           ) : (
             <>
-              <Typography
-                variant={isMobile ? 'bodyM4_3' : 'bodyM3_3'}
-                color='text.secondary'
-              >
+              <Typography variant={'bodyM4_3'} color='text.secondary'>
                 UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
               </Typography>
             </>
@@ -164,6 +162,7 @@ const JobCard = (props) => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
+            paddingTop: '30px',
           }}
         >
           <CustomButton
@@ -183,9 +182,13 @@ const JobCard = (props) => {
           />
         </CardContent>
       )}
-      <CardContent>
-        {!companyDetailCard ||
-          !homeCard ||
+      <CardContent
+        sx={{
+          paddingTop: '30px',
+        }}
+      >
+        {!companyDetailCard &&
+          !homeCard &&
           slicedRequiredtech?.map((tech, i) => (
             <CustomButton
               variant='small'
@@ -194,7 +197,7 @@ const JobCard = (props) => {
               sx={{
                 margin: '3px',
                 ':hover': {
-                  color: '#fff',
+                  color: 'text.primary',
                 },
               }}
             />
@@ -205,6 +208,8 @@ const JobCard = (props) => {
           display: 'flex',
           justifyContent: 'space-between',
           paddingTop: '1.38rem',
+          flexWrap: 'wrap',
+          gap: '1.88rem',
         }}
       >
         <Box sx={{ display: 'flex', gap: '35px' }}>
@@ -247,12 +252,28 @@ const JobCard = (props) => {
           )}
 
           {!homeCard && !companyDetailCard && (
-            <Typography variant='bodyL_2'>
+            <Typography
+              variant='bodyL_2'
+              sx={{
+                width: {
+                  xs: '100px',
+                  sm: '100%',
+                },
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
               54{' '}
               <Typography
-                variant='bodyL_4'
                 component='span'
                 color='text.secondary'
+                sx={{
+                  typography: {
+                    xs: 'bodyM_3',
+                    sm: 'bodyL_3',
+                  },
+                }}
               >
                 People Applied
               </Typography>
@@ -260,14 +281,38 @@ const JobCard = (props) => {
           )}
         </Box>
 
-        <Box sx={{ display: 'flex', gap: '10px' }}>
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '10px',
+            width: {
+              xs: '100%',
+              sm: 'auto',
+            },
+          }}
+        >
           {!homeCard && !companyDetailCard && (
-            <CustomButton variant='secondary' title='Message' />
+            <CustomButton
+              sx={{
+                width: {
+                  xs: '100%',
+                  sm: 'auto',
+                },
+              }}
+              variant='secondary'
+              title='Message'
+            />
           )}
           <CustomButton
+            sx={{
+              width: {
+                xs: '100%',
+                sm: 'auto',
+              },
+            }}
             href={`/job/${jobId}`}
             variant={variant}
-            title='Apply Now'
+            title={btnText}
           />
         </Box>
       </CardActions>
