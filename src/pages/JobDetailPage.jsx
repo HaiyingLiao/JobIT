@@ -33,7 +33,7 @@ const JobDetailPage = () => {
         </Typography>
       </Grid>
 
-      <Grid item md={12}>
+      <Grid item xs={12}>
         <SearchBar />
       </Grid>
 
