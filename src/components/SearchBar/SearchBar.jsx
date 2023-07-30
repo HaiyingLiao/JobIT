@@ -21,7 +21,7 @@ import { demoCountries } from '../../constants/index';
 const SearchBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [contractType, setContractType] = useState('full-time');
+  const [contractType, setContractType] = useState('full time');
 
   return (
     <FormControl
@@ -125,8 +125,8 @@ const SearchBar = () => {
               setContractType(e.target.value);
             }}
           >
-            <MenuItem value='full-time'>Full time</MenuItem>
-            <MenuItem value='part-time'>Part time</MenuItem>
+            <MenuItem value='full time'>Full time</MenuItem>
+            <MenuItem value='part time'>Part time</MenuItem>
             <MenuItem value='contractor'>Contractor</MenuItem>
             <MenuItem value='intern'>intern</MenuItem>
           </Select>
