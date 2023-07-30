@@ -53,6 +53,7 @@ const SearchBar = () => {
         borderRadius: '10px',
         backgroundColor: 'customColor.jobCardBg',
         width: '100%',
+        boxShadow: '0px 15px 34px 0px rgba(0, 0, 0, 0.02)',
       }}
     >
       <Stack
