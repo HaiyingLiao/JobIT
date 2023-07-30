@@ -7,6 +7,7 @@ import {
   Collapse,
   Checkbox,
   Typography,
+  Box,
 } from '@mui/material';
 
 import icons from '../../assets/icons';
@@ -44,7 +45,6 @@ const ListItem = ({ listData }) => {
               <ListItemIcon>
                 <Checkbox edge='start' disableRipple />
               </ListItemIcon>
-
               <ListItemText
                 primary={
                   <Typography variant='bodyM3_3' color='text.natural8'>
@@ -56,14 +56,16 @@ const ListItem = ({ listData }) => {
                   marginRight: '30px',
                 }}
               />
-              <ListItemText
-                primary={item.num}
+              <Box
                 sx={{
                   bgcolor: 'customColor.toggleBtn',
                   borderRadius: '5px',
                   textAlign: 'center',
+                  padding: '2px 6px',
                 }}
-              />
+              >
+                <ListItemText primary={item.num} />
+              </Box>
             </ListItemButton>
           ))}
         </List>
