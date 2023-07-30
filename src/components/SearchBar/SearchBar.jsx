@@ -10,6 +10,7 @@ import {
   useTheme,
   useMediaQuery,
   Typography,
+  Alert,
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -17,15 +18,6 @@ import icons from '../../assets/icons';
 import { CustomButton } from '..';
 import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
-
-// const contactTypes = [
-//   { value: 'FULLTIME', lable: 'Full time' },
-//   { value: 'PARTTIME', lable: 'Part time' },
-//   { value: 'CONTRACTOR', lable: 'Contractor' },
-//   { value: 'INTERN', lable: 'Intern' },
-// ];
-
-// TASK: Clean the code.
 
 const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
 
@@ -35,18 +27,22 @@ const SearchBar = () => {
   const [contractType, setContractType] = useState('');
   const [location, setLocation] = useState('');
   const [jobTitle, setJobTitle] = useState('');
+  const [alert, setAlert] = useState(false);
 
   const handleSearch = () => {
-    // TASK: Don't print console logs if the values are all empty i.e., contractType,
-    //       location, jobTitle.
-
-    // TASK: if all the values are empty
-    //       create an alert or modal telling user that they should provide some input
+    if (contractType === '' || location === '' || jobTitle === '') {
+      return setAlert(true);
+    }
 
     const formattedContactType = contractType.replace(/\s+/g, '').toUpperCase();
     console.log(formattedContactType);
     console.log(location.label);
     console.log(jobTitle);
+
+    setContractType('');
+    setLocation('');
+    setJobTitle('');
+    setAlert(false);
 
     // fetch call
   };
@@ -105,8 +101,10 @@ const SearchBar = () => {
             }}
             value={location}
             options={demoCountries}
-            autoHighlight
-            getOptionLabel={(option) => option.label || ''}
+            isOptionEqualToValue={(country, value) => {
+              if (value === '' || value === country) return true;
+            }}
+            getOptionLabel={(country) => country.label || ''}
             renderOption={(props, option) => (
               <Box
                 component='li'
@@ -145,7 +143,6 @@ const SearchBar = () => {
               width: '100%',
               paddingLeft: '2rem',
               '& fieldset': { border: 'none' },
-              // textTransform: 'capitalize',
             }}
             displayEmpty
             value={contractType}
@@ -155,26 +152,11 @@ const SearchBar = () => {
               }
 
               return selected;
-
-              // let correspondingLabel = '';
-
-              // contactTypes.forEach((item) => {
-              //   if (item.value === selected) {
-              //     return (correspondingLabel = item.lable);
-              //   }
-              // });
-
-              // return correspondingLabel;
             }}
             onChange={(e) => {
               setContractType(e.target.value);
-              console.log(e.target.value);
             }}
           >
-            {/* <MenuItem value='fulltime'>Fulltime</MenuItem>
-            <MenuItem value='parttime'>Parttime</MenuItem>
-            <MenuItem value='contractor'>Contractor</MenuItem>
-            <MenuItem value='intern'>intern</MenuItem> */}
             {contactTypes.map((item, i) => (
               <MenuItem value={item} key={i}>
                 {item}
@@ -182,6 +164,20 @@ const SearchBar = () => {
             ))}
           </Select>
         </SearchContainer>
+
+        {alert && (
+          <Alert
+            severity='error'
+            sx={{
+              minWidth: { xs: '100%', md: '100px' },
+
+              marginLeft: { xs: '0px', md: '10px' },
+            }}
+          >
+            Please ensure that all areas in the search field are filled out.
+          </Alert>
+        )}
+
         <CustomButton
           variant='primary'
           title='Find Jobs'
