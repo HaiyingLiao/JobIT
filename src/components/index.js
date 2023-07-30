@@ -7,10 +7,11 @@ export { default as CustomButton } from './CustomButton/CustomButton';
 export { default as CustomInput } from './CustomInput/CustomInput';
 export { default as JobCard } from './JobCard/JobCard';
 export { default as InlineJobCard } from './InlineJobCard/InlineJobCard';
-export { default as JobDetail } from './JobDetail/JobDetail'
+export { default as JobDetail } from './JobDetail/JobDetail';
 export { default as NavMobile } from './Navbar/NavMobile';
 export { default as Logo } from './Navbar/Logo';
 export { default as NavMenuDesktop } from './Navbar/NavMenuDesktop';
 export { default as Loader } from './Loader/Loader';
 export { default as CompanyDetail } from './CompanyDetail/CompanyDetail';
 export { default as SimilarCompany } from './SimilarCompany/SimilarCompany';
+export { default as SearchBar } from './SearchBar/SearchBar';

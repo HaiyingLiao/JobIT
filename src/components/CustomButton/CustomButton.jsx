@@ -31,7 +31,7 @@ const variants = {
     variant: 'outlined',
   },
   small: {
-    color: 'secondary',
+    color: 'small',
     variant: 'contained',
     fontSize: { xs: '13px', sm: '14px' },
     padding: { xs: '1px 5px', sm: '2px 6px' },

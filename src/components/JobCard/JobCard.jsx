@@ -5,6 +5,8 @@ import {
   CardActions,
   Typography,
   Box,
+  useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { FadeIn } from '../SimilarCompany/style';
@@ -126,9 +128,14 @@ const JobCard = (props) => {
               />
             ))
           ) : (
-            <Typography variant='bodyM3_3' color='text.secondary'>
-              UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
-            </Typography>
+            <>
+              <Typography
+                variant={isMobile ? 'bodyM4_3' : 'bodyM3_3'}
+                color='text.secondary'
+              >
+                UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
+              </Typography>
+            </>
           )
         }
         action={actionButton}
