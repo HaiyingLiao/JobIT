@@ -15,7 +15,7 @@ export default function CompanyDetail({
   city,
   country,
   naicsName,
-  recentJobs = [],
+  recentJobs,
   companyImage,
 }) {
   const exampleUsers = [
@@ -33,8 +33,9 @@ export default function CompanyDetail({
       }}
     >
       <CardHeader logo={companyImage ?? placeholder} />
-      <section
-        style={{
+      <Box
+        component='section'
+        sx={{
           paddingTop: '40px ',
           paddingLeft: '15px',
           display: 'flex',
@@ -114,7 +115,7 @@ export default function CompanyDetail({
             startIcon={<img src={icons.plus} alt='plus icon' />}
           />
         </Box>
-      </section>
+      </Box>
       <RecentJobPost recentJobs={recentJobs} />
     </Box>
   );

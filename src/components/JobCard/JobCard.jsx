@@ -120,7 +120,7 @@ const JobCard = (props) => {
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
-                    color: '#fff',
+                    color: 'text.primary',
                   },
                 }}
                 variant='small'
@@ -217,7 +217,7 @@ const JobCard = (props) => {
             <Typography
               variant='bodyL_2'
               sx={{
-                maxWidth: '150px',
+                maxWidth: '160px',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',

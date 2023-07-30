@@ -1,5 +1,6 @@
 import { Typography, Container, Box, IconButton } from '@mui/material';
 import { useState, useEffect } from 'react';
+
 import { CustomButton, JobCard } from '../../components';
 import SearchInput from './SearchInput';
 import icons from '../../assets/icons';

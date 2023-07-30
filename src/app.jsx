@@ -24,6 +24,7 @@ export default function App() {
         <Route exact path='/job-detail' element={<JobDetailPage />} />
         <Route exact path='/estimated-salary' element={<EstimatedSalary />} />
         <Route exact path='/company/:name' element={<CompanyDetail />} />
+        {/* example routes for test company detail page */}
       </Routes>
       <Toaster />
     </>

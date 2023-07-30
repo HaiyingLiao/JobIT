@@ -20,6 +20,7 @@ export default function CompanyDetailPage() {
   const { name } = useParams();
   const navigate = useNavigate();
 
+  // this function and state will replace later when redux setup is ready
   const getCompanyDetails = async (params) => {
     const options = {
       url: 'https://jsearch.p.rapidapi.com/search',
@@ -35,7 +36,6 @@ export default function CompanyDetailPage() {
         'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
       },
     };
-
     try {
       const response = await axios.request(options);
       const { data } = await response.data;
