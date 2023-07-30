@@ -1,11 +1,11 @@
 import { demoListType } from '../../constants/index';
-import ListItem from './ListItem';
+import CustomListItem from './CustomListItem';
 
 const FilterSideBar = () => {
   return (
     <>
       {demoListType.map((listData, index) => (
-        <ListItem listData={listData} key={index} />
+        <CustomListItem listData={listData} key={index} />
       ))}
     </>
   );
