@@ -19,10 +19,7 @@ const ListItem = ({ listData }) => {
   };
 
   return (
-    <List
-      sx={{ width: '100%', maxWidth: 360, bgcolor: '', marginTop: '30px' }}
-      component='nav'
-    >
+    <List sx={{ width: '100%', maxWidth: 360 }} component='nav'>
       <ListItemButton onClick={handleClick}>
         <ListItemText
           primary={<Typography variant='bodyL_2'>{listData.title}</Typography>}

@@ -15,7 +15,7 @@ const demoData = [1, 2, 3, 4, 5, 6];
 
 const JobSearchPage = () => {
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
   return (
     <Grid
@@ -27,7 +27,7 @@ const JobSearchPage = () => {
         padding: { xs: '0px 24px', md: '0px 50px' },
       }}
     >
-      <Grid item xs={12} sm={12}>
+      <Grid item xs={12}>
         <Typography variant='h1' mb='12px'>
           Let’s find your dream job
         </Typography>
@@ -41,12 +41,12 @@ const JobSearchPage = () => {
       </Grid>
 
       {!isMobile && (
-        <Grid item md={3} lg={3}>
+        <Grid item lg={3}>
           <FilterSideBar />
         </Grid>
       )}
 
-      <Grid container item xs={12} sm={12} md={9} lg={9}>
+      <Grid container item xs={12} md={12} lg={9}>
         <Stack
           direction='row'
           justifyContent='space-between'

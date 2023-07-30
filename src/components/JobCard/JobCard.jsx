@@ -33,7 +33,7 @@ const JobCard = ({ type }) => {
   return (
     <Card
       sx={{
-        maxWidth: cardType ? '100% ' : '950px',
+        maxWidth: '100% ',
         p: 1,
         backgroundColor: 'customColor.jobCardBg',
       }}
