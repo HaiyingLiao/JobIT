@@ -1,13 +1,7 @@
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import {
-  CustomButton,
-  InlineJobCard,
-  JobCard
-  // JobDetail
-} from '../../components';
+import { CustomButton, InlineJobCard, JobCard } from '../../components';
 import { useGetJobListingsQuery } from '../../services/JSearch';
-// import axios from 'axios';
 
 const Home = () => {
   const { data, error, isFetching } = useGetJobListingsQuery({
@@ -15,8 +9,6 @@ const Home = () => {
     page: '1',
     num_pages: '1'
   });
-
-  console.log(data);
 
   if (isFetching) <h1>Fetching.....</h1>;
 
