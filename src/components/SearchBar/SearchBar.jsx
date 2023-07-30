@@ -19,22 +19,36 @@ import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
 
 // const contactTypes = [
-//   { value: 'full time', lable: 'Full time' },
-//   { value: 'part time', lable: 'Part time' },
-//   { value: 'contractor', lable: 'Contractor' },
-//   { value: 'intern', lable: 'Intern' },
+//   { value: 'FULLTIME', lable: 'Full time' },
+//   { value: 'PARTTIME', lable: 'Part time' },
+//   { value: 'CONTRACTOR', lable: 'Contractor' },
+//   { value: 'INTERN', lable: 'Intern' },
 // ];
 
+// TASK: Clean the code.
+
 const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
+
 const SearchBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [contractType, setContractType] = useState('');
-  const [location, setLocation] = useState({ label: '' });
+  const [location, setLocation] = useState('');
+  const [jobTitle, setJobTitle] = useState('');
 
   const handleSearch = () => {
-    console.log(contractType);
+    // TASK: Don't print console logs if the values are all empty i.e., contractType,
+    //       location, jobTitle.
+
+    // TASK: if all the values are empty
+    //       create an alert or modal telling user that they should provide some input
+
+    const formattedContactType = contractType.replace(/\s+/g, '').toUpperCase();
+    console.log(formattedContactType);
     console.log(location.label);
+    console.log(jobTitle);
+
+    // fetch call
   };
 
   return (
@@ -62,9 +76,10 @@ const SearchBar = () => {
             <img src={icons.search} alt='search' />
           </SearchIconWrapper>
           <TextField
-            // onInput={(e) => {
-            //   setSearchQuery(e.target.value);
-            // }}
+            value={jobTitle}
+            onInput={(e) => {
+              setJobTitle(e.target.value);
+            }}
             placeholder='Job Title, Company, or Keywords'
             sx={{
               width: '100%',
@@ -85,7 +100,7 @@ const SearchBar = () => {
               paddingLeft: '2rem',
             }}
             onChange={(e, value) => {
-              console.log(value);
+              console.log('autocomplete', value);
               setLocation(value);
             }}
             value={location}
@@ -135,12 +150,21 @@ const SearchBar = () => {
             displayEmpty
             value={contractType}
             renderValue={(selected) => {
-              console.log(selected);
               if (!selected) {
                 return <Typography color='text.natural6'>Job Type</Typography>;
               }
 
               return selected;
+
+              // let correspondingLabel = '';
+
+              // contactTypes.forEach((item) => {
+              //   if (item.value === selected) {
+              //     return (correspondingLabel = item.lable);
+              //   }
+              // });
+
+              // return correspondingLabel;
             }}
             onChange={(e) => {
               setContractType(e.target.value);
