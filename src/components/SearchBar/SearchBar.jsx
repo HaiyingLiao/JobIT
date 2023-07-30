@@ -18,10 +18,24 @@ import { CustomButton } from '..';
 import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
 
+// const contactTypes = [
+//   { value: 'full time', lable: 'Full time' },
+//   { value: 'part time', lable: 'Part time' },
+//   { value: 'contractor', lable: 'Contractor' },
+//   { value: 'intern', lable: 'Intern' },
+// ];
+
+const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
 const SearchBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const [contractType, setContractType] = useState('full time');
+  const [contractType, setContractType] = useState('');
+  const [location, setLocation] = useState({ label: '' });
+
+  const handleSearch = () => {
+    console.log(contractType);
+    console.log(location.label);
+  };
 
   return (
     <FormControl
@@ -70,9 +84,14 @@ const SearchBar = () => {
               '& fieldset': { border: 'none' },
               paddingLeft: '2rem',
             }}
+            onChange={(e, value) => {
+              console.log(value);
+              setLocation(value);
+            }}
+            value={location}
             options={demoCountries}
             autoHighlight
-            getOptionLabel={(option) => option.label}
+            getOptionLabel={(option) => option.label || ''}
             renderOption={(props, option) => (
               <Box
                 component='li'
@@ -111,10 +130,12 @@ const SearchBar = () => {
               width: '100%',
               paddingLeft: '2rem',
               '& fieldset': { border: 'none' },
+              // textTransform: 'capitalize',
             }}
             displayEmpty
             value={contractType}
             renderValue={(selected) => {
+              console.log(selected);
               if (!selected) {
                 return <Typography color='text.natural6'>Job Type</Typography>;
               }
@@ -123,17 +144,24 @@ const SearchBar = () => {
             }}
             onChange={(e) => {
               setContractType(e.target.value);
+              console.log(e.target.value);
             }}
           >
-            <MenuItem value='full time'>Full time</MenuItem>
-            <MenuItem value='part time'>Part time</MenuItem>
+            {/* <MenuItem value='fulltime'>Fulltime</MenuItem>
+            <MenuItem value='parttime'>Parttime</MenuItem>
             <MenuItem value='contractor'>Contractor</MenuItem>
-            <MenuItem value='intern'>intern</MenuItem>
+            <MenuItem value='intern'>intern</MenuItem> */}
+            {contactTypes.map((item, i) => (
+              <MenuItem value={item} key={i}>
+                {item}
+              </MenuItem>
+            ))}
           </Select>
         </SearchContainer>
         <CustomButton
           variant='primary'
           title='Find Jobs'
+          onClick={handleSearch}
           sx={{
             minWidth: { xs: '330px', sm: '330px', md: '100px' },
             marginTop: { xs: '10px', sm: '10px', md: '0px' },
