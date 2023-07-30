@@ -11,6 +11,7 @@ import {
   useMediaQuery,
   Typography,
 } from '@mui/material';
+import { useState } from 'react';
 
 import icons from '../../assets/icons';
 import { CustomButton } from '..';
@@ -20,6 +21,7 @@ import { demoCountries } from '../../constants/index';
 const SearchBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [contractType, setContractType] = useState('full-time');
 
   return (
     <FormControl
@@ -111,6 +113,7 @@ const SearchBar = () => {
               '& fieldset': { border: 'none' },
             }}
             displayEmpty
+            value={contractType}
             renderValue={(selected) => {
               if (!selected) {
                 return <Typography color='text.natural6'>Job Type</Typography>;
@@ -118,7 +121,9 @@ const SearchBar = () => {
 
               return selected;
             }}
-            //   onChange={handleChange}
+            onChange={(e) => {
+              setContractType(e.target.value);
+            }}
           >
             <MenuItem value='full-time'>Full time</MenuItem>
             <MenuItem value='part-time'>Part time</MenuItem>
