@@ -1,5 +1,6 @@
 import { Grid, Typography } from '@mui/material';
 import { Box } from '@mui/system';
+
 import { CustomButton, InlineJobCard, JobCard } from '../../components';
 import { useGetJobListingsQuery } from '../../services/JSearch';
 
@@ -11,9 +12,7 @@ const Home = () => {
   });
 
   if (isFetching) <h1>Fetching.....</h1>;
-
-  if (error) <h1>{error}</h1>;
-  if (data) console.log(data);
+  if (error) <h1>Some Error</h1>;
 
   return (
     <Box id='homePage'>

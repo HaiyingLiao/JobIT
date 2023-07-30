@@ -29,7 +29,7 @@ export default function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/job-search' element={<JobSearch />} />
-          <Route exact path='/job-detail' element={<JobDetailPage />} />
+          <Route exact path='/job-detail/:jobId' element={<JobDetailPage />} />
           <Route exact path='/estimated-salary' element={<EstimatedSalary />} />
         </Routes>
       </Box>
