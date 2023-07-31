@@ -1,10 +1,13 @@
-import { Grid, Typography } from '@mui/material';
+import { Grid, Typography, useMediaQuery, useTheme } from '@mui/material';
 import { Box } from '@mui/system';
 
 import { CustomButton, InlineJobCard, JobCard } from '../../components';
 import { useGetJobListingsQuery } from '../../services/JSearch';
 
 const Home = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const { data, error, isFetching } = useGetJobListingsQuery({
     query: 'Develper',
     page: '1',
@@ -16,11 +19,18 @@ const Home = () => {
 
   return (
     <Box id='homePage'>
-      <Box sx={{ marginTop: '70px' }}>
+      <Box
+        sx={{
+          maxWidth: '1470px',
+          margin: '0 auto',
+          padding: isMobile ? '0 2.5%' : '0'
+        }}
+      >
         <Typography
           sx={theme => ({
             fontSize: theme.typography.h1,
-            padding: '20px 0'
+            marginTop: '70px',
+            padding: '50px 0'
           })}
         >
           Welcome to the Job Search Platform for Developers

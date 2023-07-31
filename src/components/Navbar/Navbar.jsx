@@ -1,19 +1,23 @@
-import { useContext } from 'react';
 import { AppBar, Toolbar, useTheme, useMediaQuery } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
 
 import {
   NavMobile,
   NavMenuDesktop,
   Logo,
-  SwitchButton,
+  SwitchButton
 } from '../../components';
-import { ColorModeContext } from '../../Utils/ColorMode';
+import { toggleMode } from '../../slice/darkMode';
 
 const NavBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  // const isMobile = window.innerWidth < 900; // Use this for testing
-  const { isDarkMode, toggleDarkMode } = useContext(ColorModeContext);
+
+  const dispatch = useDispatch();
+  const mode = useSelector(state => state.theme.value);
+  const handleToggleDarkMode = () => {
+    dispatch(toggleMode());
+  };
 
   return (
     <AppBar
@@ -21,20 +25,28 @@ const NavBar = () => {
       sx={{
         bgcolor: 'customColor.navBarBg',
         zIndex: '2000',
-        px: isMobile ? '0' : '78px',
-        boxShadow: '0px 0px 1px 0px #92929D',
+        maxWidth: '100%',
+        margin: '0 auto',
+        boxShadow: '0px 0px 1px 0px #92929D'
       }}
-      position='fixed'
       elevation={0}
     >
-      <Toolbar sx={{ height: '70px' }}>
+      <Toolbar
+        sx={{
+          height: '70px',
+          maxWidth: '1470px',
+          width: '100%',
+          padding: isMobile ? '0 2.5%' : '0 !important',
+          margin: '0 auto'
+        }}
+      >
         {isMobile ? (
           <NavMobile />
         ) : (
           <>
             <Logo />
             <NavMenuDesktop />
-            <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
+            <SwitchButton checkMode={mode} onChange={handleToggleDarkMode} />
           </>
         )}
       </Toolbar>
