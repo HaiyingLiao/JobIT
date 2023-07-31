@@ -13,6 +13,14 @@ export default function RecentJobPost({ recentJobs }) {
     setSources(clicked ? recentJobs : recentJobs?.slice(0, 4));
   }, [clicked]);
 
+  const scrollToTop = () => {
+    const c = document.documentElement.scrollTop || document.body.scrollTop;
+    if (c > 0) {
+      window.requestAnimationFrame(scrollToTop);
+      window.scrollTo(0, c - c / 25, { behavior: 'smooth' });
+    }
+  };
+
   return (
     <Container
       sx={{
@@ -20,6 +28,7 @@ export default function RecentJobPost({ recentJobs }) {
         borderRadius: '10px',
         padding: '5px',
         marginTop: '3.81rem',
+        transition: 'all 500ms ease !important',
       }}
     >
       <SearchInput />
@@ -49,8 +58,8 @@ export default function RecentJobPost({ recentJobs }) {
             delay={i * 150}
             jobDesc={`${job?.job_description}`}
             actionButton={
-              <IconButton aria-label='settings'>
-                <img src={icons.isMore} alt='isMore' />
+              <IconButton aria-label='more'>
+                <img src={icons.isMore} alt='three dots  icon ' />
               </IconButton>
             }
             btnText='Apply now'
@@ -75,7 +84,10 @@ export default function RecentJobPost({ recentJobs }) {
         }}
       >
         <CustomButton
-          onClick={() => setClicked(!clicked)}
+          onClick={() => {
+            setClicked(!clicked);
+            clicked ? scrollToTop() : undefined;
+          }}
           title={clicked ? 'Hide' : 'See All Jobs'}
           variant='secondaryOutlined'
         />

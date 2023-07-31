@@ -94,6 +94,7 @@ export default function CompanyDetailPage() {
           sx={{
             display: 'flex',
             gap: '1rem',
+            flexWrap: 'wrap',
             justifyContent: 'space-between',
           }}
         >
