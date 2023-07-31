@@ -1,4 +1,13 @@
-import { Grid, Box, useTheme, useMediaQuery } from '@mui/material';
+import {
+  Grid,
+  Box,
+  useTheme,
+  useMediaQuery,
+  Typography,
+  CircularProgress,
+} from '@mui/material';
+import { useSelector } from 'react-redux';
+import { useGetEstimatedSalariesQuery } from '../../services/TMDB';
 
 import {
   Chart,
@@ -11,6 +20,30 @@ import {
 const EstimatedSalary = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { data, error, isFetching } = useGetEstimatedSalariesQuery();
+  console.log(data);
+
+  if (isFetching) {
+    return (
+      <Box display='flex' justifyContent='center'>
+        <CircularProgress size='4rem' />
+      </Box>
+    );
+  }
+
+  if (!data.results.length) {
+    return (
+      <Box display='flex' justifyContent='center' alignItems='center' mt='20px'>
+        <Typography variant='h4'>
+          No movies that match that name.
+          <br />
+          Please searh for something else.
+        </Typography>
+      </Box>
+    );
+  }
+
+  if (error) return 'An error has occured.';
 
   const secondColumnStyles = {
     display: 'flex',
