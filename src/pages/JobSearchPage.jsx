@@ -6,10 +6,12 @@ import {
   useTheme,
   useMediaQuery,
   Box,
+  IconButton,
 } from '@mui/material';
 
 import { JobCard, SearchBar, FilterSideBar } from '../components';
 import icons from '../assets/icons';
+import { logo } from '../assets/images';
 
 const demoData = [1, 2, 3, 4, 5, 6];
 
@@ -75,7 +77,23 @@ const JobSearchPage = () => {
 
         {demoData.map((_, i) => (
           <Grid item sm={12} mb='15px' key={i}>
-            <JobCard />
+            <JobCard
+              delay={i * 100}
+              jobDesc='In this updated code, the YourComponent now takes a prop cardType that represents the type of the card. You can pass the appropriate cardType value to the component when using it. The shouldRenderTechButtons variable is set to true only if the cardType is neither homeCard nor companyDetailCard. If the cardType matches either of these two values, the tech buttons wont be rendered. Otherwise, the tech buttons will be rendered'
+              actionButton={
+                <IconButton aria-label='settings'>
+                  <img src={icons.isMore} alt='isMore' />
+                </IconButton>
+              }
+              maxSalary={200}
+              minSalary={300}
+              jobId={'64371284'}
+              logo={logo}
+              title={'Passionate Programmer'}
+              btnText={'Apply Now'}
+              requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
+              variant={'primaryLighter'}
+            />
           </Grid>
         ))}
 
