@@ -2,10 +2,6 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const jSearchApiKey = import.meta.env.VITE_APP_JSEARCH_KEY;
 
-// const searchJobTitle = 'NodeJS Developer'; // dummy variable
-// const searchLocation = 'New-York, NY, USA'; // dummy variable
-// const searchRadius = '100';
-
 export const jSearchApi = createApi({
   reducerPath: 'jSearchApi',
   baseQuery: fetchBaseQuery({
