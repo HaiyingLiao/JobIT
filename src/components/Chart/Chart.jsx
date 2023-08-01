@@ -23,14 +23,23 @@ const getOptions = (isDark) => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {},
+  onResize: (chart, size) => {
+    if (size.width < 350) {
+      chart.options.scales.y.ticks.callback = function (value) {
+        if (!value) return;
+        return (value / 1000).toFixed(0) + 'k USD';
+      };
+    } else {
+      chart.options.scales.y.ticks.callback = function (value) {
+        if (!value) return;
+        return value + ' USD';
+      };
+    }
+  },
   scales: {
     y: {
       beginAtZero: false,
       ticks: {
-        callback: function (value) {
-          if (!value) return;
-          return `${value} USD`;
-        },
         stepSize: 20000,
       },
       grid: {
