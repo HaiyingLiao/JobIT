@@ -8,9 +8,6 @@ export const colorModeSlice = createSlice({
   name: 'colorMode',
   initialState,
   reducers: {
-    // toggleMode: currState => {
-    //   currState.value = currState.value === 'light' ? 'dark' : 'light';
-    // }
     toggleMode: state => {
       state.value = !state.value;
     }

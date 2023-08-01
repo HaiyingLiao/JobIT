@@ -1,28 +1,28 @@
 // formatSalary
-export function formatSalary(currency, minSalary, maxSalary) {
-  if (!maxSalary || !minSalary || !currency) {
+export function formatSalary(minSalary, maxSalary) {
+  if (!maxSalary || !minSalary) {
     return 'TBD';
   }
 
-  const removeSeparators = salary => {
-    return salary
-      .toString()
-      .replace(',', ' ')
-      .replace('.', ' ');
-  };
+  const formattedMinSalary = minSalary =>
+    new Intl.NumberFormat('en-US', {
+      useGrouping: false,
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+      notation: 'compact'
+    }).format(minSalary);
 
-  let formattedMinSalary = removeSeparators(minSalary);
-  let formattedMaxSalary = removeSeparators(maxSalary);
+  const formattedMaxSalary = maxSalary =>
+    new Intl.NumberFormat('en-US', {
+      useGrouping: false,
+      maximumFractionDigits: 0,
+      minimumFractionDigits: 0,
+      notation: 'compact'
+    }).format(maxSalary);
 
-  if (formattedMinSalary.endsWith('000')) {
-    formattedMinSalary = formattedMinSalary.slice(0, -3);
-  }
+  console.log(formattedMaxSalary, formattedMinSalary);
 
-  if (formattedMaxSalary.endsWith('000')) {
-    formattedMaxSalary = formattedMaxSalary.slice(0, -3);
-  }
-
-  return `${formattedMinSalary.trim()}k - ${formattedMaxSalary.trim()}k ${currency}`;
+  return `${formattedMinSalary} - ${formattedMaxSalary} `;
 }
 
 // getJobResponsbilities
@@ -82,3 +82,6 @@ export function jobId(jobId) {
   if (!jobId) return 'No Job Id found';
   return jobId;
 }
+
+export const handleFalsy = (value, defaultValue) =>
+  value !== undefined && value !== null ? value : defaultValue;

@@ -34,9 +34,9 @@ const NavBar = () => {
       <Toolbar
         sx={{
           height: '70px',
-          maxWidth: '1470px',
           width: '100%',
-          padding: isMobile ? '0 2.5%' : '0 !important',
+          maxWidth: '1470px',
+          padding: isMobile ? '0 2.5%' : '0 5% !important',
           margin: '0 auto'
         }}
       >
