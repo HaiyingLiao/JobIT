@@ -19,14 +19,14 @@ const ChartHeader = ({ isMobile, title, location }) => {
       <Typography component='span' variant={typographyVariant}>
         {title
           .split(' ')
-          .map((word) => word[0].toUpperCase() + word.slice(1))
+          .map((word) => word[0]?.toUpperCase() + word.slice(1))
           .join(' ') || '(Job Title)'}
       </Typography>
       &nbsp;in&nbsp;
       <Typography component='span' variant={typographyVariant}>
         {location
           .split(' ')
-          .map((word) => word[0].toUpperCase() + word.slice(1))
+          .map((word) => word[0]?.toUpperCase() + word.slice(1))
           .join(' ') || '(Location)'}
       </Typography>
     </Typography>

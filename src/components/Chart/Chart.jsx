@@ -9,7 +9,7 @@ import {
 import { Bar } from 'react-chartjs-2';
 import { Box, CircularProgress, Typography } from '@mui/material';
 import { useTheme } from '@emotion/react';
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
@@ -57,44 +57,6 @@ const getOptions = (isDark) => ({
     },
   },
 });
-
-// const filteredData = data?.filter(
-//   (job) => job.publisher_name === 'Glassdoor'
-// );
-
-// let glassdoorAverage = 0;
-// if (filteredData.length > 0) {
-//   const sum = filteredData
-//     .map((job) => job.median_salary)
-//     .reduce((acc, cv) => acc + cv, 0);
-//   glassdoorAverage = sum / filteredData.length;
-// }
-// const chartData = {
-//   labels: ['Glassdoor', 'Indeed', 'Salary.com'],
-//   datasets: [
-//     {
-//       data: [50000, 50000, 40000],
-//       backgroundColor: '#FDDD8C',
-//       barThickness: 12,
-//       borderRadius: 50,
-//       label: 'Minimum salary',
-//     },
-//     {
-//       data: [10000, 60000, 30000],
-//       backgroundColor: '#0BAB7C',
-//       barThickness: 12,
-//       borderRadius: 50,
-//       label: 'Maximum salary',
-//     },
-//     {
-//       data: [20000, 50000, 60000],
-//       backgroundColor: '#FFBBD7',
-//       barThickness: 12,
-//       borderRadius: 50,
-//       label: 'Median salary',
-//     },
-//   ],
-// };
 
 export default function Chart({ isMobile, data, error, isFetching }) {
   console.log(data);
@@ -146,50 +108,6 @@ export default function Chart({ isMobile, data, error, isFetching }) {
 
   console.log(refactoredData);
 
-  //   [
-  //     {
-  //         "location": "United Kingdom",
-  //         "job_title": "Web Developer",
-  //         "publisher_name": "Glassdoor",
-  //         "publisher_link": "https://www.glassdoor.co.uk/Salary/Google-Web-Developer-Salaries-E9079_D_KO7,20.htm",
-  //         "min_salary": 35000,
-  //         "max_salary": 89378,
-  //         "median_salary": 53381,
-  //         "salary_period": "YEAR",
-  //         "salary_currency": "GBP"
-  //     },
-  //     {
-  //         "location": "United Kingdom",
-  //         "job_title": "Web Developer",
-  //         "publisher_name": "reed.co.uk",
-  //         "publisher_link": "https://www.reed.co.uk/average-salary/average-web-developer-salary",
-  //         "min_salary": 40235,
-  //         "max_salary": 52248,
-  //         "median_salary": 45226,
-  //         "salary_period": "YEAR",
-  //         "salary_currency": "GBP"
-  //     },
-  //     {
-  //         "location": "London, UK",
-  //         "job_title": "Web Developer",
-  //         "publisher_name": "Indeed",
-  //         "publisher_link": "https://uk.indeed.com/career/web-developer/salaries/London",
-  //         "min_salary": 25715.848846583503,
-  //         "max_salary": 81565.40379719542,
-  //         "median_salary": 45798.72918716416,
-  //         "salary_period": "YEAR",
-  //         "salary_currency": "GBP"
-  //     }
-  // ]
-
-  // if (!refactoredData.length) {
-  //   return (
-  //     <Box display='flex' justifyContent='center' alignItems='center' mt='20px'>
-  //       <Typography variant='h4'>No data found.</Typography>
-  //     </Box>
-  //   );
-  // }
-
   if (error)
     return (
       <Box
@@ -224,24 +142,6 @@ export default function Chart({ isMobile, data, error, isFetching }) {
       </Box>
     );
 
-  // if (refactoredData?.length === 0) {
-  //   return (
-  //     <Box
-  //       sx={{
-  //         width: isMobile ? '100%' : '90%',
-  //         margin: '0 auto',
-  //         marginTop: '35px',
-  //         height: '100%',
-  //         display: 'flex',
-  //         justifyContent: 'center',
-  //         alignItems: 'center',
-  //       }}
-  //     >
-  //       <CircularProgress color='primary' />
-  //     </Box>
-  //   );
-  // }
-
   return (
     <>
       {refactoredData ? (
@@ -273,3 +173,9 @@ export default function Chart({ isMobile, data, error, isFetching }) {
     </>
   );
 }
+
+// Fix border around error message
+// useMemo vs refetch in Redux
+// Remove console logs
+// stepsize/max value on chart?
+// time period on chart?
