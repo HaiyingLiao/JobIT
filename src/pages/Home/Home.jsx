@@ -1,8 +1,8 @@
-import { JobDetail } from '../../components';
+import { SearchBar } from '../../components';
 const Home = () => {
   return (
     <>
-      <JobDetail />
+      <SearchBar />
     </>
   );
 };

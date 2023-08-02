@@ -10,22 +10,50 @@ import {
   useTheme,
   useMediaQuery,
   Typography,
+  Alert,
 } from '@mui/material';
+import { useState } from 'react';
 
 import icons from '../../assets/icons';
 import { CustomButton } from '..';
 import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
 
+const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
+
 const SearchBar = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const [contractType, setContractType] = useState('');
+  const [location, setLocation] = useState('');
+  const [jobTitle, setJobTitle] = useState('');
+  const [alert, setAlert] = useState(false);
+
+  const handleSearch = () => {
+    if (contractType === '' || location === '' || jobTitle === '') {
+      return setAlert(true);
+    }
+
+    const formattedContactType = contractType.replace(/\s+/g, '').toUpperCase();
+    console.log(formattedContactType);
+    console.log(location.label);
+    console.log(jobTitle);
+
+    setContractType('');
+    setLocation('');
+    setJobTitle('');
+    setAlert(false);
+
+    // fetch call
+  };
 
   return (
     <FormControl
       sx={{
         borderRadius: '10px',
         backgroundColor: 'customColor.jobCardBg',
+        width: '100%',
+        boxShadow: '0px 15px 34px 0px rgba(0, 0, 0, 0.02)',
       }}
     >
       <Stack
@@ -45,12 +73,13 @@ const SearchBar = () => {
             <img src={icons.search} alt='search' />
           </SearchIconWrapper>
           <TextField
-            // onInput={(e) => {
-            //   setSearchQuery(e.target.value);
-            // }}
+            value={jobTitle}
+            onInput={(e) => {
+              setJobTitle(e.target.value);
+            }}
             placeholder='Job Title, Company, or Keywords'
             sx={{
-              width: 300,
+              width: '100%',
               '& fieldset': { border: 'none' },
               paddingLeft: '2rem',
             }}
@@ -63,13 +92,20 @@ const SearchBar = () => {
           </SearchIconWrapper>
           <Autocomplete
             sx={{
-              width: 300,
+              width: '100%',
               '& fieldset': { border: 'none' },
               paddingLeft: '2rem',
             }}
+            onChange={(e, value) => {
+              console.log('autocomplete', value);
+              setLocation(value);
+            }}
+            value={location}
             options={demoCountries}
-            autoHighlight
-            getOptionLabel={(option) => option.label}
+            isOptionEqualToValue={(country, value) => {
+              if (value === '' || value === country) return true;
+            }}
+            getOptionLabel={(country) => country.label || ''}
             renderOption={(props, option) => (
               <Box
                 component='li'
@@ -105,11 +141,12 @@ const SearchBar = () => {
 
           <Select
             sx={{
-              minWidth: 300,
+              width: '100%',
               paddingLeft: '2rem',
               '& fieldset': { border: 'none' },
             }}
             displayEmpty
+            value={contractType}
             renderValue={(selected) => {
               if (!selected) {
                 return <Typography color='text.natural6'>Job Type</Typography>;
@@ -117,21 +154,39 @@ const SearchBar = () => {
 
               return selected;
             }}
-            //   onChange={handleChange}
+            onChange={(e) => {
+              setContractType(e.target.value);
+            }}
           >
-            <MenuItem value='full-time'>Full time</MenuItem>
-            <MenuItem value='part-time'>Part time</MenuItem>
-            <MenuItem value='contractor'>Contractor</MenuItem>
-            <MenuItem value='intern'>intern</MenuItem>
+            {contactTypes.map((item, i) => (
+              <MenuItem value={item} key={i}>
+                {item}
+              </MenuItem>
+            ))}
           </Select>
         </SearchContainer>
+
+        {alert && (
+          <Alert
+            severity='error'
+            sx={{
+              minWidth: { xs: '100%', md: '100px' },
+
+              marginLeft: { xs: '0px', md: '10px' },
+            }}
+          >
+            Please ensure that all areas in the search field are filled out.
+          </Alert>
+        )}
+
         <CustomButton
           variant='primary'
           title='Find Jobs'
+          onClick={handleSearch}
           sx={{
-            minWidth: { xs: '300px', sm: '300px', md: '100px' },
-            marginTop: { xs: '10px', sm: '10px', md: '0px' },
-            marginLeft: { xs: '0px', sm: '0px', md: '10px' },
+            minWidth: { xs: '100%', md: '100px' },
+            marginTop: { xs: '10px', md: '0px' },
+            marginLeft: { xs: '0px', md: '10px' },
           }}
         />
       </Stack>
