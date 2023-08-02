@@ -9,13 +9,13 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import { useGetEstimatedSalariesQuery } from '../../services/JSearch';
 import { fetchEstimatedSalaries } from '../../slice/currentEstimatedSalaries';
-
 import {
   Chart,
   ChartLegend,
   ChartHeader,
   EstSalariesHeader,
 } from '../../components';
+import useDebounce from '../../Utils/debounce';
 
 const EstimatedSalary = () => {
   const theme = useTheme();
@@ -26,17 +26,18 @@ const EstimatedSalary = () => {
     return state.currentEstimatedSalaries;
   });
 
+  const debouncedTitle = useDebounce(title, 500);
+  const debouncedLocation = useDebounce(location, 500);
+  const debouncedRadius = useDebounce(radius, 500);
+
   const { data, error, isFetching } = useGetEstimatedSalariesQuery({
-    title,
-    location,
-    radius,
+    title: debouncedTitle,
+    location: debouncedLocation,
+    radius: debouncedRadius,
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-
-    console.log({ data });
-
     dispatch(
       fetchEstimatedSalaries({
         name,
@@ -45,31 +46,14 @@ const EstimatedSalary = () => {
     );
   };
 
-  // if (isFetching) {
-  //   return (
-  //     <Box display='flex' justifyContent='center'>
-  //       <CircularProgress size='4rem' />
-  //     </Box>
-  //   );
-  // }
-
-  // if (!data.results.length) {
-  //   return (
-  //     <Box display='flex' justifyContent='center' alignItems='center' mt='20px'>
-  //       <Typography variant='h4'>No data found.</Typography>
-  //     </Box>
-  //   );
-  // }
-
-  // if (error) return 'An error has occured.';
-
+  // Common styles
   const secondColumnStyles = {
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'flex-start',
     bgcolor: 'customColor.jobCardBg',
     borderRadius: '10px',
-    padding: '36px 0',
+    padding: '36px 10px',
     marginTop: isMobile ? '0' : '45px',
   };
 
@@ -77,9 +61,8 @@ const EstimatedSalary = () => {
     borderRadius: '12px',
     mt: '12px',
     bgcolor: 'customColor.toggleBtn',
+    border: '1px solid rgba(226, 226, 234, 0.60)',
   };
-
-  const typographyVariant = isMobile ? 'bodyM3_2' : 'bodyM2_2';
 
   return (
     <Box
@@ -87,7 +70,7 @@ const EstimatedSalary = () => {
         backgroundColor: 'customColor.pageBG',
         minHeight: '100vh',
         fontFamily: '"Manrope", sans-serif',
-        padding: { xs: '80px 20px 80px 20px', lg: '120px 80px 0 80px' },
+        padding: { xs: '80px 20px 80px 20px', lg: '120px 80px 120px 80px' },
       }}
     >
       <Grid
@@ -101,7 +84,7 @@ const EstimatedSalary = () => {
         }}
       >
         {/* First Column - Form */}
-        <Grid item sm={6} xs={12} sx={{ padding: '40px' }}>
+        <Grid item sm={6} xs={12} sx={{ padding: isMobile ? '40px' : '85px' }}>
           <EstSalariesHeader isMobile={isMobile} />
           {/* Form */}
           <Grid
@@ -112,57 +95,124 @@ const EstimatedSalary = () => {
             {/* Full-Width Input Box */}
             <Grid item xs={12}>
               <Typography
-                variant={typographyVariant}
                 color='secondary.contrastText'
-                sx={{ lineHeight: '24px' }}
+                sx={{
+                  lineHeight: '24px',
+                  fontSize: isMobile ? '15px' : '14px',
+                  fontWeight: '600',
+                }}
               >
                 Job Title
               </Typography>
               <TextField
                 name='title'
-                variant='outlined'
                 fullWidth
-                placeholder='Senior User Experience Designer'
+                placeholder='Project Manager'
                 sx={textFieldStyles}
+                InputProps={{
+                  sx: {
+                    px: '6px',
+                    py: '4.5px',
+                    fontSize: '14px',
+                    fontWeight: '600',
+                    borderRadius: '10px',
+                  },
+                }}
                 value={title}
                 onChange={handleChange}
+                helperText={
+                  debouncedTitle.length === 0 ? 'Please add a job title' : ''
+                }
+                FormHelperTextProps={{
+                  sx: {
+                    bgcolor: 'customColor.pageBG',
+                    color: '#FF0000',
+                    mx: '0',
+                    fontSize: '12px',
+                  },
+                }}
               />
             </Grid>
             {/* Two Column Input Boxes */}
             <Grid item xs={12} sm={6}>
               <Typography
-                variant={typographyVariant}
                 color='secondary.contrastText'
-                sx={{ lineHeight: '24px' }}
+                sx={{
+                  lineHeight: '24px',
+                  fontSize: isMobile ? '15px' : '14px',
+                  fontWeight: '600',
+                }}
               >
                 Location
               </Typography>
               <TextField
-                variant='outlined'
                 name='location'
                 fullWidth
-                placeholder='New-York, NY, USA'
+                placeholder='New York'
                 sx={textFieldStyles}
+                InputProps={{
+                  sx: {
+                    px: '6px',
+                    py: '4.5px',
+                    fontSize: isMobile ? '14px' : '13px',
+                    fontWeight: isMobile ? '600' : '700',
+                    borderRadius: '10px',
+                  },
+                }}
                 value={location}
                 onChange={handleChange}
+                helperText={
+                  debouncedLocation.length === 0 ? 'Please add a location' : ''
+                }
+                FormHelperTextProps={{
+                  sx: {
+                    bgcolor: 'customColor.pageBG',
+                    color: '#FF0000',
+                    mx: '0',
+                    fontSize: '12px',
+                  },
+                }}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography
-                variant={typographyVariant}
                 color='secondary.contrastText'
-                sx={{ lineHeight: '24px' }}
+                sx={{
+                  lineHeight: '24px',
+                  fontSize: isMobile ? '15px' : '14px',
+                  fontWeight: '600',
+                }}
               >
                 Radius
               </Typography>
               <TextField
-                variant='outlined'
+                type='number'
                 name='radius'
                 fullWidth
-                placeholder='100'
+                placeholder='30'
                 sx={textFieldStyles}
+                InputProps={{
+                  sx: {
+                    px: '6px',
+                    py: '4.5px',
+                    fontSize: isMobile ? '14px' : '13px',
+                    fontWeight: isMobile ? '600' : '700',
+                    borderRadius: '10px',
+                  },
+                }}
                 value={radius}
                 onChange={handleChange}
+                helperText={
+                  debouncedRadius.length === 0 ? 'Please add a radius' : ''
+                }
+                FormHelperTextProps={{
+                  sx: {
+                    bgcolor: 'customColor.pageBG',
+                    color: '#FF0000',
+                    mx: '0',
+                    fontSize: '12px',
+                  },
+                }}
               />
             </Grid>
           </Grid>
@@ -170,9 +220,18 @@ const EstimatedSalary = () => {
 
         {/* Second Column - Chart */}
         <Grid item sm={6} xs={12} sx={secondColumnStyles}>
-          <ChartHeader isMobile={isMobile} />
+          <ChartHeader
+            isMobile={isMobile}
+            title={debouncedTitle}
+            location={debouncedLocation}
+          />
           <ChartLegend isMobile={isMobile} />
-          <Chart isMobile={isMobile} data={data} />
+          <Chart
+            isMobile={isMobile}
+            data={data}
+            error={error}
+            isFetching={isFetching}
+          />
         </Grid>
       </Grid>
     </Box>

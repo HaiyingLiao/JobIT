@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-const ChartHeader = ({ isMobile }) => {
+const ChartHeader = ({ isMobile, title, location }) => {
   const typographyVariant = isMobile ? 'bodyM' : 'h2';
   return (
     <Typography
@@ -17,11 +17,11 @@ const ChartHeader = ({ isMobile }) => {
       </Typography>
       &nbsp;for&nbsp;
       <Typography component='span' variant={typographyVariant}>
-        NodeJS Developer
+        {title}
       </Typography>
       &nbsp;in&nbsp;
       <Typography component='span' variant={typographyVariant}>
-        New York
+        {location}
       </Typography>
     </Typography>
   );

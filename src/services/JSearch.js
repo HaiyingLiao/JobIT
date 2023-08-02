@@ -7,7 +7,10 @@ export const jSearchApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://jsearch.p.rapidapi.com/',
     prepareHeaders: (headers) => {
-      headers.set('X-RapidAPI-Key', jSearchApiKey);
+      headers.set(
+        'X-RapidAPI-Key',
+        'KJwZZIJSFimshuivMSVGaiYzkRomp15f2vKjsnK4bKzuUzVLzA'
+      );
       headers.set('X-RapidAPI-Host', 'jsearch.p.rapidapi.com');
     },
   }),

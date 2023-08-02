@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  title: 'Senior User Experience Designer',
-  location: 'South Korea',
-  radius: '100',
+  title: 'Project Manager',
+  location: 'New York',
+  radius: '30',
 };
 
 export const estimatedSalaries = createSlice({
