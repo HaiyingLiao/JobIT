@@ -24,14 +24,22 @@ const getOptions = (isDark) => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {},
+  onResize: (chart, size) => {
+    if (size.width < 350) {
+      chart.options.scales.y.ticks.callback = function (value) {
+        if (!value) return;
+        return (value / 1000).toFixed(0) + 'k USD';
+      };
+    } else {
+      chart.options.scales.y.ticks.callback = function (value) {
+        if (!value) return;
+        return value + ' USD';
+      };
+    }
+  },
   scales: {
     y: {
       beginAtZero: true,
-      ticks: {
-        callback: function (value) {
-          return `${value} USD`;
-        },
-      },
       grid: {
         color: isDark ? '#1c1c24' : '#F5F5F8',
       },

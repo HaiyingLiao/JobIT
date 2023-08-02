@@ -17,11 +17,11 @@ const ChartHeader = ({ isMobile, title, location }) => {
       </Typography>
       &nbsp;for&nbsp;
       <Typography component='span' variant={typographyVariant}>
-        {title}
+        {title || '(Job Title)'}
       </Typography>
       &nbsp;in&nbsp;
       <Typography component='span' variant={typographyVariant}>
-        {location}
+        {location || '(Location)'}
       </Typography>
     </Typography>
   );
