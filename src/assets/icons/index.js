@@ -21,6 +21,7 @@ import arrow from './arror.png';
 import copy from './copy.svg';
 import share from './share.svg';
 import savedFill from './savedFill.svg';
+import cheveronUp from './cheveronUp.png';
 
 export default {
   sun,
@@ -46,4 +47,5 @@ export default {
   copy,
   share,
   savedFill,
+  cheveronUp,
 };

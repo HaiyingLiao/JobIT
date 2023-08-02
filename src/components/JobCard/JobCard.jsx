@@ -3,19 +3,23 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  IconButton,
   Typography,
   Box,
-  useTheme,
-  useMediaQuery,
 } from '@mui/material';
-
+import { keyframes } from '@mui/system';
+import { Link } from 'react-router-dom';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
-import demoImg from '../../assets/images/companyLogo.png';
-import { Stack } from '@mui/system';
+import google from '../../assets/images/google.png';
 
-const demoTech = ['PHP', 'CSS', 'React', 'Laravel'];
+export const FadeIn = keyframes`
+  0%{ 
+    opacity:0; 
+  }
+  100%{
+    opacity:1;
+    }`;
+
 const bull = (
   <Box
     component='span'
@@ -25,190 +29,300 @@ const bull = (
   </Box>
 );
 
-const JobCard = ({ type }) => {
-  const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-  const cardType = type === 'homeJobCard';
+const JobCard = (props) => {
+  const {
+    requiredTech,
+    title,
+    actionButton,
+    type,
+    variant,
+    logo,
+    jobDesc,
+    delay,
+    jobId,
+    minSalary,
+    maxSalary,
+    btnText,
+  } = props;
+
+  const homeCard = type === 'homeJobcard';
+  const companyDetailCard = type === 'companyDetail';
+  const slicedRequiredtech = requiredTech && requiredTech.splice(0, 3);
 
   return (
     <Card
-      sx={{
-        maxWidth: cardType ? '100% ' : '950px',
-        p: 1,
+      sx={(theme) => ({
+        padding: '1.25rem',
+        width: '100%',
+        maxWidth: homeCard || companyDetailCard ? '400px' : '950px',
+        height: '100%',
+        opacity: '0',
+        borderRadius: '15px',
+        transition: 'opacity 500ms ease',
+        animation: `${FadeIn} 1s linear ${delay}ms forwards`,
         backgroundColor: 'customColor.jobCardBg',
-      }}
+        boxShadow:
+          theme.palette.mode === 'light'
+            ? '0px 23px 30px 0px rgba(226, 226, 234, 0.40), -3px -2px 24px 0px rgba(0, 0, 0, 0.02)'
+            : 'none',
+      })}
     >
       <CardHeader
+        sx={{
+          paddingBottom: '1.38rem',
+        }}
         avatar={
           <Box
             sx={{
-              padding: '8px 8px 2px',
               borderRadius: '10px',
               background: 'rgba(23, 23, 37, 0.06)',
             }}
           >
-            <img src={demoImg} alt='logo' />
+            <img
+              loading='lazy'
+              src={logo ?? google}
+              alt='logo'
+              style={{
+                objectFit: 'contain',
+                width: '46px',
+                height: '46px',
+              }}
+            />
           </Box>
         }
         title={
-          <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
-            Passionate programmer
-          </Typography>
+          <Link
+            href='/'
+            style={{
+              textDecoration: 'none',
+            }}
+          >
+            <Typography
+              color='text.primary'
+              sx={{
+                typography: {
+                  xs: 'bodyM_2',
+                  sm: 'bodyL_2',
+                },
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                maxWidth: '220px',
+              }}
+            >
+              {title}
+            </Typography>
+          </Link>
         }
         subheader={
-          cardType ? (
-            demoTech.map((tech, i) => (
+          homeCard || companyDetailCard ? (
+            slicedRequiredtech?.map((tech, i) => (
               <CustomButton
+                sx={{
+                  marginX: '3px',
+                  maxWidth: '40px',
+                  textOverflow: 'ellipsis',
+                  overflow: 'hidden',
+                  textAlign: 'left',
+                  padding: '3px 10px',
+                  whiteSpace: 'nowrap',
+                  fontSize: '10px',
+                  ':hover': {
+                    color: '#fff',
+                  },
+                }}
                 variant='small'
                 title={tech}
                 key={i}
-                sx={{ margin: '2px' }}
               />
             ))
           ) : (
             <>
-              <Typography
-                variant={isMobile ? 'bodyM4_3' : 'bodyM3_3'}
-                color='text.secondary'
-              >
+              <Typography variant={'bodyM4_3'} color='text.secondary'>
                 UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
               </Typography>
             </>
           )
         }
-        action={
-          cardType ? (
-            <IconButton aria-label='settings'>
-              <img src={icons.isMore} alt='isMore' />
-            </IconButton>
-          ) : (
-            <CustomButton
-              variant='small'
-              title={
-                isMobile ? (
-                  <img src={icons.icSaved} alt='icSaved' />
-                ) : (
-                  'Save job'
-                )
-              }
-              endIcon={!isMobile && <img src={icons.icSaved} alt='icSaved' />}
-              sx={{ background: isMobile && 'none' }}
-            />
-          )
-        }
+        action={actionButton}
       />
-      <CardContent>
+      <CardContent
+        sx={{
+          maxHeight: '71px',
+        }}
+      >
         <Typography
-          variant={isMobile ? 'bodyM2_4' : 'bodyM_4'}
+          paragraph
+          variant='bodyM_4'
           color='text.secondary'
+          sx={{
+            textOverflow: 'ellipsis',
+            overflow: 'hidden',
+            whiteSpace: 'wrap',
+            maxHeight: '71px',
+          }}
         >
-          Here at Microsoft, we are a passionate, fun-loving, growing team. We
-          are looking for passionate programmers who want to solve technical
-          challenges and learn and incorporate new technologies into their
-          skillset to join our team and grow with us.
+          {jobDesc}
         </Typography>
       </CardContent>
-      {cardType ? (
-        <CardContent>
-          <Stack direction='row' justifyContent='space-between'>
-            <CustomButton
-              variant='small'
-              title='Full time'
-              startIcon={<img src={icons.briefcase} alt='briefcase' />}
-            />
-            <CustomButton
-              variant='small'
-              title='45 applied'
-              startIcon={<img src={icons.people} alt='people' />}
-            />
-            <CustomButton
-              variant='small'
-              title='3 days left'
-              startIcon={<img src={icons.clock} alt='clock' />}
-            />
-          </Stack>
+      {homeCard && (
+        <CardContent
+          sx={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            paddingTop: '30px',
+          }}
+        >
+          <CustomButton
+            variant='small'
+            title='Full time'
+            startIcon={<img src={icons.briefcase} alt='briefcase' />}
+          />
+          <CustomButton
+            variant='small'
+            title='45 applied'
+            startIcon={<img src={icons.people} alt='people' />}
+          />
+          <CustomButton
+            variant='small'
+            title='3 days left'
+            startIcon={<img src={icons.clock} alt='clock' />}
+          />
         </CardContent>
-      ) : (
-        <CardContent>
-          {demoTech.map((tech, i) => (
+      )}
+      <CardContent
+        sx={{
+          paddingTop: '30px',
+        }}
+      >
+        {!companyDetailCard &&
+          !homeCard &&
+          slicedRequiredtech?.map((tech, i) => (
             <CustomButton
               variant='small'
               title={tech}
               key={i}
-              sx={{ margin: '3px' }}
+              sx={{
+                margin: '3px',
+                ':hover': {
+                  color: 'text.primary',
+                },
+              }}
             />
           ))}
-        </CardContent>
-      )}
-
-      <CardActions>
-        {cardType ? (
-          <Stack
-            direction='row'
-            justifyContent='space-between'
-            alignItems='center'
-            flexWrap='wrap'
-            sx={{ width: '100%' }}
-          >
-            <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
-              $15k-20k
+      </CardContent>
+      <CardActions
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          paddingTop: '1.38rem',
+          flexWrap: 'wrap',
+          gap: '1.88rem',
+        }}
+      >
+        <Box sx={{ display: 'flex', gap: '35px' }}>
+          {minSalary && maxSalary ? (
+            <Typography
+              variant='bodyL_2'
+              sx={{
+                maxWidth: '160px',
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+                typography: {
+                  xs: ' bodyM_3',
+                  sm: ' bodyL_2',
+                },
+              }}
+            >
+              ${minSalary}k-{maxSalary}k
               <Typography
-                variant={isMobile ? 'bodyM_4' : 'bodyL_4'}
+                sx={{
+                  typography: {
+                    xs: 'bodyM_2',
+                    sm: 'bodyL_2',
+                  },
+                }}
                 component='span'
                 color='text.secondary'
               >
                 /month
               </Typography>
             </Typography>
-            <CustomButton variant='primary' title='Apply Now' />
-          </Stack>
-        ) : (
-          <Stack
-            direction='row'
-            justifyContent='space-between'
-            alignItems='center'
-            flexWrap='wrap'
-            gap='30px'
-            sx={{ width: '100%' }}
-          >
-            <Box sx={{ display: 'flex', gap: '35px' }}>
-              <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
-                $15k-20k
-                <Typography
-                  variant={isMobile ? 'bodyM_4' : 'bodyL_4'}
-                  component='span'
-                  color='text.secondary'
-                >
-                  /month
-                </Typography>
-              </Typography>
+          ) : (
+            <Typography
+              variant='bodyM_2'
+              component='span'
+              color='text.secondary'
+            >
+              To Be Discussed (TBD)
+            </Typography>
+          )}
 
-              <Typography variant={isMobile ? 'bodyM_2' : 'bodyL_2'}>
-                54{' '}
-                <Typography
-                  variant={isMobile ? 'bodyM_4' : 'bodyL_3'}
-                  component='span'
-                  color='text.secondary'
-                >
-                  People Applied
-                </Typography>
+          {!homeCard && !companyDetailCard && (
+            <Typography
+              variant='bodyL_2'
+              sx={{
+                width: {
+                  xs: '100px',
+                  sm: '100%',
+                },
+                textOverflow: 'ellipsis',
+                overflow: 'hidden',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              54{' '}
+              <Typography
+                component='span'
+                color='text.secondary'
+                sx={{
+                  typography: {
+                    xs: 'bodyM_3',
+                    sm: 'bodyL_3',
+                  },
+                }}
+              >
+                People Applied
               </Typography>
-            </Box>
+            </Typography>
+          )}
+        </Box>
 
-            <Box sx={{ display: 'flex', gap: '20px' }}>
-              <CustomButton
-                variant='secondary'
-                title='Message'
-                sx={{ minWidth: { xs: '134px', sm: '125px' } }}
-              />
-              <CustomButton
-                variant='primary'
-                title='Apply Now'
-                sx={{ minWidth: { xs: '141px', sm: '180px' } }}
-              />
-            </Box>
-          </Stack>
-        )}
+        <Box
+          sx={{
+            display: 'flex',
+            gap: '10px',
+            width: {
+              xs: '100%',
+              sm: 'auto',
+            },
+          }}
+        >
+          {!homeCard && !companyDetailCard && (
+            <CustomButton
+              sx={{
+                width: {
+                  xs: '100%',
+                  sm: 'auto',
+                },
+              }}
+              variant='secondary'
+              title='Message'
+            />
+          )}
+          <CustomButton
+            sx={{
+              width: {
+                xs: '100%',
+                sm: 'auto',
+              },
+            }}
+            href={`/job/${jobId}`}
+            variant={variant}
+            title={btnText}
+          />
+        </Box>
       </CardActions>
     </Card>
   );
