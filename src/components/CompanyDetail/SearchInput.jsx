@@ -1,9 +1,24 @@
-import { Box, FormControl, Input, InputAdornment } from '@mui/material';
-
+import { Box, Input, InputAdornment, Typography } from '@mui/material';
 import icons from '../../assets/icons';
 import CustomButton from '../CustomButton/CustomButton';
+import { useForm } from 'react-hook-form';
 
-export default function SearchInput() {
+//  jobSearch functionality
+// Similar company
+// Filter on hanna
+// GEo Location
+
+export default function SearchInput({ isFetching, onSubmit }) {
+  const {
+    handleSubmit,
+    register,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      search: '',
+    },
+  });
+
   return (
     <Box
       sx={{
@@ -18,43 +33,49 @@ export default function SearchInput() {
         marginTop: '20px',
       }}
     >
-      <FormControl
-        sx={{
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        style={{
           width: '100%',
           height: '100%',
           padding: '8px ',
           backgroundColor: 'customColor.requirementBg',
           borderRadius: '10px !important',
-          maxWidth: {
-            xs: '100%',
-            sm: '465px',
-          },
+          maxWidth: '465px',
         }}
       >
         <Input
+          disabled={isFetching}
+          {...register('search', { required: true })}
           disableUnderline
           fullWidth
           placeholder='Search Job title or Keyword'
-          required
           sx={{
             display: 'flex',
             height: '44px',
             padding: '10px 0',
+            fontSize: {
+              xs: '11px',
+              sm: '15px',
+            },
           }}
           startAdornment={
             <InputAdornment position='start'>
-              <img src={icons.search} />
+              <img src={icons.search} alt='search icon' />
             </InputAdornment>
           }
           endAdornment={
             <InputAdornment position='end'>
-              <CustomButton title={'Search'} />
+              <CustomButton title={'Search'} type='submit' />
             </InputAdornment>
           }
         />
-      </FormControl>
-
-      <section></section>
+        {errors.search?.type === 'required' && (
+          <Typography variant='bodyM4_4' sx={{ color: 'red' }}>
+            Title or keyword is required!
+          </Typography>
+        )}
+      </form>
     </Box>
   );
 }

@@ -4,21 +4,25 @@ import { Link } from 'react-router-dom';
 import { logo } from '../../assets/images';
 import CustomButton from '../CustomButton/CustomButton';
 import icons from '../../assets/icons';
-import { FadeIn } from './style';
+import { fadeIn } from './style';
 
 export default function SimilarCompany({ delay, companyName }) {
   return (
     <Box
       sx={{
-        width: '100%',
+        width: '100% !important',
         height: '78px',
         opacity: '0',
-        transition: 'opacity 500ms ease',
-        animation: `${FadeIn} 1s linear ${delay}ms forwards`,
+        transition: 'opacity 500ms ease-in',
+        animation: `${fadeIn} 1s linear ${delay}ms forwards`,
         borderRadius: '10px',
         backgroundColor: 'customColor.requirementBg',
         display: 'flex',
         gap: '1rem',
+        minWidth: {
+          xs: '100%',
+          md: '350px',
+        },
       }}
     >
       <Link
@@ -32,11 +36,10 @@ export default function SimilarCompany({ delay, companyName }) {
           justifyContent: 'space-between',
           textDecoration: 'none',
           color: 'text.primary',
-          minWidth: '350px',
         }}
       >
-        <div
-          style={{
+        <Box
+          sx={{
             display: 'flex',
             gap: '1rem',
             alignItems: 'center',
@@ -65,7 +68,7 @@ export default function SimilarCompany({ delay, companyName }) {
               Apple LLC
             </Typography>
           </div>
-        </div>
+        </Box>
         <CustomButton
           variant='primaryOutlined'
           title='Follow'

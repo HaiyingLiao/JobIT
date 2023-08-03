@@ -1,7 +1,5 @@
 import { Box, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 
 import {
   CompanyDetail,
@@ -12,70 +10,52 @@ import {
   SimilarCompany,
 } from '../../components';
 import icons from '../../assets/icons';
+import { useGetCompanyDetailQuery } from '../../services/JSearh';
 
 export default function CompanyDetailPage() {
-  const [response, setResponse] = useState([]);
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(true);
   const { name } = useParams();
+  const { isError, isFetching, data } = useGetCompanyDetailQuery(name);
+
   const navigate = useNavigate();
 
-  // this function and state will replace later when redux setup is ready
-  const getCompanyDetails = async (params) => {
-    const options = {
-      url: 'https://jsearch.p.rapidapi.com/search',
-      method: 'GET',
-      params: {
-        query: params,
-        page: '1',
-        num_pages: '1',
-        date_posted: 'all',
-      },
-      headers: {
-        'X-RapidAPI-Key': import.meta.env.VITE_REACT_APP_JSEARCH_KEY,
-        'X-RapidAPI-Host': 'jsearch.p.rapidapi.com',
-      },
-    };
-    try {
-      const response = await axios.request(options);
-      const { data } = await response.data;
-      setResponse(data);
-    } catch (error) {
-      setError(error);
-    } finally {
-      setLoading(false);
-    }
-  };
+  if (isFetching) return <Loader />;
 
-  useEffect(() => {
-    getCompanyDetails(name);
-  }, [name]);
+  if (data?.data?.length < 1) return <NotFound />;
 
-  if (loading) return <Loader />;
-
-  if (response.length < 1) return <NotFound />;
-
-  if (error) return <ServerError />;
+  if (isError) return <ServerError />;
+  const company = data.data.filter(
+    (company) => company.employer_company_type !== null
+  );
+  console.log(company);
 
   return (
     <Box
       sx={{
-        maxWidth: '90rem',
-        margin: '0 auto',
-        padding: {
-          xs: '100px 5px',
-          sm: '100px 30px',
-        },
+        width: '100%',
         backgroundColor: 'customColor.pageBG',
+        padding: {
+          xs: ' 8px',
+          sm: ' 30px',
+        },
       }}
     >
-      <div>
+      <Box
+        sx={{
+          maxWidth: {
+            xs: '100%',
+            sm: '90rem',
+          },
+          paddingTop: '100px',
+          margin: '0 auto',
+        }}
+      >
         <CustomButton
           onClick={() => navigate(-1)}
           title='Back'
           variant='small'
           sx={{
-            marginLeft: '15px',
+            marginLeft: '10px ',
+            marginBottom: '20px',
             ':hover': {
               color: '#fff',
             },
@@ -93,20 +73,24 @@ export default function CompanyDetailPage() {
         <Box
           sx={{
             display: 'flex',
-            gap: '1rem',
-            flexWrap: 'wrap',
+            flexWrap: {
+              xs: 'wrap',
+              lg: 'nowrap',
+            },
+            width: '100%',
+            gap: '40px',
             justifyContent: 'space-between',
           }}
         >
           <Box>
             <CompanyDetail
-              companyImage={response[0]?.employer_logo}
-              recentJobs={response}
-              city={response[0]?.job_city}
-              country={response[0]?.job_country}
-              companyName={response[0]?.employer_name}
-              companyType={response[0]?.employer_companype}
-              naicsName={response[0]?.job_naics_name}
+              companyImage={data?.data[0]?.employer_logo}
+              recentJobs={data?.data}
+              city={data?.data[0]?.job_city}
+              country={data?.data[0]?.job_country}
+              companyName={data?.data[0]?.employer_name}
+              companyType={data?.data[0]?.employer_companype}
+              naicsName={data?.data[0]?.job_naics_name}
             />
           </Box>
           <Box
@@ -115,7 +99,11 @@ export default function CompanyDetailPage() {
               borderRadius: '10px',
               height: '100%',
               minHeight: '36rem',
-              padding: '15px 20px',
+              padding: '10px',
+              width: {
+                xs: '100%',
+                lg: 'fit-content',
+              },
             }}
           >
             <Typography
@@ -136,14 +124,14 @@ export default function CompanyDetailPage() {
               {[1, 2, 3, 4, 5, 6].map((company, i) => (
                 <SimilarCompany
                   key={company}
-                  companyName={response[0].empoyer_name}
+                  companyName={data?.data[0]?.empoyer_name}
                   delay={i * 200}
                 />
               ))}
             </Box>
           </Box>
         </Box>
-      </div>
+      </Box>
     </Box>
   );
 }

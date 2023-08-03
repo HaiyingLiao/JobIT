@@ -1,13 +1,11 @@
 import { Box, Typography, Avatar, AvatarGroup } from '@mui/material';
 
 import CardHeader from '../JobDetail/Header';
-import icons from '../../assets/icons';
 import { CustomButton } from '../../components';
 import RecentJobPost from './RecentJobPost';
-import { placeholder } from '../../assets/images';
-
-export const handleFalsy = (value, defaultValue) =>
-  value !== undefined && value !== null ? value : defaultValue;
+import icons from '../../assets/icons';
+import { placeholder, user } from '../../assets/images';
+import { handleFalsy } from '../../Utils/handleFalsy';
 
 export default function CompanyDetail({
   companyName,
@@ -18,18 +16,13 @@ export default function CompanyDetail({
   recentJobs,
   companyImage,
 }) {
-  const exampleUsers = [
-    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-    'https://cdn-icons-png.flaticon.com/512/3135/3135715.png',
-  ];
-
   return (
     <Box
       sx={{
-        maxWidth: '53.5rem',
-        padding: '16px',
+        maxWidth: {
+          xs: '100%',
+          lg: '53.5rem',
+        },
       }}
     >
       <CardHeader logo={companyImage ?? placeholder} />
@@ -101,7 +94,7 @@ export default function CompanyDetail({
           }}
         >
           <AvatarGroup max={3} sx={{ marginBottom: '1.25rem' }}>
-            {exampleUsers.map((user) => (
+            {[1, 2, 3, 4].map(() => (
               <Avatar alt='Remy Sharp' src={user} key={Math.random() * 53657} />
             ))}
           </AvatarGroup>
