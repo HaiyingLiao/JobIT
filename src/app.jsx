@@ -9,6 +9,7 @@ import { Navbar } from './components';
 import { Home, JobSearch, EstimatedSalary, JobDetailPage } from './pages';
 import './app.css';
 import { darkTheme, lightTheme } from './theme';
+import NotFound from './components/Error/NotFound/NotFound';
 
 export default function App() {
   const mode = useSelector(state => state.theme.value);
@@ -42,6 +43,10 @@ export default function App() {
               path='/estimated-salary'
               element={<EstimatedSalary />}
             />
+
+            {/* <Route path='/company/:name' element={<CompanyDetail />} /> */}
+
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Box>
 
