@@ -172,7 +172,6 @@ const JobCard = (props) => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            paddingTop: '30px',
           }}
         >
           <CustomButton
@@ -219,14 +218,13 @@ const JobCard = (props) => {
           />
         </CardContent>
       )}
-      <CardContent
-        sx={{
-          paddingTop: '30px',
-        }}
-      >
-        {!companyDetailCard &&
-          !homeCard &&
-          slicedRequiredtech?.map((tech, i) => (
+      {!companyDetailCard && !homeCard && (
+        <CardContent
+          sx={{
+            paddingTop: '30px',
+          }}
+        >
+          {slicedRequiredtech?.map((tech, i) => (
             <CustomButton
               variant='small'
               title={tech}
@@ -239,7 +237,8 @@ const JobCard = (props) => {
               }}
             />
           ))}
-      </CardContent>
+        </CardContent>
+      )}
       <CardActions
         sx={{
           display: 'flex',
