@@ -4,7 +4,16 @@ const ChartLegend = ({ isMobile }) => {
   const legend = ['Minimum salary', 'Maximum salary', 'Median salary'];
   const bgColors = ['#FDDD8C', 'primary.main', '#FFBBD7'];
   const listItemStyle = { paddingRight: isMobile ? '6px' : '0' };
-  const typographyStyle = { fontSize: isMobile ? '10px' : 'bodyM4_3' };
+  const typographyStyle = {
+    fontSize: {
+      xs: '10px',
+      sm: '10px',
+      md: '10px',
+      lg: '13px',
+      xl: '13px',
+    },
+    fontWeight: '500',
+  };
 
   return (
     <List
