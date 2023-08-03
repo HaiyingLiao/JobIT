@@ -47,8 +47,26 @@ export default function JobInfo({ title, address }) {
           </MoreButton>
         </CardTitleWrapper>
         <ButtonWrapper>
-          <CustomButton variant='primary' title='Apply Now' />
-          <CustomButton variant='primaryOutlined' title='Message' />
+          <CustomButton
+            variant='primary'
+            title='Apply Now'
+            sx={{
+              width: {
+                xs: '100%',
+                md: 'auto',
+              },
+            }}
+          />
+          <CustomButton
+            variant='primaryOutlined'
+            title='Message'
+            sx={{
+              width: {
+                xs: '100%',
+                md: 'auto',
+              },
+            }}
+          />
         </ButtonWrapper>
         <MoreButton>
           <img src={icons.moreVertical} alt='more icon' />

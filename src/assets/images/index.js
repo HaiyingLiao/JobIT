@@ -1,5 +1,5 @@
-import banner from './banner.png';
-import logo from './companyLogo.png';
-import placeholder from './placeholder-logo.png';
-
-export { banner, logo, placeholder };
+import banner from './banner.png'
+import logo from './companyLogo.png'
+import placeholder from './placeholder-logo.png'
+import user from './user.png'
+export { banner, logo, placeholder, user }

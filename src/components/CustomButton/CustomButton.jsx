@@ -34,7 +34,7 @@ const variants = {
     color: 'small',
     variant: 'contained',
     fontSize: { xs: '13px', sm: '14px' },
-    padding: { xs: '3px 8px', sm: '5px 10px' },
+    padding: { xs: '1px 5px', sm: '2px 6px' },
     borderRadius: '5px',
   },
 };
