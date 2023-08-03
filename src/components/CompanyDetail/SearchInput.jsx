@@ -1,12 +1,8 @@
 import { Box, Input, InputAdornment, Typography } from '@mui/material';
+
 import icons from '../../assets/icons';
 import CustomButton from '../CustomButton/CustomButton';
 import { useForm } from 'react-hook-form';
-
-//  jobSearch functionality
-// Similar company
-// Filter on hanna
-// GEo Location
 
 export default function SearchInput({ isFetching, onSubmit }) {
   const {
