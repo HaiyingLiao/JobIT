@@ -5,6 +5,7 @@ import {
   useMediaQuery,
   Typography,
   TextField,
+  FormHelperText,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 import { useGetEstimatedSalariesQuery } from '../../services/JSearch';
@@ -120,18 +121,17 @@ const EstimatedSalary = () => {
                 }}
                 value={title}
                 onChange={handleChange}
-                helperText={
-                  debouncedTitle.length === 0 ? 'Please add a job title' : ''
-                }
-                FormHelperTextProps={{
-                  sx: {
-                    bgcolor: 'customColor.pageBG',
-                    color: '#FF0000',
-                    mx: '0',
-                    fontSize: '12px',
-                  },
-                }}
               />
+              <FormHelperText
+                sx={{
+                  bgcolor: 'customColor.pageBG',
+                  color: '#FF0000',
+                  mx: '0',
+                  fontSize: '12px',
+                }}
+              >
+                {debouncedTitle.length === 0 ? 'Please add a job title' : ''}
+              </FormHelperText>
             </Grid>
             {/* Two Column Input Boxes */}
             <Grid item xs={12} sm={6}>
@@ -161,18 +161,17 @@ const EstimatedSalary = () => {
                 }}
                 value={location}
                 onChange={handleChange}
-                helperText={
-                  debouncedLocation.length === 0 ? 'Please add a location' : ''
-                }
-                FormHelperTextProps={{
-                  sx: {
-                    bgcolor: 'customColor.pageBG',
-                    color: '#FF0000',
-                    mx: '0',
-                    fontSize: '12px',
-                  },
-                }}
               />
+              <FormHelperText
+                sx={{
+                  bgcolor: 'customColor.pageBG',
+                  color: '#FF0000',
+                  mx: '0',
+                  fontSize: '12px',
+                }}
+              >
+                {debouncedLocation.length === 0 ? 'Please add a location' : ''}
+              </FormHelperText>
             </Grid>
             <Grid item xs={12} sm={6}>
               <Typography
@@ -202,18 +201,17 @@ const EstimatedSalary = () => {
                 }}
                 value={radius}
                 onChange={handleChange}
-                helperText={
-                  debouncedRadius.length === 0 ? 'Please add a radius' : ''
-                }
-                FormHelperTextProps={{
-                  sx: {
-                    bgcolor: 'customColor.pageBG',
-                    color: '#FF0000',
-                    mx: '0',
-                    fontSize: '12px',
-                  },
-                }}
               />
+              <FormHelperText
+                sx={{
+                  bgcolor: 'customColor.pageBG',
+                  color: '#FF0000',
+                  mx: '0',
+                  fontSize: '12px',
+                }}
+              >
+                {debouncedRadius.length === 0 ? 'Please add a radius' : ''}
+              </FormHelperText>
             </Grid>
           </Grid>
         </Grid>

@@ -78,8 +78,8 @@ export default function Chart({ isMobile, data, error, isFetching }) {
         (job) => job.publisher_name === label
       );
       const publishersSalaries = samePublisherList.reduce((acc, job) => {
-        barsToDisplay.forEach((barType, idx) => {
-          acc[idx] = (acc[idx] || 0) + job[barType];
+        barsToDisplay.forEach((barType, i) => {
+          acc[i] = (acc[i] || 0) + job[barType];
         });
         return acc;
       }, []);
@@ -174,8 +174,8 @@ export default function Chart({ isMobile, data, error, isFetching }) {
   );
 }
 
-// Fix border around error message
 // useMemo vs refetch in Redux
 // Remove console logs
 // stepsize/max value on chart?
 // time period on chart?
+// move styles into styles.js?
