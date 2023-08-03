@@ -4,21 +4,20 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Box,
-  keyframes
+  Box
 } from '@mui/material';
+import { keyframes } from '@mui/system';
 import { Link } from 'react-router-dom';
-
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
-import { placeholder } from '../../assets/images';
-import { handleFalsy } from '../../Utils/TestingTool/dataCleaningTool';
+import google from '../../assets/images/google.png';
 
-export const FadeIn = keyframes`0%{ 
-    opacity:0 
+export const FadeIn = keyframes`
+  0%{ 
+    opacity:0; 
   }
   100%{
-    opacity:1
+    opacity:1;
     }`;
 
 const bull = (
@@ -35,15 +34,14 @@ const JobCard = props => {
     requiredTech,
     title,
     actionButton,
-    minSalary,
-    maxSalary,
     type,
     variant,
     logo,
     jobDesc,
     delay,
     jobId,
-
+    minSalary,
+    maxSalary,
     btnText
   } = props;
 
@@ -53,7 +51,6 @@ const JobCard = props => {
 
   return (
     <Card
-      className='jobcard'
       sx={theme => ({
         padding: '1.25rem',
         width: '100%',
@@ -83,7 +80,7 @@ const JobCard = props => {
           >
             <img
               loading='lazy'
-              src={handleFalsy(logo, placeholder)}
+              src={logo ?? google}
               alt='logo'
               style={{
                 objectFit: 'contain',
@@ -131,7 +128,7 @@ const JobCard = props => {
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
-                    color: 'text.primary'
+                    color: '#fff'
                   }
                 }}
                 variant='small'
@@ -179,42 +176,15 @@ const JobCard = props => {
           <CustomButton
             variant='small'
             title='Full time'
-            sx={{
-              maxWidth: '70px',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              textAlign: 'left',
-              padding: '3px 10px',
-              whiteSpace: 'nowrap',
-              fontSize: '10px'
-            }}
             startIcon={<img src={icons.briefcase} alt='briefcase' />}
           />
           <CustomButton
             variant='small'
-            sx={{
-              maxWidth: '70px',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              textAlign: 'left',
-              padding: '3px 10px',
-              whiteSpace: 'nowrap',
-              fontSize: '10px'
-            }}
             title='45 applied'
             startIcon={<img src={icons.people} alt='people' />}
           />
           <CustomButton
             variant='small'
-            sx={{
-              maxWidth: '70px',
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              textAlign: 'left',
-              padding: '3px 10px',
-              whiteSpace: 'nowrap',
-              fontSize: '10px'
-            }}
             title='3 days left'
             startIcon={<img src={icons.clock} alt='clock' />}
           />
@@ -251,7 +221,7 @@ const JobCard = props => {
         }}
       >
         <Box sx={{ display: 'flex', gap: '35px' }}>
-          {minSalary !== 0 && maxSalary !== 0 ? (
+          {minSalary && maxSalary ? (
             <Typography
               variant='bodyL_2'
               sx={{
@@ -265,7 +235,7 @@ const JobCard = props => {
                 }
               }}
             >
-              {minSalary}-{maxSalary}
+              ${minSalary}k-{maxSalary}k
               <Typography
                 sx={{
                   typography: {
@@ -285,7 +255,7 @@ const JobCard = props => {
               component='span'
               color='text.secondary'
             >
-              TBD
+              To Be Discussed (TBD)
             </Typography>
           )}
 
@@ -318,39 +288,6 @@ const JobCard = props => {
             </Typography>
           )}
         </Box>
-
-        {/* {minSalary && maxSalary ? (
-          <Typography
-            variant='bodyL_2'
-            sx={{
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-              whiteSpace: 'nowrap',
-              typography: {
-                xs: ' bodyM_3',
-                sm: ' bodyL_2'
-              }
-            }}
-          >
-            {minSalary}k-{maxSalary}k
-            <Typography
-              sx={{
-                typography: {
-                  xs: 'bodyM_2',
-                  sm: 'bodyL_2'
-                }
-              }}
-              component='span'
-              color='text.secondary'
-            >
-              /month
-            </Typography>
-          </Typography>
-        ) : (
-          <Typography variant='bodyM_2' component='span' color='text.secondary'>
-            TBD
-          </Typography>
-        )} */}
 
         <Box
           sx={{

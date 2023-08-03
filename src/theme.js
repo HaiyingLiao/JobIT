@@ -160,6 +160,7 @@ export const lightTheme = createTheme({
       primary: '#171725',
       secondary: '#696974',
       natural6: '#92929D',
+      natural8: '#44444F',
     },
   },
   typography: {
@@ -204,6 +205,7 @@ export const darkTheme = createTheme({
       primary: '#FFFFFF',
       secondary: '#92929D',
       natural6: '#92929D',
+      natural8: '#E2E2EA',
     },
   },
   typography: {

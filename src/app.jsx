@@ -6,7 +6,9 @@ import { ThemeProvider } from '@emotion/react';
 import { useSelector } from 'react-redux';
 
 import { Navbar } from './components';
-import { Home, JobSearch, EstimatedSalary, JobDetailPage } from './pages';
+
+import { Home, JobSearchPage, EstimatedSalary, JobDetailPage } from './pages';
+
 import './app.css';
 import { darkTheme, lightTheme } from './theme';
 import NotFound from './components/Error/NotFound/NotFound';
