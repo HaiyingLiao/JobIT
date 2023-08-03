@@ -1,4 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+
 import {
   Drawer,
   List,
@@ -8,20 +9,25 @@ import {
   Toolbar,
   Box,
 } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import icons from './../../assets/icons';
 import { navMenuItems } from '../../constants';
 import { Logo, SwitchButton } from '../../components';
-import { ColorModeContext } from '../../Utils/ColorMode';
+import { toggleMode } from '../../slice/darkMode';
 
-const NavMobile = ({ isMobile }) => {
+const NavMobile = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { isDarkMode, toggleDarkMode } = useContext(ColorModeContext);
+
+  const dispatch = useDispatch();
+  const mode = useSelector((state) => state.theme.value);
+  const handleToggleDarkMode = () => {
+    dispatch(toggleMode());
+  };
 
   const handleDrawer = () =>
     setIsDrawerOpen((prevIsDrawerOpen) => !prevIsDrawerOpen);
-
   return (
     <>
       {/* Mobile Drawer (nav menu that slides in from right on mobile) */}
@@ -73,7 +79,7 @@ const NavMobile = ({ isMobile }) => {
             </ListItemButton>
           ))}
           <Box sx={{ paddingLeft: '12px', marginTop: '36px' }}>
-            <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
+            <SwitchButton checkMode={mode} onChange={handleToggleDarkMode} />
           </Box>
         </List>
       </Drawer>
@@ -96,7 +102,7 @@ const NavMobile = ({ isMobile }) => {
       )}
 
       {!isDrawerOpen ? (
-        <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
+        <SwitchButton checkMode={mode} onChange={handleToggleDarkMode} />
       ) : (
         <AppBar
           component='nav'

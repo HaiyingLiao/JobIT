@@ -1,23 +1,23 @@
-import { createContext, useState } from 'react';
+// import { createContext, useState } from 'react';
 
-import { ThemeProvider } from '@emotion/react';
-import { darkTheme, lightTheme } from '../theme';
+// import { ThemeProvider } from '@emotion/react';
+// import { darkTheme, lightTheme } from '../theme';
 
-export const ColorModeContext = createContext({});
+// export const ColorModeContext = createContext({});
 
-const ColorModeProvider = ({ children }) => {
-  const [isDarkMode, setDarkMode] = useState(false);
-  const theme = isDarkMode ? darkTheme : lightTheme;
+// const ColorModeProvider = ({ children }) => {
+//   const [isDarkMode, setDarkMode] = useState(false);
+//   const theme = isDarkMode ? darkTheme : lightTheme;
 
-  const toggleDarkMode = () => {
-    setDarkMode((prevMode) => !prevMode);
-  };
+//   const toggleDarkMode = () => {
+//     setDarkMode((prevMode) => !prevMode);
+//   };
 
-  return (
-    <ColorModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
-    </ColorModeContext.Provider>
-  );
-};
+//   return (
+//     <ColorModeContext.Provider value={{ isDarkMode, toggleDarkMode }}>
+//       <ThemeProvider theme={theme}>{children}</ThemeProvider>
+//     </ColorModeContext.Provider>
+//   );
+// };
 
-export default ColorModeProvider;
+// export default ColorModeProvider;

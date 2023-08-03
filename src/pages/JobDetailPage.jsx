@@ -7,13 +7,28 @@ import {
   SearchBar,
 } from '../components';
 import icons from '../assets/icons';
+import { useGetJobByIdQuery } from '../services/JSearch';
+import { useParams } from 'react-router-dom';
 
 const demoData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const JobDetailPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { id } = useParams();
 
+  const { data, error, isFetching } = useGetJobByIdQuery({
+    query: id,
+  });
+
+  if (isFetching) {
+    return 'somet';
+  }
+
+  if (error) {
+    return 'somet';
+  }
+  console.log(data.data[0]);
   return (
     <Grid
       container
@@ -24,7 +39,7 @@ const JobDetailPage = () => {
         padding: { xs: '0px 24px', md: '0px 50px' },
       }}
     >
-      <Grid item xs={12} sm={12}>
+      <Grid item xs={12}>
         <Typography variant='h1' mb='12px'>
           Let’s find your dream job
         </Typography>
@@ -37,7 +52,7 @@ const JobDetailPage = () => {
         <SearchBar />
       </Grid>
 
-      <Grid item sm={12} md={12} lg={8}>
+      <Grid item xs={12} lg={8}>
         {!isMobile && (
           <CustomButton
             variant='secondary'
@@ -46,16 +61,14 @@ const JobDetailPage = () => {
             sx={{ padding: '7px 10px', marginBottom: '10px' }}
           />
         )}
-        <JobDetail />
+        <JobDetail data={data.data} />
       </Grid>
 
-      <Grid container item xs={12} sm={12} md={12} lg={4}>
-        <Typography variant='bodyL' mb='20px'>
-          Similar Job
-        </Typography>
+      <Grid item xs={12} lg={4}>
+        <Typography variant='bodyL'>Similar Job</Typography>
 
         {demoData.map((_, i) => (
-          <Grid item sm={12} mb='15px' key={i}>
+          <Grid item sm={12} mb='10px' key={i}>
             <InlineJobCard />
           </Grid>
         ))}

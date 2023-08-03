@@ -56,13 +56,13 @@ const IOSSwitch = styled((props) => (
   },
 }));
 
-const SwitchButton = ({ checkMode, changeMode }) => {
+const SwitchButton = ({ checkMode, onChange }) => {
   return (
     <Box display='flex' alignItems='center'>
       <Box component='span' sx={{ marginTop: '5px' }}>
         <img src={icons.sun} alt='moon' />
       </Box>
-      <IOSSwitch sx={{ m: 1 }} onChange={changeMode} checked={checkMode} />
+      <IOSSwitch sx={{ m: 1 }} onChange={onChange} checked={checkMode} />
       <Box component='span' sx={{ marginTop: '5px' }}>
         <img src={icons.moon} alt='sun' />
       </Box>

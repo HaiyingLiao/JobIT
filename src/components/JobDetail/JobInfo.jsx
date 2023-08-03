@@ -1,14 +1,20 @@
-import { Typography } from '@mui/material';
+import { Typography, Box, useMediaQuery } from '@mui/material';
 
 import { CardTitleWrapper, ButtonWrapper, MoreButton, Wrapper } from './style';
 import Requirement from './Requirement';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
 
-export default function JobInfo({ title, address }) {
+export default function JobInfo({ title, company, JobUrlData }) {
+  const isMobile = useMediaQuery('(max-width:792px)');
+
   return (
     <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-      <Wrapper wrap={'true'} width='100%' justifyContent='space-between'>
+      <Wrapper
+        wrap={'false'}
+        width='100%'
+        justifyContent={isMobile ? 'start' : 'space-between'}
+      >
         <CardTitleWrapper>
           <div>
             <Typography
@@ -33,7 +39,7 @@ export default function JobInfo({ title, address }) {
                 lineHeight: '32px',
               }}
             >
-              {address} - 3 days ago
+              {company} - 3 days ago
             </Typography>
           </div>
           <MoreButton>
@@ -44,16 +50,30 @@ export default function JobInfo({ title, address }) {
               width={20}
               height={20}
             />
+            {isMobile && <img src={icons.moreVertical} alt='more icon' />}
           </MoreButton>
         </CardTitleWrapper>
-        <ButtonWrapper>
-          <CustomButton variant='primary' title='Apply Now' />
-          <CustomButton variant='primaryOutlined' title='Message' />
-        </ButtonWrapper>
-        <MoreButton>
-          <img src={icons.moreVertical} alt='more icon' />
-        </MoreButton>
+        {!isMobile && (
+          <ButtonWrapper>
+            <CustomButton
+              variant='primary'
+              title='Apply Now'
+              href={JobUrlData}
+              target='_blank'
+            />
+            <CustomButton variant='secondaryOutlined' title='Message' />
+            <MoreButton>
+              <img src={icons.moreVertical} alt='more icon' />
+            </MoreButton>
+          </ButtonWrapper>
+        )}
         <Requirement />
+        {isMobile && (
+          <>
+            <CustomButton variant='primary' title='Apply Now' />
+            <CustomButton variant='secondaryOutlined' title='Message' />
+          </>
+        )}
       </Wrapper>
     </div>
   );

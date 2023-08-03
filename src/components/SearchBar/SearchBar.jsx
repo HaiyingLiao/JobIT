@@ -10,7 +10,6 @@ import {
   useTheme,
   useMediaQuery,
   Typography,
-  Alert,
 } from '@mui/material';
 import { useState } from 'react';
 
@@ -18,6 +17,10 @@ import icons from '../../assets/icons';
 import { CustomButton } from '..';
 import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
+import { toast } from 'react-hot-toast';
+// import { useGetSearchJobQuery } from '../../services/JSearch';
+// import { useDispatch } from 'react-redux';
+// import { fetchSearchFilter } from '../../slice/searchFilter';
 
 const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
 
@@ -27,11 +30,24 @@ const SearchBar = () => {
   const [contractType, setContractType] = useState('');
   const [location, setLocation] = useState('');
   const [jobTitle, setJobTitle] = useState('');
-  const [alert, setAlert] = useState(false);
+  // const dispatch = useDispatch();
 
-  const handleSearch = () => {
+  // const { data, error, isFetching } = useGetSearchJobQuery({
+  //   query: jobTitle,
+  //   employmentTypes: contractType.replace(/\s+/g, '').toUpperCase(),
+  // });
+
+  // if (error) console.log(error, 'Error');
+  // if (isFetching) console.log('Fetching');
+
+  // if (data) console.log(data);
+
+  const handleSearch = (e) => {
+    e.preventDefault();
     if (contractType === '' || location === '' || jobTitle === '') {
-      return setAlert(true);
+      return toast.error(
+        'Please ensure that all areas in the search field are filled out.'
+      );
     }
 
     const formattedContactType = contractType.replace(/\s+/g, '').toUpperCase();
@@ -42,7 +58,6 @@ const SearchBar = () => {
     setContractType('');
     setLocation('');
     setJobTitle('');
-    setAlert(false);
 
     // fetch call
   };
@@ -165,19 +180,6 @@ const SearchBar = () => {
             ))}
           </Select>
         </SearchContainer>
-
-        {alert && (
-          <Alert
-            severity='error'
-            sx={{
-              minWidth: { xs: '100%', md: '100px' },
-
-              marginLeft: { xs: '0px', md: '10px' },
-            }}
-          >
-            Please ensure that all areas in the search field are filled out.
-          </Alert>
-        )}
 
         <CustomButton
           variant='primary'
