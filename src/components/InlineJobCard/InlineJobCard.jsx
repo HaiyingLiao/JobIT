@@ -34,6 +34,7 @@ const InlineJobCard = ({ type }) => {
           ? 'customColor.requirementBg'
           : 'customColor.jobCardBg',
         padding: '10px ',
+        margin: '20px 0px',
         borderRadius: '10px',
       }}
     >

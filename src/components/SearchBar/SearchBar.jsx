@@ -112,7 +112,6 @@ const SearchBar = () => {
               paddingLeft: '2rem',
             }}
             onChange={(e, value) => {
-              console.log('autocomplete', value);
               setLocation(value);
             }}
             value={location}

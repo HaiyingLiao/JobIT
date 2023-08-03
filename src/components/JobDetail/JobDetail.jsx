@@ -10,7 +10,6 @@ import { CustomButton } from '..';
 export default function LargeJobCard({ data }) {
   const [showAll, setShowAll] = useState(false);
 
-  console.log(data[0].job_apply_link);
   const responsibilities = data[0].job_highlights.Responsibilities;
   const qualifications = data[0].job_highlights.Qualifications;
   const jobDescription = showAll

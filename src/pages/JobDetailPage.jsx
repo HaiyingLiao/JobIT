@@ -68,9 +68,7 @@ const JobDetailPage = () => {
         <Typography variant='bodyL'>Similar Job</Typography>
 
         {demoData.map((_, i) => (
-          <Grid item sm={12} mb='10px' key={i}>
-            <InlineJobCard />
-          </Grid>
+          <InlineJobCard key={i} />
         ))}
       </Grid>
     </Grid>
