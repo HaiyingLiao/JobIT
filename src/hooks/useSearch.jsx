@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 
-import { useGetSearchQuery } from '../services/JSearh';
+import { useGetSearchQuery } from '../services/JSearch';
 
 export default function useSearch(
   location = 'US',

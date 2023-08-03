@@ -1,14 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import { jSearchApi } from '../services/JSearh.js';
-// import estimatedSalariesReducer from '../slice/currentEstimatedSalaries';
-import searchSlice from '../slice/searchSlice.js';
+import { jSearchApi } from '../services/JSearch';
+import estimatedSalariesReducer from '../slice/currentEstimatedSalaries';
 
 export const store = configureStore({
   reducer: {
     [jSearchApi.reducerPath]: jSearchApi.reducer,
-    // currentEstimatedSalaries: estimatedSalariesReducer,
-    searchSlice
+    searchSlice,
+    currentEstimatedSalaries: estimatedSalariesReducer,
   },
 
   middleware: (getDefaultMiddleware) =>

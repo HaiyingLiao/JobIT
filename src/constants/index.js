@@ -419,3 +419,54 @@ export const demoCountries = [
   { code: 'ZM', label: 'Zambia', phone: '260' },
   { code: 'ZW', label: 'Zimbabwe', phone: '263' },
 ];
+
+// temporary data, later fetch from API
+export const demoListType = [
+  {
+    title: 'Type Of Employment',
+    data: [
+      { type: 'Full Time', num: 103 },
+      { type: 'Part Time', num: 142 },
+      { type: 'Internship', num: 142 },
+      { type: 'Freelance', num: 103 },
+      { type: 'Remote', num: 142 },
+      { type: 'Co-founder', num: 142 },
+      { type: 'Contract', num: 142 },
+    ],
+  },
+  {
+    title: 'Experience Level',
+    data: [
+      { type: 'Senior Level', num: 103 },
+      { type: 'Entry Level', num: 142 },
+      { type: 'Mid Level', num: 142 },
+      { type: 'Student Level', num: 103 },
+      { type: 'Directors', num: 142 },
+      { type: 'VP or Above', num: 142 },
+      { type: 'Contract', num: 142 },
+    ],
+  },
+  {
+    title: 'Salary Range',
+    data: [
+      { type: '$0 - $100', num: 103 },
+      { type: '$101 - $200', num: 142 },
+      { type: '$201 - $500', num: 142 },
+      { type: '$501 - $750', num: 103 },
+      { type: '$751 - $1000', num: 142 },
+      { type: '$1000 Above', num: 142 },
+    ],
+  },
+  {
+    title: 'Location',
+    data: [{ type: 'demo', num: 103 }],
+  },
+  {
+    title: 'Language',
+    data: [{ type: 'demo', num: 103 }],
+  },
+  {
+    title: 'Facility',
+    data: [{ type: 'demo', num: 103 }],
+  },
+];

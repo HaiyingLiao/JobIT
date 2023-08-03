@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { JobCard } from '../../components';
 import { IconButton } from '@mui/material';
 import { logo } from '../../assets/images';
@@ -78,6 +79,14 @@ const Home = () => {
         requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
       />
     </div>
+=======
+import { SearchBar } from '../../components';
+const Home = () => {
+  return (
+    <>
+      <SearchBar />
+    </>
+>>>>>>> main
   );
 };
 

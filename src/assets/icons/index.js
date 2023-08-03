@@ -22,6 +22,13 @@ import share from './share.svg'
 import savedFill from './savedFill.svg'
 import oval1 from './Oval1.svg'
 import arrow from './arror.png';
+<<<<<<< HEAD
+=======
+import copy from './copy.svg';
+import share from './share.svg';
+import savedFill from './savedFill.svg';
+import cheveronUp from './cheveronUp.png';
+>>>>>>> main
 
 export default {
   sun,
@@ -47,5 +54,9 @@ export default {
   copy,
   share,
   savedFill,
+<<<<<<< HEAD
   oval1
+=======
+  cheveronUp,
+>>>>>>> main
 };
