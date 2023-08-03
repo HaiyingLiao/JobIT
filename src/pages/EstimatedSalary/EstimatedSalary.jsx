@@ -8,6 +8,7 @@ import {
   FormHelperText,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
+
 import { useGetEstimatedSalariesQuery } from '../../services/JSearch';
 import { fetchEstimatedSalaries } from '../../slice/currentEstimatedSalaries';
 import {

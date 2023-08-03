@@ -59,7 +59,6 @@ const getOptions = (isDark) => ({
 });
 
 export default function Chart({ isMobile, data, error, isFetching }) {
-  console.log(data);
   const isDarkTheme = useTheme().palette.mode === 'dark';
   const refactoredData = useMemo(() => {
     if (!data || !data.data.length > 0) return;
@@ -89,7 +88,6 @@ export default function Chart({ isMobile, data, error, isFetching }) {
       );
       return acc;
     }, {});
-    console.log(salaryData);
 
     const dataset = barsToDisplay.map((barType, barIndex) => {
       return {
@@ -105,8 +103,6 @@ export default function Chart({ isMobile, data, error, isFetching }) {
       datasets: dataset,
     };
   }, [data]);
-
-  console.log(refactoredData);
 
   if (error)
     return (
@@ -173,9 +169,3 @@ export default function Chart({ isMobile, data, error, isFetching }) {
     </>
   );
 }
-
-// useMemo vs refetch in Redux
-// Remove console logs
-// stepsize/max value on chart?
-// time period on chart?
-// move styles into styles.js?
