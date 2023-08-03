@@ -239,5 +239,4 @@ const EstimatedSalary = () => {
     </Box>
   );
 };
-
 export default EstimatedSalary;

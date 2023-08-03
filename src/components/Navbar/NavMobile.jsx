@@ -1,4 +1,5 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+
 import {
   Drawer,
   List,
@@ -6,22 +7,27 @@ import {
   IconButton,
   AppBar,
   Toolbar,
-  Box,
+  Box
 } from '@mui/material';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 
 import icons from './../../assets/icons';
 import { navMenuItems } from '../../constants';
 import { Logo, SwitchButton } from '../../components';
-import { ColorModeContext } from '../../Utils/ColorMode';
+import { toggleMode } from '../../slice/darkMode';
 
-const NavMobile = ({ isMobile }) => {
+const NavMobile = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
-  const { isDarkMode, toggleDarkMode } = useContext(ColorModeContext);
+
+  const dispatch = useDispatch();
+  const mode = useSelector(state => state.theme.value);
+  const handleToggleDarkMode = () => {
+    dispatch(toggleMode());
+  };
 
   const handleDrawer = () =>
-    setIsDrawerOpen((prevIsDrawerOpen) => !prevIsDrawerOpen);
-
+    setIsDrawerOpen(prevIsDrawerOpen => !prevIsDrawerOpen);
   return (
     <>
       {/* Mobile Drawer (nav menu that slides in from right on mobile) */}
@@ -35,19 +41,19 @@ const NavMobile = ({ isMobile }) => {
           sx: {
             width: '70%',
             bgcolor: 'customColor.navBarBg',
-            backgroundImage: 'none',
-          },
+            backgroundImage: 'none'
+          }
         }}
         BackdropProps={{
           sx: {
-            bgcolor: 'customColor.backDrop',
-          },
+            bgcolor: 'customColor.backDrop'
+          }
         }}
       >
         <List
           sx={{
             padding: '13px',
-            my: 'auto',
+            my: 'auto'
           }}
         >
           {navMenuItems.map((menuItem, i) => (
@@ -64,8 +70,8 @@ const NavMobile = ({ isMobile }) => {
                 '&.active': {
                   bgcolor: 'customColor.activeDrawer',
                   color: 'primary.main',
-                  fontWeight: 'bold',
-                },
+                  fontWeight: 'bold'
+                }
               }}
               aria-label={`Go to ${menuItem.name} page`}
             >
@@ -73,7 +79,7 @@ const NavMobile = ({ isMobile }) => {
             </ListItemButton>
           ))}
           <Box sx={{ paddingLeft: '12px', marginTop: '36px' }}>
-            <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
+            <SwitchButton checkMode={mode} onChange={handleToggleDarkMode} />
           </Box>
         </List>
       </Drawer>
@@ -83,7 +89,7 @@ const NavMobile = ({ isMobile }) => {
         <IconButton
           onClick={handleDrawer}
           sx={{
-            marginRight: 'auto',
+            marginRight: 'auto'
           }}
         >
           <img
@@ -96,19 +102,19 @@ const NavMobile = ({ isMobile }) => {
       )}
 
       {!isDrawerOpen ? (
-        <SwitchButton checkMode={isDarkMode} changeMode={toggleDarkMode} />
+        <SwitchButton checkMode={mode} onChange={handleToggleDarkMode} />
       ) : (
         <AppBar
           component='nav'
           sx={{
-            bgcolor: 'customColor.navBarBg',
+            bgcolor: 'customColor.navBarBg'
           }}
           position='fixed'
           elevation={0}
         >
           <Toolbar
             sx={{
-              height: '70px',
+              height: '70px'
             }}
           >
             <Logo />
@@ -116,7 +122,7 @@ const NavMobile = ({ isMobile }) => {
               <img
                 style={{
                   width: '16px',
-                  height: '16px',
+                  height: '16px'
                 }}
                 src={icons.closeIcon}
                 alt='Mobile navigation close icon'

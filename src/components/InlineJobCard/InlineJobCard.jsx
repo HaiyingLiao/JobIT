@@ -6,7 +6,7 @@ import {
   Typography,
   Stack,
   useTheme,
-  useMediaQuery,
+  useMediaQuery
 } from '@mui/material';
 
 import demoImg from '../../assets/images/google.png';
@@ -35,6 +35,8 @@ const InlineJobCard = ({ type }) => {
           : 'customColor.jobCardBg',
         padding: '10px ',
         borderRadius: '10px',
+        width: '100%',
+        margin: '10px auto'
       }}
     >
       <CardContent
@@ -42,7 +44,7 @@ const InlineJobCard = ({ type }) => {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          gap: '10px',
+          gap: '10px'
         }}
       >
         <Box>
