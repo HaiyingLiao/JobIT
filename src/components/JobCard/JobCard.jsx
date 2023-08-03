@@ -4,7 +4,7 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Box
+  Box,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import icons from '../../assets/icons';
 import { placeholder } from '../../assets/images';
 import { formatCurrency } from '../../Utils/numberFormat';
 
-const JobCard = props => {
+const JobCard = (props) => {
   const {
     requiredTech = [],
     title,
@@ -25,16 +25,10 @@ const JobCard = props => {
     jobDesc,
     delay,
     jobId,
-<<<<<<< HEAD
     salary,
     btnText,
     currency,
     period,
-=======
-    minSalary,
-    maxSalary,
-    btnText
->>>>>>> main
   } = props;
 
   const homeCard = type === 'homeJobcard';
@@ -46,7 +40,7 @@ const JobCard = props => {
 
   return (
     <Card
-      sx={theme => ({
+      sx={(theme) => ({
         padding: '1.25rem',
         width: '100%',
         maxWidth: {
@@ -62,18 +56,18 @@ const JobCard = props => {
         boxShadow:
           theme.palette.mode === 'light'
             ? '0px 23px 30px 0px rgba(226, 226, 234, 0.40), -3px -2px 24px 0px rgba(0, 0, 0, 0.02)'
-            : 'none'
+            : 'none',
       })}
     >
       <CardHeader
         sx={{
-          paddingBottom: '1.38rem'
+          paddingBottom: '1.38rem',
         }}
         avatar={
           <Box
             sx={{
               borderRadius: '10px',
-              background: 'rgba(23, 23, 37, 0.06)'
+              background: 'rgba(23, 23, 37, 0.06)',
             }}
           >
             <img
@@ -83,14 +77,9 @@ const JobCard = props => {
               alt='logo'
               style={{
                 objectFit: 'contain',
-<<<<<<< HEAD
                 borderRadius: '10px',
                 maxWidth: '46px',
                 height: '46px',
-=======
-                width: '46px',
-                height: '46px'
->>>>>>> main
               }}
             />
           </Box>
@@ -99,7 +88,7 @@ const JobCard = props => {
           <Link
             href='/'
             style={{
-              textDecoration: 'none'
+              textDecoration: 'none',
             }}
           >
             <Typography
@@ -107,23 +96,15 @@ const JobCard = props => {
               sx={{
                 typography: {
                   xs: 'bodyM_2',
-<<<<<<< HEAD
                   lg: 'bodyL_2',
-=======
-                  sm: 'bodyL_2'
->>>>>>> main
                 },
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
-<<<<<<< HEAD
                 maxWidth: {
                   xs: '200px',
                   md: '250px',
                 },
-=======
-                maxWidth: '220px'
->>>>>>> main
               }}
             >
               {title}
@@ -146,13 +127,8 @@ const JobCard = props => {
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
-<<<<<<< HEAD
                     color: 'text.primary',
                   },
-=======
-                    color: '#fff'
-                  }
->>>>>>> main
                 }}
                 variant='small'
                 title={tech}
@@ -173,11 +149,7 @@ const JobCard = props => {
       />
       <CardContent
         sx={{
-<<<<<<< HEAD
           maxHeight: '100%',
-=======
-          maxHeight: '71px'
->>>>>>> main
         }}
       >
         <Typography
@@ -188,12 +160,8 @@ const JobCard = props => {
             textOverflow: 'ellipsis',
             overflow: 'hidden',
             whiteSpace: 'wrap',
-<<<<<<< HEAD
             maxHeight: homeCard ? '142px' : '71px',
             height: '100%',
-=======
-            maxHeight: '71px'
->>>>>>> main
           }}
         >
           {jobDesc}
@@ -204,7 +172,7 @@ const JobCard = props => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            paddingTop: '30px'
+            paddingTop: '30px',
           }}
         >
           <CustomButton
@@ -253,7 +221,7 @@ const JobCard = props => {
       )}
       <CardContent
         sx={{
-          paddingTop: '30px'
+          paddingTop: '30px',
         }}
       >
         {!companyDetailCard &&
@@ -266,8 +234,8 @@ const JobCard = props => {
               sx={{
                 margin: '3px',
                 ':hover': {
-                  color: 'text.primary'
-                }
+                  color: 'text.primary',
+                },
               }}
             />
           ))}
@@ -278,10 +246,9 @@ const JobCard = props => {
           justifyContent: 'space-between',
           paddingTop: '1.38rem',
           flexWrap: 'wrap',
-          gap: '1.88rem'
+          gap: '1.88rem',
         }}
       >
-<<<<<<< HEAD
         <Box sx={{ display: 'flex', gap: '38px' }}>
           <Typography variant='bodyM'>
             {salaries?.min && salaries?.max
@@ -291,30 +258,6 @@ const JobCard = props => {
               <Typography
                 sx={{
                   typography: 'bodyM',
-=======
-        <Box sx={{ display: 'flex', gap: '35px' }}>
-          {minSalary && maxSalary ? (
-            <Typography
-              variant='bodyL_2'
-              sx={{
-                maxWidth: '160px',
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                typography: {
-                  xs: ' bodyM_3',
-                  sm: ' bodyL_2'
-                }
-              }}
-            >
-              ${minSalary}k-{maxSalary}k
-              <Typography
-                sx={{
-                  typography: {
-                    xs: 'bodyM_2',
-                    sm: 'bodyL_2'
-                  }
->>>>>>> main
                 }}
                 component='span'
                 color='text.secondary'
@@ -330,11 +273,11 @@ const JobCard = props => {
               sx={{
                 width: {
                   xs: '100px',
-                  sm: '100%'
+                  sm: '100%',
                 },
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-                whiteSpace: 'nowrap'
+                whiteSpace: 'nowrap',
               }}
             >
               54{' '}
@@ -344,8 +287,8 @@ const JobCard = props => {
                 sx={{
                   typography: {
                     xs: 'bodyM_3',
-                    sm: 'bodyL_3'
-                  }
+                    sm: 'bodyL_3',
+                  },
                 }}
               >
                 People Applied
@@ -360,8 +303,8 @@ const JobCard = props => {
             gap: '10px',
             width: {
               xs: '100%',
-              sm: 'auto'
-            }
+              sm: 'auto',
+            },
           }}
         >
           {!homeCard && !companyDetailCard && (
@@ -369,8 +312,8 @@ const JobCard = props => {
               sx={{
                 width: {
                   xs: '100%',
-                  sm: 'auto'
-                }
+                  sm: 'auto',
+                },
               }}
               variant='secondary'
               title='Message'
@@ -380,8 +323,8 @@ const JobCard = props => {
             sx={{
               width: {
                 xs: '100%',
-                sm: 'auto'
-              }
+                sm: 'auto',
+              },
             }}
             href={`/job/${jobId}`}
             variant={variant}

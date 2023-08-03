@@ -11,31 +11,16 @@ export const CardHeaderImage = styled('img')({
   objectFit: 'cover',
   borderTopLeftRadius: '20px',
   borderTopRightRadius: '20px',
-<<<<<<< HEAD
-  height: '12rem',
-  backgroundColor: '#fff'
-})
-=======
   height: '12rem'
 });
->>>>>>> main
 
 export const CompanyLogo = styled('img')({
   position: 'absolute',
   left: '20px',
   bottom: '-30px',
   border: '2px solid #fff',
-<<<<<<< HEAD
-  borderRadius: '10px',
-  objectFit: 'contain',
-  width: '64px',
-  height: '64px',
-  backgroundColor: '#fff',
-})
-=======
   borderRadius: '10px'
 });
->>>>>>> main
 
 export const CardTitleWrapper = styled('div')({
   display: 'flex',

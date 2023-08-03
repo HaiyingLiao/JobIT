@@ -4,7 +4,7 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-const jSearchApiKey = import.meta.env.VITE_REACT_APP_JSEARCH_KEY;
+const jSearchApiKey = import.meta.env.VITE_APP_JSEARCH_KEY;
 
 export const jSearchApi = createApi({
   reducerPath: 'jSearchApi',
