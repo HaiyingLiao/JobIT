@@ -1,28 +1,12 @@
-// formatSalary
-export function formatSalary(minSalary, maxSalary) {
-  if (!maxSalary || !minSalary) {
-    return 'TBD';
-  }
-
-  const formattedMinSalary = minSalary =>
-    new Intl.NumberFormat('en-US', {
-      useGrouping: false,
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-      notation: 'compact'
-    }).format(minSalary);
-
-  const formattedMaxSalary = maxSalary =>
-    new Intl.NumberFormat('en-US', {
-      useGrouping: false,
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-      notation: 'compact'
-    }).format(maxSalary);
-
-  console.log(formattedMaxSalary, formattedMinSalary);
-
-  return `${formattedMinSalary} - ${formattedMaxSalary} `;
+// format salary
+export function formatSalary(currency) {
+  const result = new Intl.NumberFormat('en-US', {
+    useGrouping: false,
+    maximumFractionDigits: 0,
+    minimumFractionDigits: 0,
+    notation: 'compact',
+  }).format(currency);
+  return result;
 }
 
 // getJobResponsbilities
@@ -30,7 +14,7 @@ export function getJobResponsibilities(responsibilities) {
   if (!responsibilities) {
     return 'No responsibilities specified';
   }
-  return responsibilities.map(item => <li key={item}>{item}</li>);
+  return responsibilities.map((item) => <li key={item}>{item}</li>);
 }
 
 // requiredSkills
@@ -38,7 +22,7 @@ export function requiredSkills(requiredSkills) {
   if (!requiredSkills) {
     return 'No required skills specified';
   }
-  return requiredSkills.map(item => <li key={item}>{item}</li>);
+  return requiredSkills.map((item) => <li key={item}>{item}</li>);
 }
 
 // shortenDescirption - here I have padded it with empty spaces at the end... if the description supplied is too short (so the height of the box stays the same) - but not sure if it will work well.
