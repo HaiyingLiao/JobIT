@@ -10,13 +10,13 @@ export const estimatedSalaries = createSlice({
   name: 'estimatedSalaries',
   initialState,
   reducers: {
-    fetchEstimatedSalaries: (state, action) => {
+    setSalaryFormState: (state, action) => {
       const { name, value } = action.payload;
       state[name] = value;
     },
   },
 });
 
-export const { fetchEstimatedSalaries } = estimatedSalaries.actions;
+export const { setSalaryFormState } = estimatedSalaries.actions;
 
 export default estimatedSalaries.reducer;

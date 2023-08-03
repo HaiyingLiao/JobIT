@@ -10,7 +10,7 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useGetEstimatedSalariesQuery } from '../../services/JSearch';
-import { fetchEstimatedSalaries } from '../../slice/currentEstimatedSalaries';
+import { setSalaryFormState } from '../../slice/currentEstimatedSalaries';
 import {
   Chart,
   ChartLegend,
@@ -32,16 +32,19 @@ const EstimatedSalary = () => {
   const debouncedLocation = useDebounce(location, 500);
   const debouncedRadius = useDebounce(radius, 500);
 
-  const { data, error, isFetching } = useGetEstimatedSalariesQuery({
-    title: debouncedTitle,
-    location: debouncedLocation,
-    radius: debouncedRadius,
-  });
+  const { data, error, isFetching } = useGetEstimatedSalariesQuery(
+    {
+      title: debouncedTitle,
+      location: debouncedLocation,
+      radius: debouncedRadius,
+    },
+    { skip: !debouncedTitle || !debouncedLocation || !debouncedRadius }
+  );
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch(
-      fetchEstimatedSalaries({
+      setSalaryFormState({
         name,
         value,
       })

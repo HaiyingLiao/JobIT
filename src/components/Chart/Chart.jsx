@@ -13,6 +13,16 @@ import { useMemo } from 'react';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
+function handleCurrencyFormat(value) {
+  if (!value) return;
+  if (this.chart.width < 350) {
+    return (value / 1000).toFixed(0) + 'k USD';
+  } else {
+    value = value.toLocaleString('en-US');
+    return value + ' USD';
+  }
+}
+
 const getOptions = (isDark) => ({
   indexAxis: 'x',
   elements: {
@@ -24,21 +34,13 @@ const getOptions = (isDark) => ({
   responsive: true,
   maintainAspectRatio: false,
   plugins: {},
-  onResize: (chart, size) => {
-    if (size.width < 350) {
-      chart.options.scales.y.ticks.callback = function (value) {
-        if (!value) return;
-        return (value / 1000).toFixed(0) + 'k USD';
-      };
-    } else {
-      chart.options.scales.y.ticks.callback = function (value) {
-        if (!value) return;
-        return value + ' USD';
-      };
-    }
-  },
   scales: {
     y: {
+      ticks: {
+        callback: function (value) {
+          return handleCurrencyFormat.call(this, value);
+        },
+      },
       beginAtZero: true,
       grid: {
         color: isDark ? '#1c1c24' : '#F5F5F8',
