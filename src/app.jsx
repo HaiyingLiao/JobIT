@@ -4,7 +4,13 @@ import { Toaster } from 'react-hot-toast';
 
 import { Navbar } from './components';
 
-import { Home, JobSearchPage, EstimatedSalary, JobDetailPage } from './pages';
+import {
+  Home,
+  JobSearchPage,
+  EstimatedSalary,
+  JobDetailPage,
+  CompanyDetail,
+} from './pages';
 
 import './app.css';
 

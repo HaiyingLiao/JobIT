@@ -11,7 +11,7 @@ export default function useSearch(
 
   const { data, isError, isFetching } = useGetSearchQuery(
     {
-      name: `${value.search} in ${location}`,
+      name: `${value.search} in ${location} `,
       page: '10',
       num_pages: '1',
       date_posted: 'all',

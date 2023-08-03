@@ -1,20 +1,20 @@
-import { createRoot } from 'react-dom/client';
-import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import ColorModeProvider from './Utils/ColorMode';
+import { BrowserRouter } from 'react-router-dom';
+import { store } from './App/store';
+import { createRoot } from 'react-dom/client';
 
 import App from './app.jsx';
 import './index.css';
-import { store } from './App/store';
 
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-  <Provider store={store}>
-    <BrowserRouter>
-      <ColorModeProvider>
+  <BrowserRouter>
+    <ColorModeProvider>
+      <Provider store={store}>
         <App />
-      </ColorModeProvider>
-    </BrowserRouter>
-  </Provider>
+      </Provider>
+    </ColorModeProvider>
+  </BrowserRouter>
 );

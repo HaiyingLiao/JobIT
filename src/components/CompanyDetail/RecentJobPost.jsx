@@ -1,20 +1,23 @@
 import { Typography, Container, Box, IconButton, Divider } from '@mui/material';
 import { useState, useEffect } from 'react';
-import { getSearchValue } from '../../slice/searchSlice';
 
+import useSearch from '../../hooks/useSearch';
+import { getSearchValue } from '../../slice/searchSlice';
 import CircularLoader from '../Loader/Circular';
 import { CustomButton, JobCard } from '../../components';
 import SearchInput from './SearchInput';
 import icons from '../../assets/icons';
-import useSearch from '../../hooks/useSearch';
 
 export default function RecentJobPost({ recentJobs }) {
   const [clicked, setClicked] = useState(false);
   const [sources, setSources] = useState(recentJobs?.slice(0, 4));
+  const { data, dispatch, isError, isFetching } = useSearch();
 
   useEffect(() => {
     setSources(clicked ? recentJobs : recentJobs?.slice(0, 4));
   }, [clicked]);
+
+  const onSubmit = (data) => dispatch(getSearchValue({ data }));
 
   const scrollToTop = () => {
     const c = document.documentElement.scrollTop || document.body.scrollTop;
@@ -23,10 +26,6 @@ export default function RecentJobPost({ recentJobs }) {
       window.scrollTo(0, c - c / 20, { behavior: 'smooth' });
     }
   };
-
-  const { data, dispatch, isError, isFetching } = useSearch();
-
-  const onSubmit = (data) => dispatch(getSearchValue({ data }));
 
   if (isFetching) return <CircularLoader />;
 

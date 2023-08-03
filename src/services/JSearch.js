@@ -44,5 +44,4 @@ export const jSearchApi = createApi({
   }),
 });
 
-export const { useGetJobListingsQuery, useGetEstimatedSalariesQuery, useGetSearchQuery, useGetCompanyDetailQuery } =
-  jSearchApi;
+export const { useGetJobListingsQuery, useGetEstimatedSalariesQuery, useGetSearchQuery, useGetCompanyDetailQuery } = jSearchApi;

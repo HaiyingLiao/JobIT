@@ -10,7 +10,7 @@ import {
   SimilarCompany,
 } from '../../components';
 import icons from '../../assets/icons';
-import { useGetCompanyDetailQuery } from '../../services/JSearh';
+import { useGetCompanyDetailQuery } from '../../services/JSearch';
 
 export default function CompanyDetailPage() {
   const { name } = useParams();
@@ -23,10 +23,6 @@ export default function CompanyDetailPage() {
   if (data?.data?.length < 1) return <NotFound />;
 
   if (isError) return <ServerError />;
-  const company = data.data.filter(
-    (company) => company.employer_company_type !== null
-  );
-  console.log(company);
 
   return (
     <Box
