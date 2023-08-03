@@ -12,11 +12,9 @@ export { default as NavMobile } from './Navbar/NavMobile';
 export { default as Logo } from './Navbar/Logo';
 export { default as NavMenuDesktop } from './Navbar/NavMenuDesktop';
 export { default as Loader } from './Loader/Loader';
-<<<<<<< HEAD
 export { default as CompanyDetail } from './CompanyDetail/CompanyDetail';
 export { default as SimilarCompany } from './SimilarCompany/SimilarCompany';
 export { default as SearchBar } from './SearchBar/SearchBar';
-=======
 export { default as Chart } from './Chart/Chart';
 export { default as ChartLegend } from './ChartLegend/ChartLegend';
 export { default as ChartHeader } from './ChartHeader/ChartHeader';
@@ -24,4 +22,3 @@ export { default as EstSalariesForm } from './EstSalariesForm/EstSalariesForm';
 export { default as EstSalariesHeader } from './EstSalariesHeader/EstSalariesHeader';
 export { default as SearchBar } from './SearchBar/SearchBar';
 export { default as FilterSideBar } from './FilterSideBar/FilterSideBar';
->>>>>>> main
