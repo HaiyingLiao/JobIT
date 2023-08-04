@@ -42,8 +42,8 @@ const SearchBar = () => {
     employmentTypes: jobType
   });
 
-  if (error) <NotFound />;
-  if (isFetching) <Loader />;
+  if (error) return <NotFound />;
+  if (isFetching) return <Loader />;
 
   // if (data) console.log(data);
 
