@@ -101,11 +101,13 @@ export default function RecentJobPost({ recentJobs }) {
             />
           ))}
         </Box>
-        <Divider
-          sx={{
-            marginTop: '50px',
-          }}
-        />
+        {data?.data.length > 1 && (
+          <Divider
+            sx={{
+              marginTop: '50px',
+            }}
+          />
+        )}
       </Box>
       <Typography
         color='text.primary'
@@ -124,12 +126,13 @@ export default function RecentJobPost({ recentJobs }) {
         sx={{
           width: '100%',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
           gap: '1.88rem',
         }}
       >
         {sources?.map((job, i) => (
           <JobCard
+            key={job?.job_id}
             delay={i * 150}
             jobDesc={`${job?.job_description}`}
             actionButton={
@@ -144,7 +147,6 @@ export default function RecentJobPost({ recentJobs }) {
             }}
             currency={job?.job_salary_currency ?? 'USD'}
             jobId={job?.job_id}
-            key={job?.job_id}
             period={job?.job_salary_period}
             logo={job?.employer_logo}
             type={'companyDetail'}
