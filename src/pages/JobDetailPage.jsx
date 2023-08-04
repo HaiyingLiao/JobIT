@@ -33,7 +33,8 @@ const JobDetailPage = () => {
       sx={{
         marginTop: '70px',
         backgroundColor: 'customColor.pageBG',
-        padding: { xs: '0px 24px', md: '0px 50px' }
+        maxWidth: '1500px',
+        padding: '0 5% 3%'
       }}
     >
       <Grid item xs={12}>

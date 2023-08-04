@@ -28,7 +28,8 @@ const JobSearchPage = () => {
       sx={{
         marginTop: '70px',
         backgroundColor: 'customColor.pageBG',
-        padding: { xs: '0px 24px', md: '0px 50px' }
+        maxWidth: '1500px',
+        padding: '0 5% 3%'
       }}
     >
       <Grid item xs={12}>
@@ -104,7 +105,7 @@ const JobSearchPage = () => {
           color='primary'
           shape='rounded'
           size='large'
-          sx={{ margin: '20px auto ' }}
+          sx={{ margin: '20px auto 0px' }}
         />
       </Grid>
     </Grid>
