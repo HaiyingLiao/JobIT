@@ -76,12 +76,13 @@ const JobCard = (props) => {
               alt='logo'
               style={{
                 backgroundColor: 'rgba(23, 23, 37, 0.06)',
-                objectFit: 'cover',
-                borderRadius: '10px',
+                objectFit: 'inherit',
+                borderRadius: '5px',
                 maxWidth: '46px',
                 height: '46px',
                 aspectRatio: '1/1',
                 padding: '5px',
+                marginTop: '10px',
               }}
             />
           </Box>
@@ -100,6 +101,7 @@ const JobCard = (props) => {
                   xs: 'bodyM_2',
                   lg: 'bodyL_2',
                 },
+                paddingTop: '1px',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
@@ -119,7 +121,6 @@ const JobCard = (props) => {
               <CustomButton
                 sx={{
                   marginX: '2px',
-                  marginTop: '12px',
                   maxWidth: '40px',
                   direction: 'ltr',
                   textOverflow: 'ellipsis',
@@ -160,7 +161,7 @@ const JobCard = (props) => {
       >
         <Typography
           paragraph
-          variant='bodyM_4'
+          variant=' bodyM_4'
           color='text.secondary'
           sx={{
             textOverflow: 'ellipsis',
