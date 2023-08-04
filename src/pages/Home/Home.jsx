@@ -114,8 +114,8 @@ const Home = () => {
                       jobId={card?.job_id}
                       logo={card?.employer_logo}
                       type='homeJobcard'
-                      title={'Passionate Programmer'}
-                      requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
+                      title={card?.job_title}
+                      requiredTech={card?.job_required_skills ?? []}
                     />
                   </Grid>
                 ))}
