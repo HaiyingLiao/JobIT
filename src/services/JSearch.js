@@ -34,6 +34,12 @@ export const jSearchApi = createApi({
       }
     }),
 
+    getJobsByCompany: builder.query({
+      query: (name) => {
+        return `search?query=${name}&page=1&num_pages=1`
+      }
+    }),
+
     getCompanyDetail: builder.query({
       query: (companyMame) => {
         return `search?query=${companyMame}&page=1&num_pages=1`
@@ -43,4 +49,4 @@ export const jSearchApi = createApi({
   }),
 });
 
-export const { useGetJobListingsQuery, useGetEstimatedSalariesQuery, useGetSearchQuery, useGetCompanyDetailQuery } = jSearchApi;
+export const { useGetJobListingsQuery, useGetEstimatedSalariesQuery, useGetSearchQuery, useGetCompanyDetailQuery, useGetJobsByCompanyQuery } = jSearchApi;

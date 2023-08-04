@@ -35,12 +35,13 @@ export default function SearchInput({ isFetching, onSubmit }) {
           width: '100%',
           height: '100%',
           padding: '8px ',
-          backgroundColor: 'customColor.requirementBg',
+          backgroundColor: 'customColor.jobCardBg',
           borderRadius: '10px !important',
           maxWidth: '465px',
         }}
       >
         <Input
+          autoComplete='off'
           disabled={isFetching}
           {...register('search', { required: true })}
           disableUnderline

@@ -8,10 +8,15 @@ import { CustomButton, JobCard } from '../../components';
 import SearchInput from './SearchInput';
 import icons from '../../assets/icons';
 
-export default function RecentJobPost({ recentJobs }) {
+export default function RecentJobPost({ recentJobs, company }) {
   const [clicked, setClicked] = useState(false);
   const [sources, setSources] = useState(recentJobs?.slice(0, 4));
-  const { data, dispatch, isError, isFetching } = useSearch();
+  const { data, dispatch, isError, isFetching } = useSearch(
+    undefined,
+    undefined,
+    undefined,
+    company
+  );
 
   useEffect(() => {
     setSources(clicked ? recentJobs : recentJobs?.slice(0, 4));
@@ -47,6 +52,11 @@ export default function RecentJobPost({ recentJobs }) {
       }}
     >
       <SearchInput isFetching={isFetching} onSubmit={onSubmit} />
+      {data?.data.length < 1 && (
+        <Typography variant='bodyM4_4' sx={{ color: 'red' }}>
+          Not found
+        </Typography>
+      )}
       <Box
         sx={{
           width: '100%',
