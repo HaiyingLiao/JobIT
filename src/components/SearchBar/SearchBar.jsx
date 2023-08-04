@@ -9,41 +9,47 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
-  Typography,
+  Typography
 } from '@mui/material';
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
+import { useDispatch, useSelector } from 'react-redux';
 
 import icons from '../../assets/icons';
-import { CustomButton } from '..';
+import { CustomButton, Loader, NotFound } from '..';
 import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
-import { toast } from 'react-hot-toast';
-// import { useGetSearchJobQuery } from '../../services/JSearch';
-// import { useDispatch } from 'react-redux';
-// import { fetchSearchFilter } from '../../slice/searchFilter';
+import { setSearchBarValue } from '../../slice/searchBar';
+import { useGetSearchQuery } from '../../services/JSearch';
 
 const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
 
 const SearchBar = () => {
+  const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
   const [contractType, setContractType] = useState('');
   const [location, setLocation] = useState('');
   const [jobTitle, setJobTitle] = useState('');
-  // const dispatch = useDispatch();
 
-  // const { data, error, isFetching } = useGetSearchJobQuery({
-  //   query: jobTitle,
-  //   employmentTypes: contractType.replace(/\s+/g, '').toUpperCase(),
-  // });
+  const { title, jobLocation, jobType } = useSelector(state => {
+    return state.searchBar;
+  });
 
-  // if (error) console.log(error, 'Error');
-  // if (isFetching) console.log('Fetching');
+  const { data, error, isFetching } = useGetSearchQuery({
+    query: `${title},${jobLocation}`,
+    employmentTypes: jobType
+  });
+
+  if (error) <NotFound />;
+  if (isFetching) <Loader />;
 
   // if (data) console.log(data);
 
-  const handleSearch = (e) => {
+  const handleSearch = e => {
     e.preventDefault();
+
     if (contractType === '' || location === '' || jobTitle === '') {
       return toast.error(
         'Please ensure that all areas in the search field are filled out.'
@@ -51,15 +57,14 @@ const SearchBar = () => {
     }
 
     const formattedContactType = contractType.replace(/\s+/g, '').toUpperCase();
-    console.log(formattedContactType);
-    console.log(location.label);
-    console.log(jobTitle);
 
-    setContractType('');
-    setLocation('');
-    setJobTitle('');
-
-    // fetch call
+    dispatch(
+      setSearchBarValue({
+        title: jobTitle,
+        jobLocation: location.code,
+        jobType: formattedContactType
+      })
+    );
   };
 
   return (
@@ -68,7 +73,7 @@ const SearchBar = () => {
         borderRadius: '10px',
         backgroundColor: 'customColor.jobCardBg',
         width: '100%',
-        boxShadow: '0px 15px 34px 0px rgba(0, 0, 0, 0.02)',
+        boxShadow: '0px 15px 34px 0px rgba(0, 0, 0, 0.02)'
       }}
     >
       <Stack
@@ -89,14 +94,14 @@ const SearchBar = () => {
           </SearchIconWrapper>
           <TextField
             value={jobTitle}
-            onInput={(e) => {
+            onInput={e => {
               setJobTitle(e.target.value);
             }}
             placeholder='Job Title, Company, or Keywords'
             sx={{
               width: '100%',
               '& fieldset': { border: 'none' },
-              paddingLeft: '2rem',
+              paddingLeft: '2rem'
             }}
           />
         </SearchContainer>
@@ -109,7 +114,7 @@ const SearchBar = () => {
             sx={{
               width: '100%',
               '& fieldset': { border: 'none' },
-              paddingLeft: '2rem',
+              paddingLeft: '2rem'
             }}
             onChange={(e, value) => {
               setLocation(value);
@@ -119,7 +124,7 @@ const SearchBar = () => {
             isOptionEqualToValue={(country, value) => {
               if (value === '' || value === country) return true;
             }}
-            getOptionLabel={(country) => country.label || ''}
+            getOptionLabel={country => country.label || ''}
             renderOption={(props, option) => (
               <Box
                 component='li'
@@ -136,12 +141,12 @@ const SearchBar = () => {
                 {option.label} ({option.code}) +{option.phone}
               </Box>
             )}
-            renderInput={(params) => (
+            renderInput={params => (
               <TextField
                 {...params}
                 placeholder='Select Location'
                 inputProps={{
-                  ...params.inputProps,
+                  ...params.inputProps
                 }}
               />
             )}
@@ -157,18 +162,18 @@ const SearchBar = () => {
             sx={{
               width: '100%',
               paddingLeft: '2rem',
-              '& fieldset': { border: 'none' },
+              '& fieldset': { border: 'none' }
             }}
             displayEmpty
             value={contractType}
-            renderValue={(selected) => {
+            renderValue={selected => {
               if (!selected) {
                 return <Typography color='text.natural6'>Job Type</Typography>;
               }
 
               return selected;
             }}
-            onChange={(e) => {
+            onChange={e => {
               setContractType(e.target.value);
             }}
           >
@@ -187,7 +192,7 @@ const SearchBar = () => {
           sx={{
             minWidth: { xs: '100%', md: '100px' },
             marginTop: { xs: '10px', md: '0px' },
-            marginLeft: { xs: '0px', md: '10px' },
+            marginLeft: { xs: '0px', md: '10px' }
           }}
         />
       </Stack>
