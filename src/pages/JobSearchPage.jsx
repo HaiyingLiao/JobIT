@@ -5,15 +5,15 @@ import {
   useTheme,
   useMediaQuery,
   Box,
-  IconButton
+  IconButton,
+  Pagination
 } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
-import {
-  JobCard,
-  SearchBar,
-  FilterSideBar,
-  CustomPagination
-} from '../components';
+import { setSearchBarValue } from '../slice/searchBar';
+
+import { JobCard, SearchBar, FilterSideBar } from '../components';
 import icons from '../assets/icons';
 import { logo } from '../assets/images';
 import getDate from '../Utils/getDate';
@@ -24,6 +24,21 @@ const JobSearchPage = () => {
   const date = getDate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
+
+  const dispatch = useDispatch();
+  const [page, setPage] = useState(1);
+  console.log(page);
+
+  useEffect(() => {
+    dispatch(
+      setSearchBarValue({
+        currentPage: page,
+        title: '',
+        jobLocation: '',
+        jobType: ''
+      })
+    );
+  }, [page]);
 
   return (
     <Grid
@@ -104,7 +119,15 @@ const JobSearchPage = () => {
           </Grid>
         ))}
 
-        <CustomPagination />
+        <Pagination
+          count={20}
+          color='primary'
+          shape='rounded'
+          size='large'
+          page={page}
+          onChange={(e, p) => setPage(p)}
+          sx={{ margin: '20px auto 0px' }}
+        />
       </Grid>
     </Grid>
   );

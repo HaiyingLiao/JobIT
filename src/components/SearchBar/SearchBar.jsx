@@ -33,17 +33,18 @@ const SearchBar = () => {
   const [location, setLocation] = useState('');
   const [jobTitle, setJobTitle] = useState('');
 
-  const { title, jobLocation, jobType } = useSelector(state => {
+  const { title, jobLocation, jobType, currentPage } = useSelector(state => {
     return state.searchBar;
   });
 
   const { data, error, isFetching } = useGetSearchQuery({
     query: `${title},${jobLocation}`,
-    employmentTypes: jobType
+    employmentTypes: jobType,
+    currentPage
   });
 
-  if (error) return <NotFound />;
   if (isFetching) return <Loader />;
+  if (error) return <NotFound />;
 
   // if (data) console.log(data);
 
@@ -62,7 +63,8 @@ const SearchBar = () => {
       setSearchBarValue({
         title: jobTitle,
         jobLocation: location.code,
-        jobType: formattedContactType
+        jobType: formattedContactType,
+        currentPage: currentPage === 'undefined' ? 1 : currentPage
       })
     );
   };

@@ -3,7 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   title: '',
   jobLocation: '',
-  jobType: ''
+  jobType: '',
+  currentPage: 1
 };
 
 export const searchBar = createSlice({
@@ -11,11 +12,12 @@ export const searchBar = createSlice({
   initialState,
   reducers: {
     setSearchBarValue: (state, action) => {
-      const { title, jobLocation, jobType } = action.payload;
+      const { title, jobLocation, jobType, currentPage } = action.payload;
 
       state.title = title;
       state.jobLocation = jobLocation;
       state.jobType = jobType;
+      state.currentPage = currentPage;
     }
   }
 });
