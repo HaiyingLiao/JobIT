@@ -7,16 +7,16 @@ import ListSection from './ListSection';
 import Publisher from './Publisher';
 import { CustomButton } from '..';
 
-export default function LargeJobCard({ data }) {
+export default function JobDetail({ data }) {
   const [showAll, setShowAll] = useState(false);
-
-  const responsibilities = data[0].job_highlights.Responsibilities;
-  const qualifications = data[0].job_highlights.Qualifications;
+  console.log('here', data);
+  const responsibilities = data[0]?.job_highlights.Responsibilities;
+  const qualifications = data[0]?.job_highlights.Qualifications;
   const jobDescription = showAll
-    ? data[0].job_description
-    : data[0].job_description.slice(0, 1000);
-  const companyName = data[0].employer_name;
-  const logo = data[0].employer_logo;
+    ? data[0]?.job_description
+    : data[0]?.job_description.slice(0, 1000);
+  const companyName = data[0]?.employer_name;
+  const logo = data[0]?.employer_logo;
 
   return (
     <Card
@@ -24,15 +24,15 @@ export default function LargeJobCard({ data }) {
       sx={{
         padding: '12px',
         backgroundImage: 'none',
-        backgroundColor: 'customColor.jobCardBg',
+        backgroundColor: 'customColor.jobCardBg'
       }}
     >
       <CardHeader logo={logo} />
       <CardContent>
         <JobInfo
           company={companyName}
-          title={data[0].job_title}
-          JobUrlData={data[0].job_apply_link}
+          title={data[0]?.job_title}
+          JobUrlData={data[0]?.job_apply_link}
         />
         <section style={{ marginTop: '30px' }}>
           <Typography
@@ -42,8 +42,8 @@ export default function LargeJobCard({ data }) {
             sx={{
               typography: {
                 xs: 'bodyM',
-                sm: 'bodyL',
-              },
+                sm: 'bodyL'
+              }
             }}
           >
             About The Job
@@ -55,9 +55,9 @@ export default function LargeJobCard({ data }) {
             sx={{
               typography: {
                 xs: 'bodyM3_4',
-                sm: 'bodyM_4',
+                sm: 'bodyM_4'
               },
-              textAlign: 'justify',
+              textAlign: 'justify'
             }}
           >
             {jobDescription}
@@ -65,7 +65,7 @@ export default function LargeJobCard({ data }) {
           <CustomButton
             title={showAll ? 'Show less' : 'Show all'}
             variant='small'
-            onClick={() => setShowAll((prev) => !prev)}
+            onClick={() => setShowAll(prev => !prev)}
           />
         </section>
         <ListSection listData={responsibilities} title='Responsibilities' />
@@ -75,7 +75,7 @@ export default function LargeJobCard({ data }) {
         />
         <Publisher
           companyName={companyName}
-          companydesc={data[0].job_description.slice(0, 400)}
+          companydesc={data[0]?.job_description.slice(0, 400)}
           followers={200000}
           logo={logo}
         />

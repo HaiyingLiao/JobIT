@@ -36,8 +36,7 @@ const InlineJobCard = ({ type }) => {
         padding: '10px ',
         margin: '20px 0px',
         borderRadius: '10px',
-        width: '100%',
-        margin: '10px auto'
+        width: '100%'
       }}
     >
       <CardContent

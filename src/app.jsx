@@ -11,14 +11,14 @@ import {
   EstimatedSalary,
   JobDetailPage,
   JobSearchPage,
-  CompanyDetail,
+  CompanyDetail
 } from './pages';
 import './app.css';
 import { darkTheme, lightTheme } from './theme';
 import NotFound from './components/Error/NotFound/NotFound';
 
 export default function App() {
-  const mode = useSelector((state) => state.theme.value);
+  const mode = useSelector(state => state.theme.value);
   const theme = mode ? darkTheme : lightTheme;
 
   return (
@@ -33,17 +33,13 @@ export default function App() {
             height: '100%',
             width: '100%',
             margin: '0 auto',
-            backgroundColor: 'customColor.pageBG',
+            backgroundColor: 'customColor.pageBG'
           }}
         >
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/job-search' element={<JobSearchPage />} />
-            <Route
-              exact
-              path='/job-detail/:jobId'
-              element={<JobDetailPage />}
-            />
+            <Route exact path='/job/:jobId' element={<JobDetailPage />} />
             <Route
               exact
               path='/estimated-salary'

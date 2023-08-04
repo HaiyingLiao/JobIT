@@ -7,7 +7,7 @@ import {
   InlineJobCard,
   JobCard,
   Loader,
-  ServerError,
+  ServerError
 } from '../../components';
 import { useGetJobListingsQuery } from '../../services/JSearch';
 import icons from '../../assets/icons';
@@ -17,7 +17,7 @@ const Home = () => {
   const { data, error, isFetching } = useGetJobListingsQuery({
     query: 'Developers',
     page: '1',
-    num_pages: '1',
+    num_pages: '1'
   });
 
   const [clickedShowMore, setClickedShowMore] = useState(false);
@@ -34,23 +34,23 @@ const Home = () => {
         sx={{
           maxWidth: '1470px',
           margin: '0 auto',
-          padding: '0 5%',
+          padding: '0 5%'
         }}
       >
         <Typography
-          sx={(theme) => ({
+          sx={theme => ({
             fontSize: theme.typography.h1,
             marginTop: '70px',
-            padding: '50px 0',
+            padding: '50px 0'
           })}
         >
           Welcome to the Job Search Platform for Developers
         </Typography>
         <Typography
-          sx={(theme) => ({
+          sx={theme => ({
             fontSize: theme.typography.bodyL_3,
             color: theme.palette.text.natural6,
-            margin: '0 0 35px',
+            margin: '0 0 35px'
           })}
         >
           {new Date().toDateString()}
@@ -60,10 +60,10 @@ const Home = () => {
           <Grid
             item
             lg={8}
-            sx={(theme) => ({
+            sx={theme => ({
               [theme.breakpoints.up('lg')]: {
-                paddingRight: '2rem',
-              },
+                paddingRight: '2rem'
+              }
             })}
           >
             <Box id='latestJobSection'>
@@ -71,13 +71,13 @@ const Home = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  alignItems: 'center',
+                  alignItems: 'center'
                 }}
               >
                 <Typography
-                  sx={(theme) => ({
+                  sx={theme => ({
                     fontSize: theme.typography.h4,
-                    marginBottom: '30px',
+                    marginBottom: '30px'
                   })}
                 >
                   Latest Job Posts
@@ -87,7 +87,7 @@ const Home = () => {
                   title={clickedShowMore ? 'Hide' : 'See All'}
                   sx={{
                     backgroundColor: 'customColor.companyJobCardBg',
-                    border: '1px solid',
+                    border: '1px solid'
                   }}
                   onClick={() => {
                     setClickedShowMore(!clickedShowMore);
@@ -96,7 +96,7 @@ const Home = () => {
               </Box>
 
               <Grid container spacing={4}>
-                {datas?.map((card) => (
+                {datas?.map(card => (
                   <Grid key={card.job_id} item xs={12} md={6}>
                     {/* <JobCard type='homeJobCard' cardData={card} /> */}
 
@@ -127,8 +127,8 @@ const Home = () => {
             item
             lg={4}
             sm={12}
-            sx={(theme) => ({
-              [theme.breakpoints.down('lg')]: { marginTop: '2rem' },
+            sx={theme => ({
+              [theme.breakpoints.down('lg')]: { marginTop: '2rem' }
             })}
           >
             <Box
@@ -136,13 +136,13 @@ const Home = () => {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center',
+                alignItems: 'center'
               }}
             >
               <Typography
-                sx={(theme) => ({
+                sx={theme => ({
                   fontSize: theme.typography.h4,
-                  marginBottom: '30px',
+                  marginBottom: '30px'
                 })}
               >
                 Recommended Job
@@ -152,18 +152,18 @@ const Home = () => {
                 title='See All'
                 sx={{
                   backgroundColor: 'customColor.companyJobCardBg',
-                  border: '1px solid',
+                  border: '1px solid'
                 }}
               />
             </Box>
 
             <Grid
               container
-              sx={(theme) => ({
+              sx={theme => ({
                 padding: '0.5rem 0',
                 backgroundColor: theme.palette.customColor.jobCardBg,
                 borderRadius: '10px',
-                justifyContent: 'space-between',
+                justifyContent: 'space-between'
               })}
             >
               <InlineJobCard type='homeInlineCard' />
