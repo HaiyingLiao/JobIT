@@ -7,14 +7,20 @@ import { useSelector } from 'react-redux';
 
 import { Navbar } from './components';
 
-import { Home, JobSearchPage, EstimatedSalary, JobDetailPage } from './pages';
+import {
+  Home,
+  JobSearchPage,
+  EstimatedSalary,
+  JobDetailPage,
+  CompanyDetail,
+} from './pages';
 
 import './app.css';
 import { darkTheme, lightTheme } from './theme';
 import NotFound from './components/Error/NotFound/NotFound';
 
 export default function App() {
-  const mode = useSelector(state => state.theme.value);
+  const mode = useSelector((state) => state.theme.value);
   const theme = mode ? darkTheme : lightTheme;
 
   return (
@@ -29,7 +35,7 @@ export default function App() {
             height: '100%',
             width: '100%',
             margin: '0 auto',
-            backgroundColor: 'customColor.pageBG'
+            backgroundColor: 'customColor.pageBG',
           }}
         >
           <Routes>
@@ -46,7 +52,7 @@ export default function App() {
               element={<EstimatedSalary />}
             />
 
-            {/* <Route path='/company/:name' element={<CompanyDetail />} /> */}
+            <Route path='/company/:name' element={<CompanyDetail />} />
 
             <Route path='*' element={<NotFound />} />
           </Routes>

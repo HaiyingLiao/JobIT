@@ -1,11 +1,25 @@
 import { useState } from 'react';
 import { Tabs, Tab } from '@mui/material';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import { navMenuItems } from '../../constants';
 
 const NavMenuDesktop = () => {
-  const [activeTabValue, setActiveTabValue] = useState(0);
+  const location = useLocation();
+  const [activeTabValue, setActiveTabValue] = useState(
+    getActiveTabValueFromPath(location.pathname)
+  );
+
+  function getActiveTabValueFromPath(pathname) {
+    const activeIndex = navMenuItems.findIndex(
+      (menuItem) => menuItem.link === pathname
+    );
+    return activeIndex !== -1 ? activeIndex : 0;
+  }
+
+  const handleTabChange = (_event, value) => {
+    setActiveTabValue(value);
+  };
 
   return (
     <Tabs
@@ -16,7 +30,7 @@ const NavMenuDesktop = () => {
         },
       }}
       sx={{ marginLeft: 'auto', marginRight: 'auto' }}
-      onChange={(_e, value) => setActiveTabValue(value)}
+      onChange={handleTabChange}
     >
       {navMenuItems.map((menuItem) => (
         <Tab

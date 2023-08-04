@@ -6,32 +6,17 @@ import {
   Typography,
   Box,
 } from '@mui/material';
-import { keyframes } from '@mui/system';
 import { Link } from 'react-router-dom';
+
+import { fadeIn } from '../SimilarCompany/style';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
-import google from '../../assets/images/google.png';
-
-export const FadeIn = keyframes`
-  0%{ 
-    opacity:0; 
-  }
-  100%{
-    opacity:1;
-    }`;
-
-const bull = (
-  <Box
-    component='span'
-    sx={{ display: 'inline-block', mx: '2px', transform: 'scale(0.8)' }}
-  >
-    •
-  </Box>
-);
+import { placeholder } from '../../assets/images';
+import { formatCurrency } from '../../Utils/numberFormat';
 
 const JobCard = (props) => {
   const {
-    requiredTech,
+    requiredTech = [],
     title,
     actionButton,
     type,
@@ -40,26 +25,33 @@ const JobCard = (props) => {
     jobDesc,
     delay,
     jobId,
-    minSalary,
-    maxSalary,
+    salary,
     btnText,
+    currency,
+    period,
   } = props;
 
   const homeCard = type === 'homeJobcard';
   const companyDetailCard = type === 'companyDetail';
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
 
+  const salaries = formatCurrency(salary?.min, salary?.max, currency);
+  const techLength = slicedRequiredtech.map((tech) => tech.split(' ').length);
+
   return (
     <Card
       sx={(theme) => ({
         padding: '1.25rem',
         width: '100%',
-        maxWidth: homeCard || companyDetailCard ? '400px' : '950px',
+        maxWidth: {
+          xs: homeCard || companyDetailCard ? '100%' : '95%',
+          md: homeCard || companyDetailCard ? '100%' : '950px',
+        },
         height: '100%',
         opacity: '0',
         borderRadius: '15px',
         transition: 'opacity 500ms ease',
-        animation: `${FadeIn} 1s linear ${delay}ms forwards`,
+        animation: `${fadeIn} 1s linear ${delay}ms forwards`,
         backgroundColor: 'customColor.jobCardBg',
         boxShadow:
           theme.palette.mode === 'light'
@@ -79,12 +71,14 @@ const JobCard = (props) => {
             }}
           >
             <img
+              onError={(e) => (e.target.src = placeholder)}
               loading='lazy'
-              src={logo ?? google}
+              src={logo ?? placeholder}
               alt='logo'
               style={{
                 objectFit: 'contain',
-                width: '46px',
+                borderRadius: '10px',
+                maxWidth: '46px',
                 height: '46px',
               }}
             />
@@ -102,12 +96,15 @@ const JobCard = (props) => {
               sx={{
                 typography: {
                   xs: 'bodyM_2',
-                  sm: 'bodyL_2',
+                  lg: 'bodyL_2',
                 },
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
-                maxWidth: '220px',
+                maxWidth: {
+                  xs: '200px',
+                  md: '250px',
+                },
               }}
             >
               {title}
@@ -120,15 +117,17 @@ const JobCard = (props) => {
               <CustomButton
                 sx={{
                   marginX: '3px',
-                  maxWidth: '40px',
+                  maxWidth: '90px',
+                  direction: 'ltr',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
-                  textAlign: 'left',
-                  padding: '3px 10px',
+                  textAlign: 'left !important',
+                  padding: '5px',
+                  display: techLength > 15 ? 'inline-block' : 'inline',
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
-                    color: '#fff',
+                    color: 'text.primary',
                   },
                 }}
                 variant='small'
@@ -138,8 +137,10 @@ const JobCard = (props) => {
             ))
           ) : (
             <>
-              <Typography variant={'bodyM4_3'} color='text.secondary'>
-                UIHUT Technologies LLC{bull}Sylhet, BD{bull}3 days ago
+              <Typography variant='bodyM4_3' color='text.secondary'>
+                UIHUT Technologies LLC{' '}
+                <img src={icons.oval1} alt='oval gray icon' /> Sylhet, BD{' '}
+                <img src={icons.oval1} alt='oval gray icon' /> 3 days ago
               </Typography>
             </>
           )
@@ -148,7 +149,7 @@ const JobCard = (props) => {
       />
       <CardContent
         sx={{
-          maxHeight: '71px',
+          maxHeight: '100%',
         }}
       >
         <Typography
@@ -159,7 +160,8 @@ const JobCard = (props) => {
             textOverflow: 'ellipsis',
             overflow: 'hidden',
             whiteSpace: 'wrap',
-            maxHeight: '71px',
+            maxHeight: homeCard ? '142px' : '71px',
+            height: '100%',
           }}
         >
           {jobDesc}
@@ -176,16 +178,43 @@ const JobCard = (props) => {
           <CustomButton
             variant='small'
             title='Full time'
+            sx={{
+              maxWidth: '80px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              textAlign: 'left',
+              padding: '5px 10px',
+              whiteSpace: 'nowrap',
+              fontSize: '10px',
+            }}
             startIcon={<img src={icons.briefcase} alt='briefcase' />}
           />
           <CustomButton
             variant='small'
             title='45 applied'
+            sx={{
+              maxWidth: '80px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              textAlign: 'left',
+              padding: '5px 10px',
+              whiteSpace: 'nowrap',
+              fontSize: '10px',
+            }}
             startIcon={<img src={icons.people} alt='people' />}
           />
           <CustomButton
             variant='small'
             title='3 days left'
+            sx={{
+              maxWidth: '80px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              textAlign: 'left',
+              padding: '5px 10px',
+              whiteSpace: 'nowrap',
+              fontSize: '10px',
+            }}
             startIcon={<img src={icons.clock} alt='clock' />}
           />
         </CardContent>
@@ -220,44 +249,23 @@ const JobCard = (props) => {
           gap: '1.88rem',
         }}
       >
-        <Box sx={{ display: 'flex', gap: '35px' }}>
-          {minSalary && maxSalary ? (
-            <Typography
-              variant='bodyL_2'
-              sx={{
-                maxWidth: '160px',
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                typography: {
-                  xs: ' bodyM_3',
-                  sm: ' bodyL_2',
-                },
-              }}
-            >
-              ${minSalary}k-{maxSalary}k
+        <Box sx={{ display: 'flex', gap: '38px' }}>
+          <Typography variant='bodyM'>
+            {salaries?.min && salaries?.max
+              ? `${salaries.min} - ${salaries.max}`
+              : salaries}
+            {period && salaries.min && salaries.max && (
               <Typography
                 sx={{
-                  typography: {
-                    xs: 'bodyM_2',
-                    sm: 'bodyL_2',
-                  },
+                  typography: 'bodyM',
                 }}
                 component='span'
                 color='text.secondary'
               >
-                /month
+                /{period.toLowerCase()}
               </Typography>
-            </Typography>
-          ) : (
-            <Typography
-              variant='bodyM_2'
-              component='span'
-              color='text.secondary'
-            >
-              To Be Discussed (TBD)
-            </Typography>
-          )}
+            )}
+          </Typography>
 
           {!homeCard && !companyDetailCard && (
             <Typography
