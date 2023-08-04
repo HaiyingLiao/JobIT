@@ -36,8 +36,6 @@ export default function RecentJobPost({ recentJobs }) {
       </Alert>
     );
 
-  console.log(sources?.map((job) => job?.job_id));
-
   return (
     <Container
       sx={{

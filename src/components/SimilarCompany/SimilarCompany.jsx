@@ -1,12 +1,17 @@
 import { Box, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 
-import { logo } from '../../assets/images';
 import CustomButton from '../CustomButton/CustomButton';
 import icons from '../../assets/icons';
 import { fadeIn } from './style';
+import { placeholder } from '../../assets/images';
 
-export default function SimilarCompany({ delay, companyName }) {
+export default function SimilarCompany({
+  delay,
+  companyName,
+  logo,
+  companyType,
+}) {
   return (
     <Box
       sx={{
@@ -46,7 +51,22 @@ export default function SimilarCompany({ delay, companyName }) {
             width: '100%',
           }}
         >
-          <img src={logo} alt='company logo' width={50} height={50} />
+          <img
+            src={logo ?? placeholder}
+            alt={`${companyName} logo`}
+            width={50}
+            height={50}
+            style={{
+              backgroundColor: 'rgba(23, 23, 37, 0.06)',
+              objectFit: 'cover',
+              borderRadius: '10px',
+              maxWidth: '46px',
+              height: '46px',
+              aspectRatio: '1/1',
+              padding: '5px',
+            }}
+          />
+
           <div>
             <Typography
               sx={{
@@ -55,17 +75,23 @@ export default function SimilarCompany({ delay, companyName }) {
                   sm: 'bodyL_2',
                 },
                 color: 'text.primary',
+                maxWidth: '100px',
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
               }}
             >
-              Apple
+              {companyName}
             </Typography>
             <Typography
+              component='span'
               sx={{
                 typography: 'bodyM3_3',
                 color: 'text.secondary',
+                fontWeight: '400',
               }}
             >
-              Apple LLC
+              {companyType}
             </Typography>
           </div>
         </Box>
