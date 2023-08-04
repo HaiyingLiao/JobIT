@@ -31,9 +31,9 @@ const JobCard = (props) => {
     period,
   } = props;
 
-  const homeCard = type === 'homeJobcard';
-  const companyDetailCard = type === 'companyDetail';
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
+  const shouldRenderTechButtons =
+    type === 'homeJobcard' || type === 'companyDetail' ? true : false;
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
 
@@ -43,8 +43,8 @@ const JobCard = (props) => {
         padding: '1.25rem',
         width: '100%',
         maxWidth: {
-          xs: homeCard || companyDetailCard ? '100%' : '95%',
-          md: homeCard || companyDetailCard ? '100%' : '950px',
+          xs: shouldRenderTechButtons ? '100%' : '95%',
+          md: shouldRenderTechButtons ? '100%' : '950px',
         },
         height: '100%',
         opacity: '0',
@@ -114,7 +114,7 @@ const JobCard = (props) => {
           </Link>
         }
         subheader={
-          homeCard || companyDetailCard ? (
+          shouldRenderTechButtons ? (
             slicedRequiredtech?.map((tech, i) => (
               <CustomButton
                 sx={{
@@ -166,14 +166,14 @@ const JobCard = (props) => {
             textOverflow: 'ellipsis',
             overflow: 'hidden',
             whiteSpace: 'wrap',
-            maxHeight: homeCard ? '142px' : '71px',
+            maxHeight: type === 'homeJobcard' ? '142px' : '71px',
             height: '100%',
           }}
         >
           {jobDesc}
         </Typography>
       </CardContent>
-      {homeCard && (
+      {type === 'homeJobcard' && (
         <CardContent
           sx={{
             display: 'flex',
@@ -224,7 +224,7 @@ const JobCard = (props) => {
           />
         </CardContent>
       )}
-      {!companyDetailCard && !homeCard && (
+      {!shouldRenderTechButtons && (
         <CardContent
           sx={{
             paddingTop: '30px',
@@ -275,7 +275,7 @@ const JobCard = (props) => {
             )}
           </Typography>
 
-          {!homeCard && !companyDetailCard && (
+          {!shouldRenderTechButtons && (
             <Typography
               variant='bodyL_2'
               sx={{
@@ -315,7 +315,7 @@ const JobCard = (props) => {
             },
           }}
         >
-          {!homeCard && !companyDetailCard && (
+          {!shouldRenderTechButtons && (
             <CustomButton
               sx={{
                 width: {
