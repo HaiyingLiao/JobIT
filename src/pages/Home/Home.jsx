@@ -12,7 +12,6 @@ import {
 import { useGetJobListingsQuery } from '../../services/JSearch';
 import icons from '../../assets/icons';
 import { formatSalary } from '../../Utils/TestingTool/dataCleaningTool';
-
 const Home = () => {
   const { data, error, isFetching } = useGetJobListingsQuery({
     query: 'Developers',
@@ -115,7 +114,12 @@ const Home = () => {
                       logo={card?.employer_logo}
                       type='homeJobcard'
                       title={'Passionate Programmer'}
-                      requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
+                      requiredTech={[
+                        'Problem solving',
+                        'LARAVEL',
+                        'JAVASCRIPT',
+                        'REACT',
+                      ]}
                     />
                   </Grid>
                 ))}

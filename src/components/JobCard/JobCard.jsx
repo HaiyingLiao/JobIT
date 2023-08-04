@@ -36,7 +36,6 @@ const JobCard = (props) => {
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
-  const techLength = slicedRequiredtech.map((tech) => tech.split(' ').length);
 
   return (
     <Card
@@ -60,33 +59,36 @@ const JobCard = (props) => {
       })}
     >
       <CardHeader
+        id='header'
         sx={{
-          paddingBottom: '1.38rem',
+          paddingBottom: '30px !important',
+          '&.MuiCardHeader-root': {
+            padding: '0',
+          },
+          overflow: 'hidden',
         }}
         avatar={
-          <Box
-            sx={{
-              borderRadius: '10px',
-              background: 'rgba(23, 23, 37, 0.06)',
-            }}
-          >
+          <Box>
             <img
               onError={(e) => (e.target.src = placeholder)}
               loading='lazy'
               src={logo ?? placeholder}
               alt='logo'
               style={{
-                objectFit: 'contain',
+                backgroundColor: 'rgba(23, 23, 37, 0.06)',
+                objectFit: 'cover',
                 borderRadius: '10px',
                 maxWidth: '46px',
                 height: '46px',
+                aspectRatio: '1/1',
+                padding: '5px',
               }}
             />
           </Box>
         }
         title={
           <Link
-            href='/'
+            href={`/job/${jobId}`}
             style={{
               textDecoration: 'none',
             }}
@@ -116,14 +118,15 @@ const JobCard = (props) => {
             slicedRequiredtech?.map((tech, i) => (
               <CustomButton
                 sx={{
-                  marginX: '3px',
-                  maxWidth: '90px',
+                  marginX: '2px',
+                  marginTop: '12px',
+                  maxWidth: '40px',
                   direction: 'ltr',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
-                  textAlign: 'left !important',
+                  textAlign: 'center !important',
                   padding: '5px',
-                  display: techLength > 15 ? 'inline-block' : 'inline',
+                  display: tech.length > 15 ? 'inline-block' : 'inline',
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
@@ -150,6 +153,9 @@ const JobCard = (props) => {
       <CardContent
         sx={{
           maxHeight: '100%',
+          '&.MuiCardContent-root': {
+            padding: '0',
+          },
         }}
       >
         <Typography
@@ -246,6 +252,9 @@ const JobCard = (props) => {
           paddingTop: '1.38rem',
           flexWrap: 'wrap',
           gap: '1.88rem',
+          '&.MuiCardActions-root ': {
+            padding: '0',
+          },
         }}
       >
         <Box sx={{ display: 'flex', gap: '38px' }}>
