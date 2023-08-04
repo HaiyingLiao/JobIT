@@ -1,7 +1,6 @@
 import {
   Grid,
   Typography,
-  Pagination,
   Stack,
   useTheme,
   useMediaQuery,
@@ -9,7 +8,12 @@ import {
   IconButton
 } from '@mui/material';
 
-import { JobCard, SearchBar, FilterSideBar } from '../components';
+import {
+  JobCard,
+  SearchBar,
+  FilterSideBar,
+  CustomPagination
+} from '../components';
 import icons from '../assets/icons';
 import { logo } from '../assets/images';
 import getDate from '../Utils/getDate';
@@ -100,13 +104,7 @@ const JobSearchPage = () => {
           </Grid>
         ))}
 
-        <Pagination
-          count={20}
-          color='primary'
-          shape='rounded'
-          size='large'
-          sx={{ margin: '20px auto 0px' }}
-        />
+        <CustomPagination />
       </Grid>
     </Grid>
   );
