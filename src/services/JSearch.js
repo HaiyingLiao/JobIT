@@ -1,3 +1,5 @@
+// src > services > JSearch.js
+
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 const jSearchApiKey = import.meta.env.VITE_APP_JSEARCH_KEY;
@@ -23,24 +25,25 @@ export const jSearchApi = createApi({
         }
       },
     }),
-    getJobById: builder.query({
-      query: (id) => {
-        return `job-details?job_id=${id.query}&extended_publisher_details=false`;
-      },
-    }),
-    getSearchJob: builder.query({
-      query: (query) => {
-        return `search?query=${query.query}&page=1&num_pages=1&employment_types=${query.employmentTypes}`;
+
+    // Hi Team do the needfull query from here. I made a sample query above.
+    getSearch: builder.query({
+      query: ({ name, page, num_pages, employmentTypes }) => {
+        return `search?query=${name}&page=${page}&num_pages=${num_pages}&employment_types=${employmentTypes}`;
       },
     }),
 
-    // Hi Team do the needfull query from here. I made a sample query above.
+    getCompanyDetail: builder.query({
+      query: (companyMame) => {
+        return `search?query=${companyMame}&page=1&num_pages=1`;
+      },
+    }),
   }),
 });
 
 export const {
   useGetJobListingsQuery,
   useGetEstimatedSalariesQuery,
-  useGetJobByIdQuery,
-  useGetSearchJobQuery,
+  useGetSearchQuery,
+  useGetCompanyDetailQuery,
 } = jSearchApi;

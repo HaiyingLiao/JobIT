@@ -154,6 +154,7 @@ export const lightTheme = createTheme({
       pageBG: '#F9FAFC',
       toggleBtn: '#f1f1f5 !important',
       toggleBtn2: '#65C466',
+      seeMoreBtnClr: '#F1F1F5',
     },
     text: {
       primary: '#171725',

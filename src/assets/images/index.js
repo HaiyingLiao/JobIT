@@ -1,4 +1,5 @@
 import banner from './banner.png'
 import logo from './companyLogo.png'
-
-export { banner, logo }
+import placeholder from './placeholder-logo.png'
+import user from './user.png'
+export { banner, logo, placeholder, user }

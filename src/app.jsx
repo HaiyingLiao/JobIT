@@ -6,9 +6,16 @@ import { ThemeProvider } from '@emotion/react';
 import { useSelector } from 'react-redux';
 
 import { Navbar } from './components';
-import { Home, EstimatedSalary, JobDetailPage, JobSearchPage } from './pages';
+import {
+  Home,
+  EstimatedSalary,
+  JobDetailPage,
+  JobSearchPage,
+  CompanyDetail,
+} from './pages';
 import './app.css';
 import { darkTheme, lightTheme } from './theme';
+import NotFound from './components/Error/NotFound/NotFound';
 
 export default function App() {
   const mode = useSelector((state) => state.theme.value);
@@ -32,12 +39,20 @@ export default function App() {
           <Routes>
             <Route exact path='/' element={<Home />} />
             <Route exact path='/job-search' element={<JobSearchPage />} />
-            <Route exact path='/job/:id' element={<JobDetailPage />} />
+            <Route
+              exact
+              path='/job-detail/:jobId'
+              element={<JobDetailPage />}
+            />
             <Route
               exact
               path='/estimated-salary'
               element={<EstimatedSalary />}
             />
+
+            <Route path='/company/:name' element={<CompanyDetail />} />
+
+            <Route path='*' element={<NotFound />} />
           </Routes>
         </Box>
 

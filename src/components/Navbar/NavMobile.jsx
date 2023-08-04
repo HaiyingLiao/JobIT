@@ -26,8 +26,15 @@ const NavMobile = () => {
     dispatch(toggleMode());
   };
 
+  const dispatch = useDispatch();
+  const mode = useSelector((state) => state.theme.value);
+  const handleToggleDarkMode = () => {
+    dispatch(toggleMode());
+  };
+
   const handleDrawer = () =>
     setIsDrawerOpen((prevIsDrawerOpen) => !prevIsDrawerOpen);
+  setIsDrawerOpen((prevIsDrawerOpen) => !prevIsDrawerOpen);
   return (
     <>
       {/* Mobile Drawer (nav menu that slides in from right on mobile) */}
