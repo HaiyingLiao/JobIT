@@ -9,7 +9,7 @@ import { CustomButton } from '..';
 
 export default function JobDetail({ data }) {
   const [showAll, setShowAll] = useState(false);
-  console.log('here', data);
+
   const responsibilities = data[0]?.job_highlights.Responsibilities;
   const qualifications = data[0]?.job_highlights.Qualifications;
   const jobDescription = showAll

@@ -6,16 +6,18 @@ import {
   useTheme,
   useMediaQuery,
   Box,
-  IconButton,
+  IconButton
 } from '@mui/material';
 
 import { JobCard, SearchBar, FilterSideBar } from '../components';
 import icons from '../assets/icons';
 import { logo } from '../assets/images';
+import getDate from '../Utils/getDate';
 
 const demoData = [1, 2, 3, 4, 5, 6];
 
 const JobSearchPage = () => {
+  const date = getDate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'));
 
@@ -26,7 +28,7 @@ const JobSearchPage = () => {
       sx={{
         marginTop: '70px',
         backgroundColor: 'customColor.pageBG',
-        padding: { xs: '0px 24px', md: '0px 50px' },
+        padding: { xs: '0px 24px', md: '0px 50px' }
       }}
     >
       <Grid item xs={12}>
@@ -34,7 +36,7 @@ const JobSearchPage = () => {
           Let’s find your dream job
         </Typography>
         <Typography variant=' bodyL_2' color='text.secondary'>
-          Monday, 13 Jan 2023
+          {date}
         </Typography>
       </Grid>
 
