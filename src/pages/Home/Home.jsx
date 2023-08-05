@@ -111,6 +111,7 @@ const Home = () => {
                       minSalary={formatSalary(card?.job_min_salary)}
                       maxSalary={formatSalary(card?.job_max_salary)}
                       jobId={card?.job_id}
+                      companyName={card?.employer_name}
                       logo={card?.employer_logo}
                       type='homeJobcard'
                       title={'Passionate Programmer'}
