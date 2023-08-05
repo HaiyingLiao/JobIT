@@ -14,17 +14,18 @@ import {
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 import icons from '../../assets/icons';
-import { CustomButton, Loader, NotFound } from '..';
+import { CustomButton } from '..';
 import { SearchContainer, SearchIconWrapper } from './styles';
 import { demoCountries } from '../../constants/index';
 import { setSearchBarValue } from '../../slice/searchBar';
-import { useGetSearchQuery } from '../../services/JSearch';
 
 const contactTypes = ['Full time', 'Part time', 'Contractor', 'Intern'];
 
 const SearchBar = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
@@ -33,20 +34,9 @@ const SearchBar = () => {
   const [location, setLocation] = useState('');
   const [jobTitle, setJobTitle] = useState('');
 
-  const { title, jobLocation, jobType, currentPage } = useSelector(state => {
+  const { currentPage } = useSelector(state => {
     return state.searchBar;
   });
-
-  const { data, error, isFetching } = useGetSearchQuery({
-    query: `${title},${jobLocation}`,
-    employmentTypes: jobType,
-    currentPage
-  });
-
-  if (isFetching) return <Loader />;
-  if (error) return <NotFound />;
-
-  // if (data) console.log(data);
 
   const handleSearch = e => {
     e.preventDefault();
@@ -62,11 +52,13 @@ const SearchBar = () => {
     dispatch(
       setSearchBarValue({
         title: jobTitle,
-        jobLocation: location.code,
+        jobLocation: location.label,
         jobType: formattedContactType,
         currentPage: currentPage === 'undefined' ? 1 : currentPage
       })
     );
+
+    navigate('/job-search');
   };
 
   return (

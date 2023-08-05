@@ -4,7 +4,7 @@ import {
   CardContent,
   CardActions,
   Typography,
-  Box,
+  Box
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ import icons from '../../assets/icons';
 import { placeholder } from '../../assets/images';
 import { formatCurrency } from '../../Utils/numberFormat';
 
-const JobCard = (props) => {
+const JobCard = props => {
   const {
     requiredTech = [],
     title,
@@ -29,6 +29,8 @@ const JobCard = (props) => {
     btnText,
     currency,
     period,
+    companyName,
+    companyAdress
   } = props;
 
   const homeCard = type === 'homeJobcard';
@@ -36,17 +38,14 @@ const JobCard = (props) => {
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
-  const techLength = slicedRequiredtech.map((tech) => tech.split(' ').length);
+  const techLength = slicedRequiredtech.map(tech => tech.split(' ').length);
 
   return (
     <Card
-      sx={(theme) => ({
+      sx={theme => ({
         padding: '1.25rem',
         width: '100%',
-        maxWidth: {
-          xs: homeCard || companyDetailCard ? '100%' : '95%',
-          md: homeCard || companyDetailCard ? '100%' : '950px',
-        },
+        maxWidth: '100%',
         height: '100%',
         opacity: '0',
         borderRadius: '15px',
@@ -56,22 +55,22 @@ const JobCard = (props) => {
         boxShadow:
           theme.palette.mode === 'light'
             ? '0px 23px 30px 0px rgba(226, 226, 234, 0.40), -3px -2px 24px 0px rgba(0, 0, 0, 0.02)'
-            : 'none',
+            : 'none'
       })}
     >
       <CardHeader
         sx={{
-          paddingBottom: '1.38rem',
+          paddingBottom: '1.38rem'
         }}
         avatar={
           <Box
             sx={{
               borderRadius: '10px',
-              background: 'rgba(23, 23, 37, 0.06)',
+              background: 'rgba(23, 23, 37, 0.06)'
             }}
           >
             <img
-              onError={(e) => (e.target.src = placeholder)}
+              onError={e => (e.target.src = placeholder)}
               loading='lazy'
               src={logo ?? placeholder}
               alt='logo'
@@ -79,7 +78,7 @@ const JobCard = (props) => {
                 objectFit: 'contain',
                 borderRadius: '10px',
                 maxWidth: '46px',
-                height: '46px',
+                height: '46px'
               }}
             />
           </Box>
@@ -88,7 +87,7 @@ const JobCard = (props) => {
           <Link
             href='/'
             style={{
-              textDecoration: 'none',
+              textDecoration: 'none'
             }}
           >
             <Typography
@@ -96,15 +95,15 @@ const JobCard = (props) => {
               sx={{
                 typography: {
                   xs: 'bodyM_2',
-                  lg: 'bodyL_2',
+                  lg: 'bodyL_2'
                 },
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
                 maxWidth: {
                   xs: '200px',
-                  md: '250px',
-                },
+                  md: '250px'
+                }
               }}
             >
               {title}
@@ -127,8 +126,8 @@ const JobCard = (props) => {
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
-                    color: 'text.primary',
-                  },
+                    color: 'text.primary'
+                  }
                 }}
                 variant='small'
                 title={tech}
@@ -138,9 +137,9 @@ const JobCard = (props) => {
           ) : (
             <>
               <Typography variant='bodyM4_3' color='text.secondary'>
-                UIHUT Technologies LLC{' '}
-                <img src={icons.oval1} alt='oval gray icon' /> Sylhet, BD{' '}
-                <img src={icons.oval1} alt='oval gray icon' /> 3 days ago
+                {companyName} <img src={icons.oval1} alt='oval gray icon' />{' '}
+                {companyAdress} <img src={icons.oval1} alt='oval gray icon' /> 3
+                days ago
               </Typography>
             </>
           )
@@ -149,7 +148,7 @@ const JobCard = (props) => {
       />
       <CardContent
         sx={{
-          maxHeight: '100%',
+          maxHeight: '100%'
         }}
       >
         <Typography
@@ -161,7 +160,7 @@ const JobCard = (props) => {
             overflow: 'hidden',
             whiteSpace: 'wrap',
             maxHeight: homeCard ? '142px' : '71px',
-            height: '100%',
+            height: '100%'
           }}
         >
           {jobDesc}
@@ -172,7 +171,7 @@ const JobCard = (props) => {
           sx={{
             display: 'flex',
             justifyContent: 'space-between',
-            paddingTop: '30px',
+            paddingTop: '30px'
           }}
         >
           <CustomButton
@@ -185,7 +184,7 @@ const JobCard = (props) => {
               textAlign: 'left',
               padding: '5px 10px',
               whiteSpace: 'nowrap',
-              fontSize: '10px',
+              fontSize: '10px'
             }}
             startIcon={<img src={icons.briefcase} alt='briefcase' />}
           />
@@ -199,7 +198,7 @@ const JobCard = (props) => {
               textAlign: 'left',
               padding: '5px 10px',
               whiteSpace: 'nowrap',
-              fontSize: '10px',
+              fontSize: '10px'
             }}
             startIcon={<img src={icons.people} alt='people' />}
           />
@@ -213,7 +212,7 @@ const JobCard = (props) => {
               textAlign: 'left',
               padding: '5px 10px',
               whiteSpace: 'nowrap',
-              fontSize: '10px',
+              fontSize: '10px'
             }}
             startIcon={<img src={icons.clock} alt='clock' />}
           />
@@ -221,7 +220,7 @@ const JobCard = (props) => {
       )}
       <CardContent
         sx={{
-          paddingTop: '30px',
+          paddingTop: '30px'
         }}
       >
         {!companyDetailCard &&
@@ -234,8 +233,8 @@ const JobCard = (props) => {
               sx={{
                 margin: '3px',
                 ':hover': {
-                  color: 'text.primary',
-                },
+                  color: 'text.primary'
+                }
               }}
             />
           ))}
@@ -246,7 +245,7 @@ const JobCard = (props) => {
           justifyContent: 'space-between',
           paddingTop: '1.38rem',
           flexWrap: 'wrap',
-          gap: '1.88rem',
+          gap: '1.88rem'
         }}
       >
         <Box sx={{ display: 'flex', gap: '38px' }}>
@@ -257,7 +256,7 @@ const JobCard = (props) => {
             {period && salaries.min && salaries.max && (
               <Typography
                 sx={{
-                  typography: 'bodyM',
+                  typography: 'bodyM'
                 }}
                 component='span'
                 color='text.secondary'
@@ -273,11 +272,11 @@ const JobCard = (props) => {
               sx={{
                 width: {
                   xs: '100px',
-                  sm: '100%',
+                  sm: '100%'
                 },
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
-                whiteSpace: 'nowrap',
+                whiteSpace: 'nowrap'
               }}
             >
               54{' '}
@@ -287,8 +286,8 @@ const JobCard = (props) => {
                 sx={{
                   typography: {
                     xs: 'bodyM_3',
-                    sm: 'bodyL_3',
-                  },
+                    sm: 'bodyL_3'
+                  }
                 }}
               >
                 People Applied
@@ -303,8 +302,8 @@ const JobCard = (props) => {
             gap: '10px',
             width: {
               xs: '100%',
-              sm: 'auto',
-            },
+              sm: 'auto'
+            }
           }}
         >
           {!homeCard && !companyDetailCard && (
@@ -312,8 +311,8 @@ const JobCard = (props) => {
               sx={{
                 width: {
                   xs: '100%',
-                  sm: 'auto',
-                },
+                  sm: 'auto'
+                }
               }}
               variant='secondary'
               title='Message'
@@ -323,8 +322,8 @@ const JobCard = (props) => {
             sx={{
               width: {
                 xs: '100%',
-                sm: 'auto',
-              },
+                sm: 'auto'
+              }
             }}
             href={`/job/${jobId}`}
             variant={variant}

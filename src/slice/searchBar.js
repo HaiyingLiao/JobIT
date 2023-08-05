@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  title: '',
-  jobLocation: '',
-  jobType: '',
+  title: 'programmer',
+  jobLocation: 'United States',
+  jobType: 'FULLTIME',
   currentPage: 1
 };
 

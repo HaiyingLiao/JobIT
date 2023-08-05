@@ -22,8 +22,8 @@ export default function JobInfo({ title, company, JobUrlData }) {
               sx={{
                 typography: {
                   xs: 'bodyM',
-                  sm: 'h2',
-                },
+                  sm: 'h2'
+                }
               }}
             >
               {title}
@@ -34,9 +34,9 @@ export default function JobInfo({ title, company, JobUrlData }) {
               sx={{
                 typography: {
                   xs: 'bodyM4_4',
-                  sm: 'bodyM_3',
+                  sm: 'bodyM_3'
                 },
-                lineHeight: '32px',
+                lineHeight: '32px'
               }}
             >
               {company} - 3 days ago
@@ -69,10 +69,20 @@ export default function JobInfo({ title, company, JobUrlData }) {
         )}
         <Requirement />
         {isMobile && (
-          <>
-            <CustomButton variant='primary' title='Apply Now' />
-            <CustomButton variant='secondaryOutlined' title='Message' />
-          </>
+          <Box sx={{ display: 'flex', gap: '5px', marginTop: '10px' }}>
+            <CustomButton
+              variant='primary'
+              title='Apply Now'
+              href={JobUrlData}
+              target='_blank'
+              sx={{ minWidth: '136px' }}
+            />
+            <CustomButton
+              variant='secondaryOutlined'
+              title='Message'
+              sx={{ minWidth: '136px' }}
+            />
+          </Box>
         )}
       </Wrapper>
     </div>

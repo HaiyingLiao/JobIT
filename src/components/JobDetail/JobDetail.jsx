@@ -6,6 +6,7 @@ import JobInfo from './JobInfo';
 import ListSection from './ListSection';
 import Publisher from './Publisher';
 import { CustomButton } from '..';
+import { placeholder } from '../../assets/images';
 
 export default function JobDetail({ data }) {
   const [showAll, setShowAll] = useState(false);
@@ -16,7 +17,7 @@ export default function JobDetail({ data }) {
     ? data[0]?.job_description
     : data[0]?.job_description.slice(0, 1000);
   const companyName = data[0]?.employer_name;
-  const logo = data[0]?.employer_logo;
+  const logo = data[0]?.employer_logo ? data[0]?.employer_logo : placeholder;
 
   return (
     <Card
@@ -24,7 +25,8 @@ export default function JobDetail({ data }) {
       sx={{
         padding: '12px',
         backgroundImage: 'none',
-        backgroundColor: 'customColor.jobCardBg'
+        backgroundColor: 'customColor.jobCardBg',
+        boxShadow: 0
       }}
     >
       <CardHeader logo={logo} />

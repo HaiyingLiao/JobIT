@@ -9,16 +9,20 @@ import {
   Pagination
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { setSearchBarValue } from '../slice/searchBar';
-
-import { JobCard, SearchBar, FilterSideBar } from '../components';
+import { useGetSearchQuery } from '../services/JSearch';
+import {
+  JobCard,
+  SearchBar,
+  FilterSideBar,
+  Loader,
+  NotFound
+} from '../components';
 import icons from '../assets/icons';
-import { logo } from '../assets/images';
+import { placeholder } from '../assets/images';
 import getDate from '../Utils/getDate';
-
-const demoData = [1, 2, 3, 4, 5, 6];
 
 const JobSearchPage = () => {
   const date = getDate();
@@ -27,18 +31,37 @@ const JobSearchPage = () => {
 
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  console.log(page);
+  // console.log(page);
+
+  const { title, jobLocation, jobType } = useSelector(state => {
+    return state.searchBar;
+  });
+
+  // console.log('jobsearch', title);
+  // console.log('jobsearch', jobLocation);
+  // console.log('jobsearch', jobType);
+  // console.log('jobsearch', page);
 
   useEffect(() => {
     dispatch(
       setSearchBarValue({
         currentPage: page,
-        title: '',
-        jobLocation: '',
-        jobType: ''
+        title,
+        jobLocation,
+        jobType
       })
     );
   }, [page]);
+
+  const { data, error, isFetching } = useGetSearchQuery({
+    name: `${title},${jobLocation}`,
+    employmentTypes: jobType,
+    currentPage: page
+  });
+
+  if (isFetching) return <Loader />;
+  if (error) return <NotFound />;
+  if (data) console.log('JS', data.data);
 
   return (
     <Grid
@@ -70,7 +93,7 @@ const JobSearchPage = () => {
         </Grid>
       )}
 
-      <Grid container item xs={12} md={12} lg={9}>
+      <Grid container item xs={12} lg={9}>
         <Stack
           direction='row'
           justifyContent='space-between'
@@ -91,17 +114,17 @@ const JobSearchPage = () => {
           <Stack direction='row' alignItems='center'>
             {!isMobile && <Typography variant=' bodyM3_2'>Sort by:</Typography>}
             <Typography variant={isMobile ? 'bodyM3_2' : 'bodyM3'}>
-              Relevange
+              Relevance
             </Typography>
             <img src={icons.cheveron} alt='cheveron' />
           </Stack>
         </Stack>
 
-        {demoData.map((_, i) => (
+        {data?.data.map((job, i) => (
           <Grid item sm={12} mb='15px' key={i}>
             <JobCard
               delay={i * 100}
-              jobDesc='In this updated code, the YourComponent now takes a prop cardType that represents the type of the card. You can pass the appropriate cardType value to the component when using it. The shouldRenderTechButtons variable is set to true only if the cardType is neither homeCard nor companyDetailCard. If the cardType matches either of these two values, the tech buttons wont be rendered. Otherwise, the tech buttons will be rendered'
+              jobDesc={job.job_description}
               actionButton={
                 <IconButton aria-label='settings'>
                   <img src={icons.isMore} alt='isMore' />
@@ -109,12 +132,14 @@ const JobSearchPage = () => {
               }
               maxSalary={200}
               minSalary={300}
-              jobId={'64371284'}
-              logo={logo}
-              title={'Passionate Programmer'}
+              jobId={job.job_id}
+              logo={job.employer_logo ? job.employer_logo : placeholder}
+              title={job.job_title}
               btnText={'Apply Now'}
               requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
               variant={'primaryLighter'}
+              companyName={job.employer_name}
+              companyAdress={`${job.job_city},${job.job_country}`}
             />
           </Grid>
         ))}

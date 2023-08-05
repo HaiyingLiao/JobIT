@@ -28,11 +28,8 @@ export const jSearchApi = createApi({
 
     // Hi Team do the needfull query from here. I made a sample query above.
     getSearch: builder.query({
-      query: ({ query, currentPage, employmentTypes }) => {
-        console.log('currentPage', currentPage);
-        console.log('query', query);
-        console.log('employmentTypes', employmentTypes);
-        return `search?query=${query}&page=${currentPage}&employment_types=${employmentTypes}`;
+      query: ({ name, currentPage, employmentTypes }) => {
+        return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}`;
       }
     }),
 
