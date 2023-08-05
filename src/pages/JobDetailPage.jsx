@@ -1,7 +1,5 @@
 import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
 
 import {
   JobDetail,
@@ -13,7 +11,6 @@ import {
 } from '../components';
 import icons from '../assets/icons';
 import { useGetJobByIdQuery, useGetSearchQuery } from '../services/JSearch';
-import { setSearchBarValue } from '../slice/searchBar';
 import getDate from '../Utils/getDate';
 
 const JobDetailPage = () => {
