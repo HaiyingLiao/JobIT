@@ -30,7 +30,8 @@ export default function App() {
         <Box
           sx={{
             width: '100%',
-            backgroundColor: 'customColor.pageBG'
+            backgroundColor: 'customColor.pageBG',
+            paddingBottom: '40px'
           }}
         >
           <Box

@@ -39,7 +39,7 @@ const JobSearchPage = () => {
   useEffect(() => {
     dispatch(
       setSearchBarValue({
-        currentPage: page,
+        currentPage: 1,
         title,
         jobLocation,
         jobType
@@ -134,7 +134,11 @@ const JobSearchPage = () => {
           shape='rounded'
           size='large'
           page={page}
-          onChange={(e, p) => setPage(p)}
+          onChange={(e, p) => {
+            setPage(p);
+
+            window.scroll(0, 0);
+          }}
           sx={{ margin: '20px auto 0px' }}
         />
       </Grid>
