@@ -1,8 +1,9 @@
 import { Typography, Container, Box, IconButton, Divider } from '@mui/material';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import useSearch from '../../hooks/useSearch';
 import { getSearchValue } from '../../slice/searchSlice';
+import { useGetSearchQuery } from '../../services/JSearch';
 import CircularLoader from '../Loader/Circular';
 import { CustomButton, JobCard } from '../../components';
 import SearchInput from './SearchInput';
@@ -11,12 +12,22 @@ import icons from '../../assets/icons';
 export default function RecentJobPost({ recentJobs, company }) {
   const [clicked, setClicked] = useState(false);
   const [sources, setSources] = useState(recentJobs?.slice(0, 4));
-  const { data, dispatch, isError, isFetching } = useSearch(
-    undefined,
-    undefined,
-    undefined,
-    company,
-    undefined
+  const dispatch = useDispatch();
+  const value = useSelector(({ searchSlice }) => searchSlice.value);
+
+  const query = `${value.search} in ${company}`;
+
+  const { data, isError, isFetching } = useGetSearchQuery(
+    {
+      name: query,
+      numPages: '1',
+      currentPage: '1',
+      employmentTypes: 'FULLTIME',
+    },
+    {
+      skip: value === '',
+      refetchOnMountOrArgChange: value !== '',
+    }
   );
 
   useEffect(() => {
