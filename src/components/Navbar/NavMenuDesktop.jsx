@@ -14,7 +14,7 @@ const NavMenuDesktop = () => {
     const activeIndex = navMenuItems.findIndex(
       (menuItem) => menuItem.link === pathname
     );
-    return activeIndex !== -1 ? activeIndex : 0;
+    return activeIndex !== -1 ? activeIndex : null;
   }
 
   const handleTabChange = (_event, value) => {
