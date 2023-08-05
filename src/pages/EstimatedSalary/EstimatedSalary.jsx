@@ -97,7 +97,7 @@ const EstimatedSalary = () => {
         backgroundColor: 'customColor.pageBG',
         minHeight: '100vh',
         fontFamily: '"Manrope", sans-serif',
-        padding: { xs: '80px 20px 80px 20px', lg: '120px 80px 120px 80px' },
+        padding: { xs: '80px 20px 80px 20px', lg: '80px' },
       }}
     >
       <Grid
@@ -111,7 +111,12 @@ const EstimatedSalary = () => {
         }}
       >
         {/* First Column - Form */}
-        <Grid item sm={6} xs={12} sx={{ padding: isMobile ? '40px' : '85px' }}>
+        <Grid
+          item
+          sm={6}
+          xs={12}
+          sx={{ padding: isMobile ? '40px' : '16px 85px 85px 0px!important' }}
+        >
           <EstSalariesHeader isMobile={isMobile} />
           {/* Form */}
           <Grid
