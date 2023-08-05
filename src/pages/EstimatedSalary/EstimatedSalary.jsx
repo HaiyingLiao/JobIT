@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import {
   Grid,
   Box,
@@ -22,6 +23,27 @@ import useDebounce from '../../Utils/debounce';
 const EstimatedSalary = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+
+  useEffect(() => {
+    fetch('https://api.ipify.org/?format=json')
+      .then((response) => response.json())
+      .then((data) => {
+        const ipAddress = data.ip;
+        fetch(`https://ipapi.co/${ipAddress}/json/`)
+          .then((response) => response.json())
+          .then((locationData) => {
+            const city = locationData.city;
+            const region = locationData.region;
+            const country = locationData.country_name;
+            dispatch(
+              setSalaryFormState({
+                name: 'location',
+                value: `${city}, ${region}, ${country}`,
+              })
+            );
+          });
+      });
+  }, []);
 
   const dispatch = useDispatch();
   const { title, location, radius } = useSelector((state) => {

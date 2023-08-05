@@ -31,9 +31,9 @@ const JobCard = (props) => {
     period,
   } = props;
 
-  const homeCard = type === 'homeJobcard';
-  const companyDetailCard = type === 'companyDetail';
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
+  const shouldRenderTechButtons =
+    type === 'homeJobcard' || type === 'companyDetail' ? true : false;
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
 
@@ -43,8 +43,8 @@ const JobCard = (props) => {
         padding: '1.25rem',
         width: '100%',
         maxWidth: {
-          xs: homeCard || companyDetailCard ? '100%' : '95%',
-          md: homeCard || companyDetailCard ? '100%' : '950px',
+          xs: shouldRenderTechButtons ? '100%' : '95%',
+          md: shouldRenderTechButtons ? '100%' : '950px',
         },
         height: '100%',
         opacity: '0',
@@ -76,12 +76,13 @@ const JobCard = (props) => {
               alt='logo'
               style={{
                 backgroundColor: 'rgba(23, 23, 37, 0.06)',
-                objectFit: 'cover',
-                borderRadius: '10px',
+                objectFit: 'inherit',
+                borderRadius: '5px',
                 maxWidth: '46px',
                 height: '46px',
                 aspectRatio: '1/1',
                 padding: '5px',
+                marginTop: '10px',
               }}
             />
           </Box>
@@ -100,6 +101,7 @@ const JobCard = (props) => {
                   xs: 'bodyM_2',
                   lg: 'bodyL_2',
                 },
+                paddingTop: '1px',
                 textOverflow: 'ellipsis',
                 overflow: 'hidden',
                 whiteSpace: 'nowrap',
@@ -114,12 +116,11 @@ const JobCard = (props) => {
           </Link>
         }
         subheader={
-          homeCard || companyDetailCard ? (
+          shouldRenderTechButtons ? (
             slicedRequiredtech?.map((tech, i) => (
               <CustomButton
                 sx={{
                   marginX: '2px',
-                  marginTop: '12px',
                   maxWidth: '40px',
                   direction: 'ltr',
                   textOverflow: 'ellipsis',
@@ -160,20 +161,20 @@ const JobCard = (props) => {
       >
         <Typography
           paragraph
-          variant='bodyM_4'
+          variant=' bodyM_4'
           color='text.secondary'
           sx={{
             textOverflow: 'ellipsis',
             overflow: 'hidden',
             whiteSpace: 'wrap',
-            maxHeight: homeCard ? '142px' : '71px',
+            maxHeight: type === 'homeJobcard' ? '142px' : '71px',
             height: '100%',
           }}
         >
           {jobDesc}
         </Typography>
       </CardContent>
-      {homeCard && (
+      {type === 'homeJobcard' && (
         <CardContent
           sx={{
             display: 'flex',
@@ -224,7 +225,7 @@ const JobCard = (props) => {
           />
         </CardContent>
       )}
-      {!companyDetailCard && !homeCard && (
+      {!shouldRenderTechButtons && (
         <CardContent
           sx={{
             paddingTop: '30px',
@@ -275,7 +276,7 @@ const JobCard = (props) => {
             )}
           </Typography>
 
-          {!homeCard && !companyDetailCard && (
+          {!shouldRenderTechButtons && (
             <Typography
               variant='bodyL_2'
               sx={{
@@ -315,7 +316,7 @@ const JobCard = (props) => {
             },
           }}
         >
-          {!homeCard && !companyDetailCard && (
+          {!shouldRenderTechButtons && (
             <CustomButton
               sx={{
                 width: {
