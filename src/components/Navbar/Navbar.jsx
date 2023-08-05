@@ -5,7 +5,7 @@ import {
   NavMobile,
   NavMenuDesktop,
   Logo,
-  SwitchButton
+  SwitchButton,
 } from '../../components';
 import { toggleMode } from '../../slice/darkMode';
 
@@ -14,7 +14,7 @@ const NavBar = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   const dispatch = useDispatch();
-  const mode = useSelector(state => state.theme.value);
+  const mode = useSelector((state) => state.theme.value);
   const handleToggleDarkMode = () => {
     dispatch(toggleMode());
   };
@@ -27,7 +27,7 @@ const NavBar = () => {
         zIndex: '2000',
         maxWidth: '100%',
         margin: '0 auto',
-        boxShadow: '0px 0px 1px 0px #92929D'
+        boxShadow: '0px 0px 1px 0px #92929D',
       }}
       elevation={0}
     >
@@ -37,7 +37,7 @@ const NavBar = () => {
           width: '100%',
           maxWidth: '1470px',
           padding: isMobile ? '0 2.5%' : '0 5% !important',
-          margin: '0 auto'
+          margin: '0 auto',
         }}
       >
         {isMobile ? (

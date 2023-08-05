@@ -1,25 +1,24 @@
 import { Card, CardContent, Typography } from '@mui/material';
+import { useState } from 'react';
 
 import CardHeader from './Header';
 import JobInfo from './JobInfo';
 import ListSection from './ListSection';
 import Publisher from './Publisher';
-import { logo } from '../../assets/images';
+import { CustomButton } from '..';
+import { placeholder } from '../../assets/images';
 
-export default function LargeJobCard() {
-  const exampleResponsibilities = [
-    'Design, build, test, and deploy software applications and features',
-    'Carry software products through the software development life cycle (SDLC)',
-    'Write clean, concise, and efficient code',
-  ];
+export default function JobDetail({ data }) {
+  const [showAll, setShowAll] = useState(false);
 
-  const exampleQualifications = [
-    '3+ years of professional experience working on this field',
-    'Bachelor degree in computer science, software engineering, or related field',
-    'Proficiency in at least one programming language (e.g., Java, C#, C++)',
-  ];
-  const exampleJobDesc =
-    'Here at UIHUT, we are a passionate, fun-loving, growing team. We are looking for passionate programmers who want to solve technical challenges and learn and incorporate new technologies into their skillset to join our team and grow with us. In this role, you would use various tech stacks, including Laravel, Node JS (Adonis JS), Vue JS, React JS, Nuxt JS, Redis, MySQL, MongoDB, and CSS. You will be engaged across the software development life cycle to create and modify platforms and capabilities in a collaborative and agile environment.';
+  const responsibilities = data[0]?.job_highlights.Responsibilities;
+  const qualifications = data[0]?.job_highlights.Qualifications;
+  const jobDescription = showAll
+    ? data[0]?.job_description
+    : data[0]?.job_description.slice(0, 1000);
+  const companyName = data[0]?.employer_name;
+  const companyAddress = `${data[0]?.job_city},${data[0]?.job_country}`;
+  const logo = data[0]?.employer_logo ? data[0]?.employer_logo : placeholder;
 
   return (
     <Card
@@ -28,13 +27,16 @@ export default function LargeJobCard() {
         padding: '12px',
         backgroundImage: 'none',
         backgroundColor: 'customColor.jobCardBg',
+        boxShadow: 0
       }}
     >
       <CardHeader logo={logo} />
       <CardContent>
         <JobInfo
-          address='UIHUT Technologies LLC'
-          title='Passionate Programmer'
+          company={companyName}
+          companyAddress={companyAddress}
+          title={data[0]?.job_title}
+          JobUrlData={data[0]?.job_apply_link}
         />
         <section style={{ marginTop: '30px' }}>
           <Typography
@@ -44,8 +46,8 @@ export default function LargeJobCard() {
             sx={{
               typography: {
                 xs: 'bodyM',
-                sm: 'bodyL',
-              },
+                sm: 'bodyL'
+              }
             }}
           >
             About The Job
@@ -57,26 +59,27 @@ export default function LargeJobCard() {
             sx={{
               typography: {
                 xs: 'bodyM3_4',
-                sm: 'bodyM_4',
+                sm: 'bodyM_4'
               },
+              textAlign: 'justify'
             }}
           >
-            {exampleJobDesc}
+            {jobDescription}
           </Typography>
+          <CustomButton
+            title={showAll ? 'Show less' : 'Show all'}
+            variant='small'
+            onClick={() => setShowAll(prev => !prev)}
+          />
         </section>
+        <ListSection listData={responsibilities} title='Responsibilities' />
         <ListSection
-          listData={exampleResponsibilities}
-          title='Responsibilities'
-        />
-        <ListSection
-          listData={exampleQualifications}
+          listData={qualifications}
           title='Qualifications and Skill Sets'
         />
         <Publisher
-          companyName='UIHUT'
-          companydesc={
-            "UIHUT is a design and coding resources platform for designers, developers and entrepreneurs. We're building a digital marketplace to simplify the creation of websites, apps and software on any device. UIHUT is based in New York City and is privately funded by some of the industry's leading investors."
-          }
+          companyName={companyName}
+          companydesc={data[0]?.job_description.slice(0, 400)}
           followers={200000}
           logo={logo}
         />
