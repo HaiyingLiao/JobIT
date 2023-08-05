@@ -31,16 +31,10 @@ const JobSearchPage = () => {
 
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
-  // console.log(page);
 
   const { title, jobLocation, jobType } = useSelector(state => {
     return state.searchBar;
   });
-
-  // console.log('jobsearch', title);
-  // console.log('jobsearch', jobLocation);
-  // console.log('jobsearch', jobType);
-  // console.log('jobsearch', page);
 
   useEffect(() => {
     dispatch(
@@ -61,7 +55,6 @@ const JobSearchPage = () => {
 
   if (isFetching) return <Loader />;
   if (error) return <NotFound />;
-  if (data) console.log('JS', data.data);
 
   return (
     <Grid
