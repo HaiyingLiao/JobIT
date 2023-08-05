@@ -9,20 +9,37 @@ import {
   ServerError,
   SimilarCompany,
 } from '../../components';
+
 import icons from '../../assets/icons';
-import { useGetCompanyDetailQuery } from '../../services/JSearch';
+import {
+  useGetCompanyDetailQuery,
+  useGetJobListingsQuery,
+} from '../../services/JSearch';
 
 export default function CompanyDetailPage() {
   const { name } = useParams();
+  const navigate = useNavigate();
   const { isError, isFetching, data } = useGetCompanyDetailQuery(name);
 
-  const navigate = useNavigate();
+  const compantyTypes = data?.data
+    ?.filter((job) => job?.employer_company_type !== null)
+    .map((company) => company?.employer_company_type);
 
-  if (isFetching) return <Loader />;
+  const {
+    isError: similarCompaniesError,
+    data: similarCompanies,
+    isFetching: similarCompaniesIsFetching,
+  } = useGetJobListingsQuery({
+    query: compantyTypes && compantyTypes[0],
+    page: '1',
+    num_pages: '1',
+  });
+
+  if (isFetching || similarCompaniesIsFetching) return <Loader />;
 
   if (data?.data?.length < 1) return <NotFound />;
 
-  if (isError) return <ServerError />;
+  if (isError || similarCompaniesError) return <ServerError />;
 
   return (
     <Box
@@ -95,7 +112,7 @@ export default function CompanyDetailPage() {
               borderRadius: '10px',
               height: '100%',
               minHeight: '36rem',
-              padding: '10px',
+              padding: '15px',
               width: {
                 xs: '100%',
                 lg: 'fit-content',
@@ -105,7 +122,7 @@ export default function CompanyDetailPage() {
             <Typography
               sx={{
                 typography: 'h4',
-                padding: '5px',
+                paddingBottom: '20px',
               }}
             >
               Similar companies
@@ -117,11 +134,13 @@ export default function CompanyDetailPage() {
                 gap: '1rem',
               }}
             >
-              {[1, 2, 3, 4, 5, 6].map((company, i) => (
+              {similarCompanies?.data?.map((company, i) => (
                 <SimilarCompany
-                  key={company}
-                  companyName={data?.data[0]?.empoyer_name}
+                  key={company?.job_id}
+                  companyName={company?.employer_name}
                   delay={i * 200}
+                  logo={company?.employer_logo}
+                  companyType={company?.employer_company_type}
                 />
               ))}
             </Box>
