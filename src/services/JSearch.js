@@ -1,5 +1,3 @@
-
-
 // src > services > JSearch.js
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
@@ -31,17 +29,21 @@ export const jSearchApi = createApi({
     // Hi Team do the needfull query from here. I made a sample query above.
     getSearch: builder.query({
       query: ({ name, page, num_pages, employmentTypes }) => {
-        return `search?query=${name}&page=${page}&num_pages=${num_pages}&employment_types=${employmentTypes}`
-      }
+        return `search?query=${name}&page=${page}&num_pages=${num_pages}&employment_types=${employmentTypes}`;
+      },
     }),
 
     getCompanyDetail: builder.query({
       query: (companyMame) => {
-        return `search?query=${companyMame}&page=1&num_pages=1`
-      }
-    })
-
+        return `search?query=${companyMame}&page=1&num_pages=1`;
+      },
+    }),
   }),
 });
 
-export const { useGetJobListingsQuery, useGetEstimatedSalariesQuery, useGetSearchQuery, useGetCompanyDetailQuery } = jSearchApi;
+export const {
+  useGetJobListingsQuery,
+  useGetEstimatedSalariesQuery,
+  useGetSearchQuery,
+  useGetCompanyDetailQuery,
+} = jSearchApi;

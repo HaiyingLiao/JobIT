@@ -28,12 +28,13 @@ const InlineJobCard = ({ type }) => {
 
   return (
     <Card
+      sm={6}
+      md={12}
       sx={{
         maxWidth: '100%',
         backgroundColor: cardType
           ? 'customColor.requirementBg'
           : 'customColor.jobCardBg',
-        padding: '10px ',
         borderRadius: '10px',
         width: '100%',
         margin: '10px auto'
