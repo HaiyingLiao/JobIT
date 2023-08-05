@@ -29,23 +29,15 @@ export const jSearchApi = createApi({
     }),
 
     getSearch: builder.query({
-      query: ({ name, currentPage, numPages, employmentTypes }) => {
-        return `search?query=${name}&page=${currentPage}&num_pages=${numPages}&employment_types=${employmentTypes}`
+      query: ({ name, currentPage, employmentTypes }) => {
+        return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}`
       }
     }),
-
-    getJobsByCompany: builder.query({
-      query: (name) => {
-        return `search?query=${name}&page=1&num_pages=1`
-      }
-    }),
-
     getCompanyDetail: builder.query({
       query: (companyMame) => {
         return `search?query=${companyMame}&page=1&num_pages=1`
       }
     })
-
   }),
 });
 

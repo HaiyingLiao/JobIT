@@ -75,7 +75,12 @@ export default function SimilarCompany({
                   sm: 'bodyL_2',
                 },
                 color: 'text.primary',
-                maxWidth: '100px',
+                maxWidth: {
+                  xs: '100px',
+                  sm: '300px',
+                  md: '450px',
+                  lg: '100px',
+                },
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',

@@ -1,4 +1,11 @@
-import { Typography, Container, Box, IconButton, Divider } from '@mui/material';
+import {
+  Typography,
+  Container,
+  Box,
+  IconButton,
+  Divider,
+  Alert,
+} from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -20,7 +27,6 @@ export default function RecentJobPost({ recentJobs, company }) {
   const { data, isError, isFetching } = useGetSearchQuery(
     {
       name: query,
-      numPages: '1',
       currentPage: '1',
       employmentTypes: 'FULLTIME',
     },
@@ -52,7 +58,6 @@ export default function RecentJobPost({ recentJobs, company }) {
         Oppss...! Something went wrong, please try to reload the page
       </Alert>
     );
-
   return (
     <Container
       sx={{
@@ -108,6 +113,7 @@ export default function RecentJobPost({ recentJobs, company }) {
                 </IconButton>
               }
               btnText='Apply now'
+              companyName={job?.employer_name}
               salary={{
                 min: job?.job_min_salary,
                 max: job?.job_max_salary,
@@ -168,6 +174,7 @@ export default function RecentJobPost({ recentJobs, company }) {
               min: job?.job_min_salary,
               max: job?.job_max_salary,
             }}
+            companyName={job?.employer_name}
             currency={job?.job_salary_currency ?? 'USD'}
             jobId={job?.job_id}
             period={job?.job_salary_period}
