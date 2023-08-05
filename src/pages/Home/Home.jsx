@@ -11,7 +11,11 @@ import {
 } from '../../components';
 import { useGetJobListingsQuery } from '../../services/JSearch';
 import icons from '../../assets/icons';
-import { formatSalary } from '../../Utils/TestingTool/dataCleaningTool';
+import {
+  formatSalary,
+  sinceDays
+} from '../../Utils/TestingTool/dataCleaningTool';
+import FeatCompanyCard from '../../components/FeatCompanyCard/FeatCompanyCard';
 const Home = () => {
   const { data, error, isFetching } = useGetJobListingsQuery({
     query: 'Developers',
@@ -98,8 +102,6 @@ const Home = () => {
               <Grid container spacing={4}>
                 {datas?.map(card => (
                   <Grid key={card.job_id} item xs={12} md={6}>
-                    {/* <JobCard type='homeJobCard' cardData={card} /> */}
-
                     <JobCard
                       delay={100}
                       jobDesc="In this updated code, the YourComponent now takes a prop cardType that represents the type of the card. You can pass the appropriate cardType value to the component when using it. The shouldRenderTechButtons variable is set to true only if the cardType is neither 'homeCard' nor 'companyDetailCard'. If the cardType matches either of these two values, the tech buttons won't be rendered. Otherwise, the tech buttons will be rendered."
@@ -108,10 +110,13 @@ const Home = () => {
                           <img src={icons.isMore} alt='isMore' />
                         </IconButton>
                       }
+                      sinceLeft={sinceDays(
+                        card?.job_offer_expiration_datetime_utc
+                      )}
                       btnText='Visit now'
                       minSalary={formatSalary(card?.job_min_salary)}
                       maxSalary={formatSalary(card?.job_max_salary)}
-                      jobId={card?.job_id}
+                      xxjobId={card?.job_id}
                       logo={card?.employer_logo}
                       type='homeJobcard'
                       title={card?.job_title}
@@ -119,6 +124,33 @@ const Home = () => {
                     />
                   </Grid>
                 ))}
+              </Grid>
+            </Box>
+
+            <Box id='featCompanies'>
+              <Typography
+                sx={theme => ({
+                  fontSize: theme.typography.h4,
+                  margin: '30px 0'
+                })}
+              >
+                Featuted Companies
+              </Typography>
+              <Grid
+                container
+                wrap='wrap'
+                spacing={4}
+                sx={{ justifyContent: 'center' }}
+              >
+                <Grid item xs={12} sm={6} md={4}>
+                  <FeatCompanyCard />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <FeatCompanyCard />
+                </Grid>
+                <Grid item xs={12} sm={6} md={4}>
+                  <FeatCompanyCard />
+                </Grid>
               </Grid>
             </Box>
           </Grid>
@@ -167,13 +199,6 @@ const Home = () => {
                 flexWrap: 'wrap'
               })}
             >
-              {/* <InlineJobCard md={6} type='homeInlineCard' />
-              <InlineJobCard md={6} type='homeInlineCard' />
-              <InlineJobCard md={6} type='homeInlineCard' />
-              <InlineJobCard md={6} type='homeInlineCard' />
-              <InlineJobCard md={6} type='homeInlineCard' />
-              <InlineJobCard md={6} type='homeInlineCard' />
-              <InlineJobCard md={6} type='homeInlineCard' /> */}
               <InlineJobCard type='homeInlineCard' />
               <InlineJobCard type='homeInlineCard' />
               <InlineJobCard type='homeInlineCard' />
