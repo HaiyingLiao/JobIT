@@ -18,6 +18,7 @@ import {
   SearchBar,
   FilterSideBar,
   Loader,
+  Circular,
   NotFound
 } from '../components';
 import icons from '../assets/icons';

@@ -109,7 +109,11 @@ const InlineJobCard = ({ type, data }) => {
               sx={{ minWidth: '18px' }}
             />
 
-            <CustomButton variant='primaryLighter' title='View' />
+            <CustomButton
+              variant='primaryLighter'
+              title='View'
+              href={`/job/${data?.job_id}`}
+            />
           </Box>
         </CardActions>
       )}
