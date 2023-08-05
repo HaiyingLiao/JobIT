@@ -28,28 +28,37 @@ export default function App() {
         <Navbar />
 
         <Box
-          className='mainContainer'
           sx={{
-            height: '100%',
             width: '100%',
-            margin: '0 auto',
             backgroundColor: 'customColor.pageBG'
           }}
         >
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route exact path='/job-search' element={<JobSearchPage />} />
-            <Route exact path='/job/:jobId' element={<JobDetailPage />} />
-            <Route
-              exact
-              path='/estimated-salary'
-              element={<EstimatedSalary />}
-            />
+          <Box
+            className='mainContainer'
+            sx={{
+              height: '100%',
+              width: '100%',
+              maxWidth: '1470px',
+              margin: '0 auto',
+              paddingTop: '100px',
+              paddingX: '5%'
+            }}
+          >
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              <Route exact path='/job-search' element={<JobSearchPage />} />
+              <Route exact path='/job/:jobId' element={<JobDetailPage />} />
+              <Route
+                exact
+                path='/estimated-salary'
+                element={<EstimatedSalary />}
+              />
 
-            <Route path='/company/:name' element={<CompanyDetail />} />
+              <Route path='/company/:name' element={<CompanyDetail />} />
 
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Box>
         </Box>
 
         <Toaster />

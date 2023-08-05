@@ -1,17 +1,40 @@
-import { Typography, Container, Box, IconButton, Divider } from '@mui/material';
+import {
+  Typography,
+  Container,
+  Box,
+  IconButton,
+  Divider,
+  Alert,
+} from '@mui/material';
 import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import useSearch from '../../hooks/useSearch';
 import { getSearchValue } from '../../slice/searchSlice';
+import { useGetSearchQuery } from '../../services/JSearch';
 import CircularLoader from '../Loader/Circular';
 import { CustomButton, JobCard } from '../../components';
 import SearchInput from './SearchInput';
 import icons from '../../assets/icons';
 
-export default function RecentJobPost({ recentJobs }) {
+export default function RecentJobPost({ recentJobs, company }) {
   const [clicked, setClicked] = useState(false);
   const [sources, setSources] = useState(recentJobs?.slice(0, 4));
-  const { data, dispatch, isError, isFetching } = useSearch();
+  const dispatch = useDispatch();
+  const value = useSelector(({ searchSlice }) => searchSlice.value);
+
+  const query = `${value.search} in ${company}`;
+
+  const { data, isError, isFetching } = useGetSearchQuery(
+    {
+      name: query,
+      currentPage: '1',
+      employmentTypes: 'FULLTIME',
+    },
+    {
+      skip: value === '',
+      refetchOnMountOrArgChange: value !== '',
+    }
+  );
 
   useEffect(() => {
     setSources(clicked ? recentJobs : recentJobs?.slice(0, 4));
@@ -35,7 +58,6 @@ export default function RecentJobPost({ recentJobs }) {
         Oppss...! Something went wrong, please try to reload the page
       </Alert>
     );
-
   return (
     <Container
       sx={{
@@ -47,9 +69,15 @@ export default function RecentJobPost({ recentJobs }) {
       }}
     >
       <SearchInput isFetching={isFetching} onSubmit={onSubmit} />
+      {data?.data.length < 1 && (
+        <Typography variant='bodyM4_4' sx={{ color: 'red' }}>
+          Not found
+        </Typography>
+      )}
       <Box
         sx={{
           width: '100%',
+          marginTop: '20px',
         }}
       >
         {data && data?.data?.length > 1 && (
@@ -85,6 +113,7 @@ export default function RecentJobPost({ recentJobs }) {
                 </IconButton>
               }
               btnText='Apply now'
+              companyName={job?.employer_name}
               salary={{
                 min: job?.job_min_salary,
                 max: job?.job_max_salary,
@@ -101,11 +130,13 @@ export default function RecentJobPost({ recentJobs }) {
             />
           ))}
         </Box>
-        <Divider
-          sx={{
-            marginTop: '50px',
-          }}
-        />
+        {data?.data.length > 1 && (
+          <Divider
+            sx={{
+              marginTop: '50px',
+            }}
+          />
+        )}
       </Box>
       <Typography
         color='text.primary'
@@ -124,12 +155,13 @@ export default function RecentJobPost({ recentJobs }) {
         sx={{
           width: '100%',
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
           gap: '1.88rem',
         }}
       >
         {sources?.map((job, i) => (
           <JobCard
+            key={job?.job_id}
             delay={i * 150}
             jobDesc={`${job?.job_description}`}
             actionButton={
@@ -142,9 +174,9 @@ export default function RecentJobPost({ recentJobs }) {
               min: job?.job_min_salary,
               max: job?.job_max_salary,
             }}
+            companyName={job?.employer_name}
             currency={job?.job_salary_currency ?? 'USD'}
             jobId={job?.job_id}
-            key={job?.job_id}
             period={job?.job_salary_period}
             logo={job?.employer_logo}
             type={'companyDetail'}

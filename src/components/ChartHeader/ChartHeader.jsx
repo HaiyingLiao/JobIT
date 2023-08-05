@@ -2,6 +2,13 @@ import { Typography } from '@mui/material';
 
 const ChartHeader = ({ isMobile, title, location }) => {
   const typographyVariant = isMobile ? 'bodyM' : 'h2';
+
+  function capitalize(str) {
+    return str
+      .split(' ')
+      .map((word) => word[0]?.toUpperCase() + word.slice(1))
+      .join(' ');
+  }
   return (
     <Typography
       component='header'
@@ -17,17 +24,11 @@ const ChartHeader = ({ isMobile, title, location }) => {
       </Typography>
       &nbsp;for&nbsp;
       <Typography component='span' variant={typographyVariant}>
-        {title
-          .split(' ')
-          .map((word) => word[0]?.toUpperCase() + word.slice(1))
-          .join(' ') || '(Job Title)'}
+        {title ? capitalize(title) : '(Job Title)'}
       </Typography>
       &nbsp;in&nbsp;
       <Typography component='span' variant={typographyVariant}>
-        {location
-          .split(' ')
-          .map((word) => word[0]?.toUpperCase() + word.slice(1))
-          .join(' ') || '(Location)'}
+        {location ? capitalize(location) : '(Location)'}
       </Typography>
     </Typography>
   );

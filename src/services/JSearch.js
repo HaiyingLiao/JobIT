@@ -18,6 +18,7 @@ export const jSearchApi = createApi({
       query: query =>
         `search?query=${query.query}&page=${query.page}&num_pages=${query.num_pages}`
     }),
+
     getEstimatedSalaries: builder.query({
       query: ({ title, location, radius }) => {
         if (title && location && radius) {
@@ -26,10 +27,9 @@ export const jSearchApi = createApi({
       }
     }),
 
-    // Hi Team do the needfull query from here. I made a sample query above.
     getSearch: builder.query({
       query: ({ name, currentPage, employmentTypes }) => {
-        return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}`;
+        return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}`
       }
     }),
 
@@ -52,5 +52,5 @@ export const {
   useGetEstimatedSalariesQuery,
   useGetSearchQuery,
   useGetCompanyDetailQuery,
-  useGetJobByIdQuery
+  useGetJobByIdQuery,
 } = jSearchApi;

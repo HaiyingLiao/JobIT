@@ -57,16 +57,7 @@ const JobSearchPage = () => {
   if (isError) return <NotFound />;
   console.log(data.data);
   return (
-    <Grid
-      container
-      spacing={5}
-      sx={{
-        marginTop: '70px',
-        backgroundColor: 'customColor.pageBG',
-        maxWidth: '1500px',
-        padding: '0 5% 3%'
-      }}
-    >
+    <Grid container spacing={5}>
       <Grid item xs={12}>
         <Typography variant='h1' mb='12px'>
           Let’s find your dream job

@@ -33,12 +33,13 @@ const JobCard = props => {
     companyAdress
   } = props;
 
-  const homeCard = type === 'homeJobcard';
-  const companyDetailCard = type === 'companyDetail';
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
+  const shouldRenderTechButtons = !!(
+    type === 'homeJobcard' || type === 'companyDetail'
+  );
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
-  const techLength = slicedRequiredtech.map(tech => tech.split(' ').length);
+  // const techLength = slicedRequiredtech.map(tech => tech.split(' ').length);
 
   return (
     <Card
@@ -59,70 +60,75 @@ const JobCard = props => {
       })}
     >
       <CardHeader
+        id='header'
         sx={{
-          paddingBottom: '1.38rem'
+          paddingBottom: '30px !important',
+          '&.MuiCardHeader-root': {
+            padding: '0'
+          },
+          overflow: 'hidden',
+          flexDirection: {
+            sm: 'row',
+            xs: 'column'
+          },
+          alignItems: {
+            xs: 'start'
+          }
         }}
         avatar={
-          <Box
-            sx={{
-              borderRadius: '10px',
-              background: 'rgba(23, 23, 37, 0.06)'
-            }}
-          >
+          <Link to={`/company/${companyName}`}>
             <img
               onError={e => (e.target.src = placeholder)}
               loading='lazy'
               src={logo ?? placeholder}
               alt='logo'
               style={{
-                objectFit: 'contain',
-                borderRadius: '10px',
+                backgroundColor: 'rgba(23, 23, 37, 0.06)',
+                objectFit: 'inherit',
+                borderRadius: '5px',
                 maxWidth: '46px',
-                height: '46px'
+                height: '46px',
+                aspectRatio: '1/1',
+                padding: '5px',
+                marginTop: '10px'
               }}
             />
-          </Box>
-        }
-        title={
-          <Link
-            href='/'
-            style={{
-              textDecoration: 'none'
-            }}
-          >
-            <Typography
-              color='text.primary'
-              sx={{
-                typography: {
-                  xs: 'bodyM_2',
-                  lg: 'bodyL_2'
-                },
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                maxWidth: {
-                  xs: '200px',
-                  md: '250px'
-                }
-              }}
-            >
-              {title}
-            </Typography>
           </Link>
         }
+        title={
+          <Typography
+            color='text.primary'
+            sx={{
+              typography: {
+                xs: 'bodyM_2',
+                lg: 'bodyL_2'
+              },
+              paddingTop: '1px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              maxWidth: {
+                xs: '200px',
+                md: '250px'
+              }
+            }}
+          >
+            {title}
+          </Typography>
+        }
         subheader={
-          homeCard || companyDetailCard ? (
+          shouldRenderTechButtons ? (
             slicedRequiredtech?.map((tech, i) => (
               <CustomButton
                 sx={{
-                  marginX: '3px',
-                  maxWidth: '90px',
+                  marginX: '2px',
+                  maxWidth: '40px',
                   direction: 'ltr',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
-                  textAlign: 'left !important',
+                  textAlign: 'center !important',
                   padding: '5px',
-                  display: techLength > 15 ? 'inline-block' : 'inline',
+                  display: tech.length > 15 ? 'inline-block' : 'inline',
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
                   ':hover': {
@@ -135,38 +141,39 @@ const JobCard = props => {
               />
             ))
           ) : (
-            <>
-              <Typography variant='bodyM4_3' color='text.secondary'>
-                {companyName} <img src={icons.oval1} alt='oval gray icon' />{' '}
-                {companyAdress} <img src={icons.oval1} alt='oval gray icon' /> 3
-                days ago
-              </Typography>
-            </>
+            <Typography variant='bodyM4_3' color='text.secondary'>
+              {companyName} <img src={icons.oval1} alt='oval gray icon' />{' '}
+              {companyAdress} <img src={icons.oval1} alt='oval gray icon' /> 3
+              days ago
+            </Typography>
           )
         }
         action={actionButton}
       />
       <CardContent
         sx={{
-          maxHeight: '100%'
+          maxHeight: '100%',
+          '&.MuiCardContent-root': {
+            padding: '0'
+          }
         }}
       >
         <Typography
           paragraph
-          variant='bodyM_4'
+          variant=' bodyM_4'
           color='text.secondary'
           sx={{
             textOverflow: 'ellipsis',
             overflow: 'hidden',
             whiteSpace: 'wrap',
-            maxHeight: homeCard ? '142px' : '71px',
+            maxHeight: type === 'homeJobcard' ? '142px' : '71px',
             height: '100%'
           }}
         >
           {jobDesc}
         </Typography>
       </CardContent>
-      {homeCard && (
+      {type === 'homeJobcard' && (
         <CardContent
           sx={{
             display: 'flex',
@@ -218,14 +225,13 @@ const JobCard = props => {
           />
         </CardContent>
       )}
-      <CardContent
-        sx={{
-          paddingTop: '30px'
-        }}
-      >
-        {!companyDetailCard &&
-          !homeCard &&
-          slicedRequiredtech?.map((tech, i) => (
+      {!shouldRenderTechButtons && (
+        <CardContent
+          sx={{
+            paddingTop: '30px'
+          }}
+        >
+          {slicedRequiredtech?.map((tech, i) => (
             <CustomButton
               variant='small'
               title={tech}
@@ -238,14 +244,18 @@ const JobCard = props => {
               }}
             />
           ))}
-      </CardContent>
+        </CardContent>
+      )}
       <CardActions
         sx={{
           display: 'flex',
           justifyContent: 'space-between',
           paddingTop: '1.38rem',
           flexWrap: 'wrap',
-          gap: '1.88rem'
+          gap: '1.88rem',
+          '&.MuiCardActions-root ': {
+            padding: '0'
+          }
         }}
       >
         <Box sx={{ display: 'flex', gap: '38px' }}>
@@ -266,7 +276,7 @@ const JobCard = props => {
             )}
           </Typography>
 
-          {!homeCard && !companyDetailCard && (
+          {!shouldRenderTechButtons && (
             <Typography
               variant='bodyL_2'
               sx={{
@@ -306,7 +316,7 @@ const JobCard = props => {
             }
           }}
         >
-          {!homeCard && !companyDetailCard && (
+          {!shouldRenderTechButtons && (
             <CustomButton
               sx={{
                 width: {

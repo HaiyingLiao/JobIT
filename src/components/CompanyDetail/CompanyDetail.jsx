@@ -109,7 +109,7 @@ export default function CompanyDetail({
           />
         </Box>
       </Box>
-      <RecentJobPost recentJobs={recentJobs} />
+      <RecentJobPost recentJobs={recentJobs} company={companyName} />
     </Box>
   );
 }
