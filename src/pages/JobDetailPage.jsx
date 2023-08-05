@@ -1,5 +1,7 @@
 import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
 
 import {
   JobDetail,
@@ -10,10 +12,9 @@ import {
   NotFound
 } from '../components';
 import icons from '../assets/icons';
-import { useGetJobByIdQuery } from '../services/JSearch';
+import { useGetJobByIdQuery, useGetSearchQuery } from '../services/JSearch';
+import { setSearchBarValue } from '../slice/searchBar';
 import getDate from '../Utils/getDate';
-
-const demoData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 const JobDetailPage = () => {
   const date = getDate();
@@ -21,10 +22,19 @@ const JobDetailPage = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const { jobId } = useParams();
   const { data, isFetching, isError } = useGetJobByIdQuery({ id: jobId });
+  const {
+    data: similarJobData,
+    isError: similarJobisError,
+    isFetching: similarJobisFetching
+  } = useGetSearchQuery({
+    name: 'developer',
+    currentPage: '1',
+    employmentTypes: 'FULLTIME'
+  });
 
-  if (isFetching) return <Loader />;
-
-  if (isError) return <NotFound />;
+  if (isFetching || similarJobisFetching) return <Loader />;
+  if (isError || similarJobisError) return <NotFound />;
+  console.log(similarJobData.data);
 
   return (
     <Grid
@@ -65,8 +75,8 @@ const JobDetailPage = () => {
       <Grid item xs={12} lg={4}>
         <Typography variant='bodyL'>Similar Job</Typography>
 
-        {demoData.map((_, i) => (
-          <InlineJobCard key={i} />
+        {similarJobData?.data.map((job, i) => (
+          <InlineJobCard key={i} data={job} />
         ))}
       </Grid>
     </Grid>

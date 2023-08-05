@@ -5,7 +5,12 @@ import Requirement from './Requirement';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
 
-export default function JobInfo({ title, company, JobUrlData }) {
+export default function JobInfo({
+  title,
+  company,
+  JobUrlData,
+  companyAddress
+}) {
   const isMobile = useMediaQuery('(max-width:792px)');
 
   return (
@@ -39,7 +44,9 @@ export default function JobInfo({ title, company, JobUrlData }) {
                 lineHeight: '32px'
               }}
             >
-              {company} - 3 days ago
+              {company} <img src={icons.oval1} alt='oval gray icon' />{' '}
+              {companyAddress} <img src={icons.oval1} alt='oval gray icon' /> 3
+              days ago
             </Typography>
           </div>
           <MoreButton>

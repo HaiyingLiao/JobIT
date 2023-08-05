@@ -47,15 +47,15 @@ const JobSearchPage = () => {
     );
   }, [page]);
 
-  const { data, error, isFetching } = useGetSearchQuery({
+  const { data, isError, isFetching } = useGetSearchQuery({
     name: `${title},${jobLocation}`,
     employmentTypes: jobType,
     currentPage: page
   });
 
   if (isFetching) return <Loader />;
-  if (error) return <NotFound />;
-
+  if (isError) return <NotFound />;
+  console.log(data.data);
   return (
     <Grid
       container

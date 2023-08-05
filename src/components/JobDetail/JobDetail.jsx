@@ -17,6 +17,7 @@ export default function JobDetail({ data }) {
     ? data[0]?.job_description
     : data[0]?.job_description.slice(0, 1000);
   const companyName = data[0]?.employer_name;
+  const companyAddress = `${data[0]?.job_city},${data[0]?.job_country}`;
   const logo = data[0]?.employer_logo ? data[0]?.employer_logo : placeholder;
 
   return (
@@ -33,6 +34,7 @@ export default function JobDetail({ data }) {
       <CardContent>
         <JobInfo
           company={companyName}
+          companyAddress={companyAddress}
           title={data[0]?.job_title}
           JobUrlData={data[0]?.job_apply_link}
         />
