@@ -15,7 +15,8 @@ export default function RecentJobPost({ recentJobs, company }) {
     undefined,
     undefined,
     undefined,
-    company
+    company,
+    undefined
   );
 
   useEffect(() => {
@@ -60,6 +61,7 @@ export default function RecentJobPost({ recentJobs, company }) {
       <Box
         sx={{
           width: '100%',
+          marginTop: '20px',
         }}
       >
         {data && data?.data?.length > 1 && (

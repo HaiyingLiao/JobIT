@@ -2,7 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { useGetSearchQuery } from '../services/JSearch';
 
-export default function useSearch(location, employmentType, page, companyName) {
+export default function useSearch(
+  location,
+  employmentType,
+  page,
+  companyName,
+  num_pages
+) {
   const dispatch = useDispatch();
   const value = useSelector(({ searchSlice }) => searchSlice.value);
   const query =
@@ -13,9 +19,9 @@ export default function useSearch(location, employmentType, page, companyName) {
   const { data, isError, isFetching } = useGetSearchQuery(
     {
       name: query,
-      num_pages: '1',
+      num_pages: num_pages ? num_pages : '1',
       page: page ? page : '1',
-      employmentTypes: employmentType ? employmentType : 'FULLTIME  ',
+      employmentTypes: employmentType ? employmentType : 'FULLTIME',
     },
     {
       skip: value === '',
