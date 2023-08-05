@@ -26,7 +26,9 @@ const JobDetailPage = () => {
   } = useGetSearchQuery({
     name: 'developer',
     currentPage: '1',
-    employmentTypes: 'FULLTIME'
+    employmentTypes: 'FULLTIME',
+    experience: '',
+    isRemote: false
   });
 
   if (isFetching || similarJobisFetching) return <Loader />;
