@@ -66,8 +66,7 @@ const Home = () => {
             sx={theme => ({
               [theme.breakpoints.up('lg')]: {
                 paddingRight: '2rem'
-              },
-              maxWidth: '100%'
+              }
             })}
           >
             <Box id='latestJobSection'>
@@ -193,13 +192,13 @@ const Home = () => {
             <Grid
               container
               sx={theme => ({
-                padding: '0.65rem 1.25rem',
+                padding: '0.5rem 0',
                 backgroundColor: theme.palette.customColor.jobCardBg,
                 borderRadius: '10px',
-                justifyContent: 'space-between',
-                flexWrap: 'wrap'
+                justifyContent: 'space-between'
               })}
             >
+              <InlineJobCard type='homeInlineCard' />
               <InlineJobCard type='homeInlineCard' />
               <InlineJobCard type='homeInlineCard' />
               <InlineJobCard type='homeInlineCard' />

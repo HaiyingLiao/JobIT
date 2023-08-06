@@ -16,7 +16,6 @@ import { formatCurrency } from '../../Utils/numberFormat';
 
 const JobCard = props => {
   const {
-    companyName,
     requiredTech = [],
     title,
     actionButton,
@@ -30,7 +29,9 @@ const JobCard = props => {
     salary,
     btnText,
     currency,
-    period
+    period,
+    companyName,
+    companyAdress
   } = props;
 
   const slicedRequiredtech = (requiredTech && requiredTech.slice(0, 3)) || [];
@@ -39,16 +40,14 @@ const JobCard = props => {
   );
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
+  // const techLength = slicedRequiredtech.map(tech => tech.split(' ').length);
 
   return (
     <Card
       sx={theme => ({
         padding: '1.25rem',
         width: '100%',
-        maxWidth: {
-          xs: shouldRenderTechButtons ? '100%' : '95%',
-          md: shouldRenderTechButtons ? '100%' : '950px'
-        },
+        maxWidth: '100%',
         height: '100%',
         opacity: '0',
         borderRadius: '15px',
@@ -68,7 +67,14 @@ const JobCard = props => {
           '&.MuiCardHeader-root': {
             padding: '0'
           },
-          overflow: 'hidden'
+          overflow: 'hidden',
+          flexDirection: {
+            sm: 'row',
+            xs: 'column'
+          },
+          alignItems: {
+            xs: 'start'
+          }
         }}
         avatar={
           <Link to={`/company/${companyName}`}>
@@ -136,13 +142,11 @@ const JobCard = props => {
               />
             ))
           ) : (
-            <>
-              <Typography variant='bodyM4_3' color='text.secondary'>
-                UIHUT Technologies LLC{' '}
-                <img src={icons.oval1} alt='oval gray icon' /> Sylhet, BD{' '}
-                <img src={icons.oval1} alt='oval gray icon' /> 3 days ago
-              </Typography>
-            </>
+            <Typography variant='bodyM4_3' color='text.secondary'>
+              {companyName} <img src={icons.oval1} alt='oval gray icon' />{' '}
+              {companyAdress} <img src={icons.oval1} alt='oval gray icon' /> 3
+              days ago
+            </Typography>
           )
         }
         action={actionButton}
@@ -174,7 +178,8 @@ const JobCard = props => {
         <CardContent
           sx={{
             display: 'flex',
-            justifyContent: 'space-between'
+            justifyContent: 'space-between',
+            paddingTop: '30px'
           }}
         >
           <CustomButton

@@ -9,7 +9,7 @@ import {
   useMediaQuery
 } from '@mui/material';
 
-import demoImg from '../../assets/images/google.png';
+import { placeholder } from '../../assets/images';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
 const bull = (
@@ -21,7 +21,8 @@ const bull = (
   </Box>
 );
 
-const InlineJobCard = ({ type }) => {
+const InlineJobCard = ({ type, data }) => {
+  console.log(data);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeInlineCard';
@@ -35,9 +36,10 @@ const InlineJobCard = ({ type }) => {
         backgroundColor: cardType
           ? 'customColor.requirementBg'
           : 'customColor.jobCardBg',
+
+        margin: '20px 0px',
         borderRadius: '10px',
-        width: '100%',
-        margin: '10px auto'
+        width: '100%'
       }}
     >
       <CardContent
@@ -49,19 +51,26 @@ const InlineJobCard = ({ type }) => {
         }}
       >
         <Box>
-          <img src={demoImg} alt='logo' />
+          <img
+            src={data?.employer_logo ? data?.employer_logo : placeholder}
+            alt='logo'
+            width={40}
+            height={40}
+          />
         </Box>
 
         <Stack spacing={1}>
           <Typography variant={isMobile ? 'bodyM2_2' : 'bodyM_2'}>
-            Passionate programmer
+            {data?.job_title}
           </Typography>
 
           <Typography
             variant={isMobile ? 'bodyM4_4' : 'bodyM3_4'}
             color='text.secondary'
           >
-            Google{bull}California, USA
+            {data?.employer_name}
+            {bull}
+            {`${data?.job_city},${data?.job_country}`}
           </Typography>
         </Stack>
 

@@ -6,21 +6,19 @@ import { ThemeProvider } from '@emotion/react';
 import { useSelector } from 'react-redux';
 
 import { Navbar } from './components';
-
 import {
   Home,
-  JobSearchPage,
   EstimatedSalary,
   JobDetailPage,
-  CompanyDetail,
+  JobSearchPage,
+  CompanyDetail
 } from './pages';
-
 import './app.css';
 import { darkTheme, lightTheme } from './theme';
 import NotFound from './components/Error/NotFound/NotFound';
 
 export default function App() {
-  const mode = useSelector((state) => state.theme.value);
+  const mode = useSelector(state => state.theme.value);
   const theme = mode ? darkTheme : lightTheme;
 
   return (
@@ -30,32 +28,38 @@ export default function App() {
         <Navbar />
 
         <Box
-          className='mainContainer'
           sx={{
-            height: '100%',
             width: '100%',
-            margin: '0 auto',
             backgroundColor: 'customColor.pageBG',
+            paddingBottom: '40px'
           }}
         >
-          <Routes>
-            <Route exact path='/' element={<Home />} />
-            <Route exact path='/job-search' element={<JobSearchPage />} />
-            <Route
-              exact
-              path='/job-detail/:jobId'
-              element={<JobDetailPage />}
-            />
-            <Route
-              exact
-              path='/estimated-salary'
-              element={<EstimatedSalary />}
-            />
+          <Box
+            className='mainContainer'
+            sx={{
+              height: '100%',
+              width: '100%',
+              maxWidth: '1470px',
+              margin: '0 auto',
+              paddingTop: '100px',
+              paddingX: '5%'
+            }}
+          >
+            <Routes>
+              <Route exact path='/' element={<Home />} />
+              <Route exact path='/job-search' element={<JobSearchPage />} />
+              <Route exact path='/job/:jobId' element={<JobDetailPage />} />
+              <Route
+                exact
+                path='/estimated-salary'
+                element={<EstimatedSalary />}
+              />
 
-            <Route path='/company/:name' element={<CompanyDetail />} />
+              <Route path='/company/:name' element={<CompanyDetail />} />
 
-            <Route path='*' element={<NotFound />} />
-          </Routes>
+              <Route path='*' element={<NotFound />} />
+            </Routes>
+          </Box>
         </Box>
 
         <Toaster />

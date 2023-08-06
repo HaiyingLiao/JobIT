@@ -12,12 +12,14 @@ export const jSearchApi = createApi({
       headers.set('X-RapidAPI-Key', jSearchApiKey);
       headers.set('X-RapidAPI-Host', 'jsearch.p.rapidapi.com');
     }
+    }
   }),
   endpoints: builder => ({
     getJobListings: builder.query({
       query: query =>
         `search?query=${query.query}&page=${query.page}&num_pages=${query.num_pages}`
     }),
+
     getEstimatedSalaries: builder.query({
       query: ({ title, location, radius }) => {
         if (title && location && radius) {
@@ -31,9 +33,16 @@ export const jSearchApi = createApi({
         return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}`;
       }
     }),
+
     getCompanyDetail: builder.query({
       query: companyMame => {
         return `search?query=${companyMame}&page=1&num_pages=1`;
+      }
+    }),
+
+    getJobById: builder.query({
+      query: id => {
+        return `job-details?job_id=${id.id}& extended_publisher_details=false`;
       }
     })
   })
@@ -44,5 +53,5 @@ export const {
   useGetEstimatedSalariesQuery,
   useGetSearchQuery,
   useGetCompanyDetailQuery,
-  useGetJobsByCompanyQuery
+  useGetJobByIdQuery,
 } = jSearchApi;
