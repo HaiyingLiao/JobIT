@@ -1,4 +1,4 @@
-import { keyframes } from "@mui/system";
+import { keyframes } from '@mui/system';
 
 export const fadeIn = keyframes`
   0%{ 
@@ -6,5 +6,4 @@ export const fadeIn = keyframes`
   }
   100%{
     opacity:1;
-    }`
-
+    }`;

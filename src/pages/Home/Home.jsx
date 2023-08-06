@@ -15,6 +15,8 @@ import {
   sinceDays
 } from '../../Utils/TestingTool/dataCleaningTool';
 import FeatCompanyCard from '../../components/FeatCompanyCard/FeatCompanyCard';
+import { fadeIn } from '../../components/SimilarCompany/style';
+
 const Home = () => {
   const { data, error, isFetching } = useGetJobListingsQuery({
     query: 'Developers',
@@ -97,10 +99,10 @@ const Home = () => {
               </Box>
 
               <Grid container spacing={4}>
-                {datas?.map(card => (
+                {datas?.map((card, ind) => (
                   <Grid key={card.job_id} item xs={12} md={6}>
                     <JobCard
-                      delay={100}
+                      delay={ind * 150}
                       jobDesc="In this updated code, the YourComponent now takes a prop cardType that represents the type of the card. You can pass the appropriate cardType value to the component when using it. The shouldRenderTechButtons variable is set to true only if the cardType is neither 'homeCard' nor 'companyDetailCard'. If the cardType matches either of these two values, the tech buttons won't be rendered. Otherwise, the tech buttons will be rendered."
                       actionButton={
                         <IconButton aria-label='settings'>
@@ -185,21 +187,35 @@ const Home = () => {
             </Box>
 
             <Grid
+              id='recComm'
               container
               sx={theme => ({
                 padding: '0.65rem 1.25rem',
                 backgroundColor: theme.palette.customColor.jobCardBg,
                 borderRadius: '10px',
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 flexWrap: 'wrap'
               })}
             >
-              {recommendedCompanies.map(company => (
-                <InlineJobCard
+              {recommendedCompanies.map((company, ind) => (
+                <Grid
+                  item
+                  sm={6}
+                  lg={12}
+                  xs={12}
                   key={company.job_id}
-                  data={company}
-                  type='homeInlineCard'
-                />
+                  sx={{
+                    opacity: '0',
+                    animation: `${fadeIn} 1s linear ${ind * 150}ms forwards`,
+
+                    ':nth-of-type(odd)': {
+                      padding: { sm: '0 1rem 0 0', lg: '0' }
+                    }
+                  }}
+                >
+                  <InlineJobCard data={company} type='homeInlineCard' />
+                </Grid>
               ))}
             </Grid>
           </Grid>

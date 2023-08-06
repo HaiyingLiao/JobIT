@@ -37,8 +37,6 @@ const InlineJobCard = ({ type, data }) => {
 
   return (
     <Card
-      sm={6}
-      md={12}
       sx={{
         maxWidth: '100%',
         backgroundColor: cardType
@@ -111,7 +109,9 @@ const InlineJobCard = ({ type, data }) => {
 
           {cardType ? (
             <Typography variant={isMobile ? 'bodyM4_4' : 'bodyM3_4'}>
-              {data?.job_employment_type}
+              {`${data?.job_employment_type[0]}${data.job_employment_type
+                .slice(1)
+                .toLowerCase()}`}
             </Typography>
           ) : (
             <Box height='18px'></Box>
