@@ -12,7 +12,7 @@ const NavMenuDesktop = () => {
 
   function getActiveTabValueFromPath(pathname) {
     const activeIndex = navMenuItems.findIndex(
-      (menuItem) => menuItem.link === pathname
+      menuItem => menuItem.link === pathname
     );
     return activeIndex !== -1 ? activeIndex : null;
   }
@@ -26,13 +26,13 @@ const NavMenuDesktop = () => {
       value={activeTabValue}
       TabIndicatorProps={{
         style: {
-          backgroundColor: 'primary',
-        },
+          backgroundColor: 'primary'
+        }
       }}
       sx={{ marginLeft: 'auto', marginRight: 'auto' }}
       onChange={handleTabChange}
     >
-      {navMenuItems.map((menuItem) => (
+      {navMenuItems.map(menuItem => (
         <Tab
           key={menuItem.name}
           label={menuItem.name}
@@ -47,8 +47,8 @@ const NavMenuDesktop = () => {
             lineHeight: '24px',
             color: 'secondary.contrastText',
             '&.Mui-selected': {
-              color: '#0BAB7C',
-            },
+              color: '#0BAB7C'
+            }
           }}
           aria-label={`Go to ${menuItem} page`}
         />

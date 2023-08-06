@@ -9,8 +9,6 @@ export default function Loader() {
         justifyContent: 'center',
         alignItems: 'center',
         backgroundColor: theme.palette.mode === 'light' ? '#FAFAFB' : '#13131A',
-        // position: 'fixed',
-        // top: '0',
         zIndex: '10',
         minHeight: 'calc(100vh - 100px)'
       })}

@@ -45,11 +45,6 @@ export default function CompanyDetailPage() {
     <Box
       sx={{
         width: '100%'
-        // backgroundColor: 'customColor.pageBG',
-        // padding: {
-        //   xs: ' 8px',
-        //   sm: ' 30px'
-        // }
       }}
     >
       <Box>
@@ -116,7 +111,7 @@ export default function CompanyDetailPage() {
                 paddingBottom: '20px'
               }}
             >
-              Similar companies
+              Similar Companies
             </Typography>
             <Box
               sx={{

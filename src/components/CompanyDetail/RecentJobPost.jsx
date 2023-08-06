@@ -4,7 +4,7 @@ import {
   Box,
   IconButton,
   Divider,
-  Alert,
+  Alert
 } from '@mui/material';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -28,11 +28,11 @@ export default function RecentJobPost({ recentJobs, company }) {
     {
       name: query,
       currentPage: '1',
-      employmentTypes: 'FULLTIME',
+      employmentTypes: 'FULLTIME'
     },
     {
       skip: value === '',
-      refetchOnMountOrArgChange: value !== '',
+      refetchOnMountOrArgChange: value !== ''
     }
   );
 
@@ -40,7 +40,7 @@ export default function RecentJobPost({ recentJobs, company }) {
     setSources(clicked ? recentJobs : recentJobs?.slice(0, 4));
   }, [clicked]);
 
-  const onSubmit = (data) => dispatch(getSearchValue({ data }));
+  const onSubmit = data => dispatch(getSearchValue({ data }));
 
   const scrollToTop = () => {
     const c = document.documentElement.scrollTop || document.body.scrollTop;
@@ -65,7 +65,7 @@ export default function RecentJobPost({ recentJobs, company }) {
         borderRadius: '10px',
         padding: '5px',
         marginTop: '3.81rem',
-        transition: 'all 300ms ease !important',
+        transition: 'all 300ms ease !important'
       }}
     >
       <SearchInput isFetching={isFetching} onSubmit={onSubmit} />
@@ -77,7 +77,7 @@ export default function RecentJobPost({ recentJobs, company }) {
       <Box
         sx={{
           width: '100%',
-          marginTop: '20px',
+          marginTop: '20px'
         }}
       >
         {data && data?.data?.length > 1 && (
@@ -86,10 +86,10 @@ export default function RecentJobPost({ recentJobs, company }) {
             sx={{
               typography: {
                 xs: 'bodyM',
-                sm: 'bodyL',
+                sm: 'bodyL'
               },
               paddingTop: '30px',
-              paddingBottom: '15px',
+              paddingBottom: '15px'
             }}
           >
             Results({data.data.length})
@@ -100,7 +100,7 @@ export default function RecentJobPost({ recentJobs, company }) {
             width: '100%',
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(360px, 1fr))',
-            gap: '1.88rem',
+            gap: '1.88rem'
           }}
         >
           {data?.data.map((job, i) => (
@@ -116,7 +116,7 @@ export default function RecentJobPost({ recentJobs, company }) {
               companyName={job?.employer_name}
               salary={{
                 min: job?.job_min_salary,
-                max: job?.job_max_salary,
+                max: job?.job_max_salary
               }}
               currency={job?.job_salary_currency ?? 'USD'}
               jobId={job?.job_id}
@@ -133,7 +133,7 @@ export default function RecentJobPost({ recentJobs, company }) {
         {data?.data.length > 1 && (
           <Divider
             sx={{
-              marginTop: '50px',
+              marginTop: '50px'
             }}
           />
         )}
@@ -143,10 +143,10 @@ export default function RecentJobPost({ recentJobs, company }) {
         sx={{
           typography: {
             xs: 'bodyM',
-            sm: 'bodyL',
+            sm: 'bodyL'
           },
           paddingTop: '30px',
-          paddingBottom: '15px',
+          paddingBottom: '15px'
         }}
       >
         Recently Posted Job
@@ -156,7 +156,7 @@ export default function RecentJobPost({ recentJobs, company }) {
           width: '100%',
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-          gap: '1.88rem',
+          gap: '1.88rem'
         }}
       >
         {sources?.map((job, i) => (
@@ -172,7 +172,7 @@ export default function RecentJobPost({ recentJobs, company }) {
             btnText='Apply now'
             salary={{
               min: job?.job_min_salary,
-              max: job?.job_max_salary,
+              max: job?.job_max_salary
             }}
             companyName={job?.employer_name}
             currency={job?.job_salary_currency ?? 'USD'}
@@ -191,13 +191,13 @@ export default function RecentJobPost({ recentJobs, company }) {
           width: '100%',
           display: 'flex',
           justifyContent: 'center',
-          marginTop: '50px',
+          marginTop: '50px'
         }}
       >
         <CustomButton
           onClick={() => {
             setClicked(!clicked);
-            clicked ? scrollToTop() : undefined;
+            clicked && scrollToTop();
           }}
           title={clicked ? 'Hide' : 'See All Jobs'}
           variant='secondaryOutlined'
