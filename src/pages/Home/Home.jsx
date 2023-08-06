@@ -1,6 +1,5 @@
 import { Grid, IconButton, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import { useState } from 'react';
 
 import {
   CustomButton,
@@ -23,28 +22,29 @@ const Home = () => {
     num_pages: '1'
   });
 
-  const [clickedShowMore, setClickedShowMore] = useState(false);
-
   if (isFetching) return <Loader />;
 
   if (error) return <ServerError />;
 
-  const datas = clickedShowMore ? data.data : data.data.slice(0, 4);
+  const datas = data.data.slice(0, 4);
+
+  const sliceCompanies = sliceVal => {
+    const featCompaniesMapped = data?.data
+      .map(job => job)
+      .sort((a, b) => b?.job_apply_quality_score - a?.job_apply_quality_score)
+      .slice(0, sliceVal);
+    return featCompaniesMapped;
+  };
+
+  const featCompanies = sliceCompanies(3);
+  const recommendedCompanies = sliceCompanies(7);
 
   return (
     <Box id='homePage'>
-      <Box
-        sx={{
-          maxWidth: '1470px',
-          margin: '0 auto',
-          padding: '0 5%'
-        }}
-      >
+      <Box>
         <Typography
           sx={theme => ({
-            fontSize: theme.typography.h1,
-            marginTop: '70px',
-            padding: '50px 0'
+            fontSize: theme.typography.h1
           })}
         >
           Welcome to the Job Search Platform for Developers
@@ -53,7 +53,7 @@ const Home = () => {
           sx={theme => ({
             fontSize: theme.typography.bodyL_3,
             color: theme.palette.text.natural6,
-            margin: '0 0 35px'
+            margin: '14px 0 35px'
           })}
         >
           {new Date().toDateString()}
@@ -74,26 +74,24 @@ const Home = () => {
                 sx={{
                   display: 'flex',
                   justifyContent: 'space-between',
-                  alignItems: 'center'
+                  alignItems: 'center !important',
+                  marginBottom: '30px'
                 }}
               >
                 <Typography
                   sx={theme => ({
-                    fontSize: theme.typography.h4,
-                    marginBottom: '30px'
+                    fontSize: theme.typography.h4
                   })}
                 >
                   Latest Job Posts
                 </Typography>
                 <CustomButton
                   variant='small'
-                  title={clickedShowMore ? 'Hide' : 'See All'}
+                  title='See All'
+                  href='/job-search'
                   sx={{
                     backgroundColor: 'customColor.companyJobCardBg',
                     border: '1px solid'
-                  }}
-                  onClick={() => {
-                    setClickedShowMore(!clickedShowMore);
                   }}
                 />
               </Box>
@@ -142,15 +140,11 @@ const Home = () => {
                 spacing={4}
                 sx={{ justifyContent: 'center' }}
               >
-                <Grid item xs={12} sm={6} md={4}>
-                  <FeatCompanyCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <FeatCompanyCard />
-                </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <FeatCompanyCard />
-                </Grid>
+                {featCompanies.map(featComp => (
+                  <Grid key={featComp.job_id} item xs={12} sm={6} md={4}>
+                    <FeatCompanyCard companyData={featComp} />
+                  </Grid>
+                ))}
               </Grid>
             </Box>
           </Grid>
@@ -168,20 +162,21 @@ const Home = () => {
               sx={{
                 display: 'flex',
                 justifyContent: 'space-between',
-                alignItems: 'center'
+                alignItems: 'center',
+                marginBottom: '30px'
               }}
             >
               <Typography
                 sx={theme => ({
-                  fontSize: theme.typography.h4,
-                  marginBottom: '30px'
+                  fontSize: theme.typography.h4
                 })}
               >
-                Recommended Job
+                Recommended For You
               </Typography>
               <CustomButton
                 variant='small'
                 title='See All'
+                href='/job-search'
                 sx={{
                   backgroundColor: 'customColor.companyJobCardBg',
                   border: '1px solid'
@@ -192,18 +187,20 @@ const Home = () => {
             <Grid
               container
               sx={theme => ({
-                padding: '0.5rem 0',
+                padding: '0.65rem 1.25rem',
                 backgroundColor: theme.palette.customColor.jobCardBg,
                 borderRadius: '10px',
-                justifyContent: 'space-between'
+                justifyContent: 'space-between',
+                flexWrap: 'wrap'
               })}
             >
-              <InlineJobCard type='homeInlineCard' />
-              <InlineJobCard type='homeInlineCard' />
-              <InlineJobCard type='homeInlineCard' />
-              <InlineJobCard type='homeInlineCard' />
-              <InlineJobCard type='homeInlineCard' />
-              <InlineJobCard type='homeInlineCard' />
+              {recommendedCompanies.map(company => (
+                <InlineJobCard
+                  key={company.job_id}
+                  data={company}
+                  type='homeInlineCard'
+                />
+              ))}
             </Grid>
           </Grid>
         </Grid>

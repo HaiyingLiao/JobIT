@@ -12,7 +12,6 @@ export const jSearchApi = createApi({
       headers.set('X-RapidAPI-Key', jSearchApiKey);
       headers.set('X-RapidAPI-Host', 'jsearch.p.rapidapi.com');
     }
-    }
   }),
   endpoints: builder => ({
     getJobListings: builder.query({
@@ -53,5 +52,5 @@ export const {
   useGetEstimatedSalariesQuery,
   useGetSearchQuery,
   useGetCompanyDetailQuery,
-  useGetJobByIdQuery,
+  useGetJobByIdQuery
 } = jSearchApi;

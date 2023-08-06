@@ -91,7 +91,6 @@ export const sinceDays = dateData => {
   const numSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
 
   if (numDays >= 1) {
-    console.log(numDays, ' days');
     return `${numDays} days`;
   }
   if (numHours >= 1) {
