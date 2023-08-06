@@ -4,7 +4,9 @@ const initialState = {
   title: 'programmer',
   jobLocation: 'United States',
   jobType: 'FULLTIME',
-  currentPage: 1
+  currentPage: 1,
+  experience: '',
+  isRemote: false
 };
 
 export const searchBar = createSlice({
@@ -12,12 +14,21 @@ export const searchBar = createSlice({
   initialState,
   reducers: {
     setSearchBarValue: (state, action) => {
-      const { title, jobLocation, jobType, currentPage } = action.payload;
+      const {
+        title,
+        jobLocation,
+        jobType,
+        currentPage,
+        experience,
+        isRemote
+      } = action.payload;
 
       state.title = title;
       state.jobLocation = jobLocation;
       state.jobType = jobType;
       state.currentPage = currentPage;
+      state.experience = experience;
+      state.isRemote = isRemote;
     }
   }
 });

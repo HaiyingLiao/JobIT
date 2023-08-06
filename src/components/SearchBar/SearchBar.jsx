@@ -54,7 +54,9 @@ const SearchBar = () => {
         title: jobTitle,
         jobLocation: location.label,
         jobType: formattedContactType,
-        currentPage: currentPage === 'undefined' ? 1 : currentPage
+        currentPage: currentPage === 'undefined' ? 1 : currentPage,
+        experience: '',
+        isRemote: false
       })
     );
 

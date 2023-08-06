@@ -22,7 +22,6 @@ const bull = (
 );
 
 const InlineJobCard = ({ type, data }) => {
-  console.log(data);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeInlineCard';
@@ -109,7 +108,11 @@ const InlineJobCard = ({ type, data }) => {
               sx={{ minWidth: '18px' }}
             />
 
-            <CustomButton variant='primaryLighter' title='View' />
+            <CustomButton
+              variant='primaryLighter'
+              title='View'
+              href={`/job/${data?.job_id}`}
+            />
           </Box>
         </CardActions>
       )}

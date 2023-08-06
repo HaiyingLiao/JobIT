@@ -1,7 +1,7 @@
 export const navMenuItems = [
   { name: 'Overview', link: '/' },
   { name: 'Job Search', link: '/job-search' },
-  { name: 'Estimated Salaries', link: '/estimated-salary' },
+  { name: 'Estimated Salaries', link: '/estimated-salary' }
 ];
 
 export const demoCountries = [
@@ -9,13 +9,13 @@ export const demoCountries = [
   {
     code: 'AE',
     label: 'United Arab Emirates',
-    phone: '971',
+    phone: '971'
   },
   { code: 'AF', label: 'Afghanistan', phone: '93' },
   {
     code: 'AG',
     label: 'Antigua and Barbuda',
-    phone: '1-268',
+    phone: '1-268'
   },
   { code: 'AI', label: 'Anguilla', phone: '1-264' },
   { code: 'AL', label: 'Albania', phone: '355' },
@@ -29,7 +29,7 @@ export const demoCountries = [
     code: 'AU',
     label: 'Australia',
     phone: '61',
-    suggested: true,
+    suggested: true
   },
   { code: 'AW', label: 'Aruba', phone: '297' },
   { code: 'AX', label: 'Alland Islands', phone: '358' },
@@ -37,7 +37,7 @@ export const demoCountries = [
   {
     code: 'BA',
     label: 'Bosnia and Herzegovina',
-    phone: '387',
+    phone: '387'
   },
   { code: 'BB', label: 'Barbados', phone: '1-246' },
   { code: 'BD', label: 'Bangladesh', phone: '880' },
@@ -62,27 +62,27 @@ export const demoCountries = [
     code: 'CA',
     label: 'Canada',
     phone: '1',
-    suggested: true,
+    suggested: true
   },
   {
     code: 'CC',
     label: 'Cocos (Keeling) Islands',
-    phone: '61',
+    phone: '61'
   },
   {
     code: 'CD',
     label: 'Congo, Democratic Republic of the',
-    phone: '243',
+    phone: '243'
   },
   {
     code: 'CF',
     label: 'Central African Republic',
-    phone: '236',
+    phone: '236'
   },
   {
     code: 'CG',
     label: 'Congo, Republic of the',
-    phone: '242',
+    phone: '242'
   },
   { code: 'CH', label: 'Switzerland', phone: '41' },
   { code: 'CK', label: 'Cook Islands', phone: '682' },
@@ -101,7 +101,7 @@ export const demoCountries = [
     code: 'DE',
     label: 'Germany',
     phone: '49',
-    suggested: true,
+    suggested: true
   },
   { code: 'DJ', label: 'Djibouti', phone: '253' },
   { code: 'DK', label: 'Denmark', phone: '45' },
@@ -109,7 +109,7 @@ export const demoCountries = [
   {
     code: 'DO',
     label: 'Dominican Republic',
-    phone: '1-809',
+    phone: '1-809'
   },
   { code: 'DZ', label: 'Algeria', phone: '213' },
   { code: 'EC', label: 'Ecuador', phone: '593' },
@@ -124,19 +124,19 @@ export const demoCountries = [
   {
     code: 'FK',
     label: 'Falkland Islands (Malvinas)',
-    phone: '500',
+    phone: '500'
   },
   {
     code: 'FM',
     label: 'Micronesia, Federated States of',
-    phone: '691',
+    phone: '691'
   },
   { code: 'FO', label: 'Faroe Islands', phone: '298' },
   {
     code: 'FR',
     label: 'France',
     phone: '33',
-    suggested: true,
+    suggested: true
   },
   { code: 'GA', label: 'Gabon', phone: '241' },
   { code: 'GB', label: 'United Kingdom', phone: '44' },
@@ -155,7 +155,7 @@ export const demoCountries = [
   {
     code: 'GS',
     label: 'South Georgia and the South Sandwich Islands',
-    phone: '500',
+    phone: '500'
   },
   { code: 'GT', label: 'Guatemala', phone: '502' },
   { code: 'GU', label: 'Guam', phone: '1-671' },
@@ -165,7 +165,7 @@ export const demoCountries = [
   {
     code: 'HM',
     label: 'Heard Island and McDonald Islands',
-    phone: '672',
+    phone: '672'
   },
   { code: 'HN', label: 'Honduras', phone: '504' },
   { code: 'HR', label: 'Croatia', phone: '385' },
@@ -179,13 +179,13 @@ export const demoCountries = [
   {
     code: 'IO',
     label: 'British Indian Ocean Territory',
-    phone: '246',
+    phone: '246'
   },
   { code: 'IQ', label: 'Iraq', phone: '964' },
   {
     code: 'IR',
     label: 'Iran, Islamic Republic of',
-    phone: '98',
+    phone: '98'
   },
   { code: 'IS', label: 'Iceland', phone: '354' },
   { code: 'IT', label: 'Italy', phone: '39' },
@@ -196,7 +196,7 @@ export const demoCountries = [
     code: 'JP',
     label: 'Japan',
     phone: '81',
-    suggested: true,
+    suggested: true
   },
   { code: 'KE', label: 'Kenya', phone: '254' },
   { code: 'KG', label: 'Kyrgyzstan', phone: '996' },
@@ -206,7 +206,7 @@ export const demoCountries = [
   {
     code: 'KN',
     label: 'Saint Kitts and Nevis',
-    phone: '1-869',
+    phone: '1-869'
   },
 
   { code: 'KR', label: 'Korea, Republic of', phone: '82' },
@@ -229,20 +229,20 @@ export const demoCountries = [
   {
     code: 'MD',
     label: 'Moldova, Republic of',
-    phone: '373',
+    phone: '373'
   },
   { code: 'ME', label: 'Montenegro', phone: '382' },
   {
     code: 'MF',
     label: 'Saint Martin (French part)',
-    phone: '590',
+    phone: '590'
   },
   { code: 'MG', label: 'Madagascar', phone: '261' },
   { code: 'MH', label: 'Marshall Islands', phone: '692' },
   {
     code: 'MK',
     label: 'Macedonia, the Former Yugoslav Republic of',
-    phone: '389',
+    phone: '389'
   },
   { code: 'ML', label: 'Mali', phone: '223' },
   { code: 'MM', label: 'Myanmar', phone: '95' },
@@ -251,7 +251,7 @@ export const demoCountries = [
   {
     code: 'MP',
     label: 'Northern Mariana Islands',
-    phone: '1-670',
+    phone: '1-670'
   },
   { code: 'MQ', label: 'Martinique', phone: '596' },
   { code: 'MR', label: 'Mauritania', phone: '222' },
@@ -286,14 +286,14 @@ export const demoCountries = [
   {
     code: 'PM',
     label: 'Saint Pierre and Miquelon',
-    phone: '508',
+    phone: '508'
   },
   { code: 'PN', label: 'Pitcairn', phone: '870' },
   { code: 'PR', label: 'Puerto Rico', phone: '1' },
   {
     code: 'PS',
     label: 'Palestine, State of',
-    phone: '970',
+    phone: '970'
   },
   { code: 'PT', label: 'Portugal', phone: '351' },
   { code: 'PW', label: 'Palau', phone: '680' },
@@ -315,7 +315,7 @@ export const demoCountries = [
   {
     code: 'SJ',
     label: 'Svalbard and Jan Mayen',
-    phone: '47',
+    phone: '47'
   },
   { code: 'SK', label: 'Slovakia', phone: '421' },
   { code: 'SL', label: 'Sierra Leone', phone: '232' },
@@ -327,30 +327,30 @@ export const demoCountries = [
   {
     code: 'ST',
     label: 'Sao Tome and Principe',
-    phone: '239',
+    phone: '239'
   },
   { code: 'SV', label: 'El Salvador', phone: '503' },
   {
     code: 'SX',
     label: 'Sint Maarten (Dutch part)',
-    phone: '1-721',
+    phone: '1-721'
   },
   {
     code: 'SY',
     label: 'Syrian Arab Republic',
-    phone: '963',
+    phone: '963'
   },
   { code: 'SZ', label: 'Swaziland', phone: '268' },
   {
     code: 'TC',
     label: 'Turks and Caicos Islands',
-    phone: '1-649',
+    phone: '1-649'
   },
   { code: 'TD', label: 'Chad', phone: '235' },
   {
     code: 'TF',
     label: 'French Southern Territories',
-    phone: '262',
+    phone: '262'
   },
   { code: 'TG', label: 'Togo', phone: '228' },
   { code: 'TH', label: 'Thailand', phone: '66' },
@@ -364,18 +364,18 @@ export const demoCountries = [
   {
     code: 'TT',
     label: 'Trinidad and Tobago',
-    phone: '1-868',
+    phone: '1-868'
   },
   { code: 'TV', label: 'Tuvalu', phone: '688' },
   {
     code: 'TW',
     label: 'Taiwan, Republic of China',
-    phone: '886',
+    phone: '886'
   },
   {
     code: 'TZ',
     label: 'United Republic of Tanzania',
-    phone: '255',
+    phone: '255'
   },
   { code: 'UA', label: 'Ukraine', phone: '380' },
   { code: 'UG', label: 'Uganda', phone: '256' },
@@ -383,30 +383,30 @@ export const demoCountries = [
     code: 'US',
     label: 'United States',
     phone: '1',
-    suggested: true,
+    suggested: true
   },
   { code: 'UY', label: 'Uruguay', phone: '598' },
   { code: 'UZ', label: 'Uzbekistan', phone: '998' },
   {
     code: 'VA',
     label: 'Holy See (Vatican City State)',
-    phone: '379',
+    phone: '379'
   },
   {
     code: 'VC',
     label: 'Saint Vincent and the Grenadines',
-    phone: '1-784',
+    phone: '1-784'
   },
   { code: 'VE', label: 'Venezuela', phone: '58' },
   {
     code: 'VG',
     label: 'British Virgin Islands',
-    phone: '1-284',
+    phone: '1-284'
   },
   {
     code: 'VI',
     label: 'US Virgin Islands',
-    phone: '1-340',
+    phone: '1-340'
   },
   { code: 'VN', label: 'Vietnam', phone: '84' },
   { code: 'VU', label: 'Vanuatu', phone: '678' },
@@ -417,56 +417,25 @@ export const demoCountries = [
   { code: 'YT', label: 'Mayotte', phone: '262' },
   { code: 'ZA', label: 'South Africa', phone: '27' },
   { code: 'ZM', label: 'Zambia', phone: '260' },
-  { code: 'ZW', label: 'Zimbabwe', phone: '263' },
+  { code: 'ZW', label: 'Zimbabwe', phone: '263' }
 ];
 
-// temporary data, later fetch from API
 export const demoListType = [
   {
     title: 'Type Of Employment',
-    data: [
-      { type: 'Full Time', num: 103 },
-      { type: 'Part Time', num: 142 },
-      { type: 'Internship', num: 142 },
-      { type: 'Freelance', num: 103 },
-      { type: 'Remote', num: 142 },
-      { type: 'Co-founder', num: 142 },
-      { type: 'Contract', num: 142 },
-    ],
+    data: ['Full Time', 'Part Time', 'Intern', 'Contractor']
   },
   {
     title: 'Experience Level',
     data: [
-      { type: 'Senior Level', num: 103 },
-      { type: 'Entry Level', num: 142 },
-      { type: 'Mid Level', num: 142 },
-      { type: 'Student Level', num: 103 },
-      { type: 'Directors', num: 142 },
-      { type: 'VP or Above', num: 142 },
-      { type: 'Contract', num: 142 },
-    ],
-  },
-  {
-    title: 'Salary Range',
-    data: [
-      { type: '$0 - $100', num: 103 },
-      { type: '$101 - $200', num: 142 },
-      { type: '$201 - $500', num: 142 },
-      { type: '$501 - $750', num: 103 },
-      { type: '$751 - $1000', num: 142 },
-      { type: '$1000 Above', num: 142 },
-    ],
+      'more than 3 years experience',
+      'Under 3 years of experience',
+      'no experience',
+      'no degree'
+    ]
   },
   {
     title: 'Location',
-    data: [{ type: 'demo', num: 103 }],
-  },
-  {
-    title: 'Language',
-    data: [{ type: 'demo', num: 103 }],
-  },
-  {
-    title: 'Facility',
-    data: [{ type: 'demo', num: 103 }],
-  },
+    data: ['remote jobs only']
+  }
 ];
