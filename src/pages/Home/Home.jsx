@@ -116,7 +116,8 @@ const Home = () => {
                       btnText='Visit now'
                       minSalary={formatSalary(card?.job_min_salary)}
                       maxSalary={formatSalary(card?.job_max_salary)}
-                      xxjobId={card?.job_id}
+                      jobId={card?.job_id}
+                      companyName={card?.employer_name}
                       logo={card?.employer_logo}
                       type='homeJobcard'
                       title={card?.job_title}

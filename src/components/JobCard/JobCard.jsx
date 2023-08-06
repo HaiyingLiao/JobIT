@@ -16,6 +16,7 @@ import { formatCurrency } from '../../Utils/numberFormat';
 
 const JobCard = props => {
   const {
+    companyName,
     requiredTech = [],
     title,
     actionButton,
@@ -70,7 +71,7 @@ const JobCard = props => {
           overflow: 'hidden'
         }}
         avatar={
-          <Box>
+          <Link to={`/company/${companyName}`}>
             <img
               onError={e => (e.target.src = placeholder)}
               loading='lazy'
@@ -87,35 +88,28 @@ const JobCard = props => {
                 marginTop: '10px'
               }}
             />
-          </Box>
+          </Link>
         }
         title={
-          <Link
-            href={`/job/${jobId}`}
-            style={{
-              textDecoration: 'none'
+          <Typography
+            color='text.primary'
+            sx={{
+              typography: {
+                xs: 'bodyM_2',
+                lg: 'bodyL_2'
+              },
+              paddingTop: '1px',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              whiteSpace: 'nowrap',
+              maxWidth: {
+                xs: '200px',
+                md: '250px'
+              }
             }}
           >
-            <Typography
-              color='text.primary'
-              sx={{
-                typography: {
-                  xs: 'bodyM_2',
-                  lg: 'bodyL_2'
-                },
-                paddingTop: '1px',
-                textOverflow: 'ellipsis',
-                overflow: 'hidden',
-                whiteSpace: 'nowrap',
-                maxWidth: {
-                  xs: '200px',
-                  md: '250px'
-                }
-              }}
-            >
-              {title}
-            </Typography>
-          </Link>
+            {title}
+          </Typography>
         }
         subheader={
           shouldRenderTechButtons ? (
