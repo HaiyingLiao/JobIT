@@ -26,12 +26,13 @@ const JobDetailPage = () => {
   } = useGetSearchQuery({
     name: 'developer',
     currentPage: '1',
-    employmentTypes: 'FULLTIME'
+    employmentTypes: 'FULLTIME',
+    experience: '',
+    isRemote: false
   });
 
   if (isFetching || similarJobisFetching) return <Loader />;
   if (isError || similarJobisError) return <NotFound />;
-  console.log(similarJobData.data);
 
   return (
     <Grid container spacing={5}>

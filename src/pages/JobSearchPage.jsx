@@ -6,20 +6,15 @@ import {
   useMediaQuery,
   Box,
   IconButton,
-  Pagination
+  Pagination,
+  CircularProgress
 } from '@mui/material';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { setSearchBarValue } from '../slice/searchBar';
 import { useGetSearchQuery } from '../services/JSearch';
-import {
-  JobCard,
-  SearchBar,
-  FilterSideBar,
-  Loader,
-  NotFound
-} from '../components';
+import { JobCard, SearchBar, FilterSideBar, NotFound } from '../components';
 import icons from '../assets/icons';
 import { placeholder } from '../assets/images';
 import getDate from '../Utils/getDate';
@@ -32,9 +27,11 @@ const JobSearchPage = () => {
   const dispatch = useDispatch();
   const [page, setPage] = useState(1);
 
-  const { title, jobLocation, jobType } = useSelector(state => {
-    return state.searchBar;
-  });
+  const { title, jobLocation, jobType, experience, isRemote } = useSelector(
+    state => {
+      return state.searchBar;
+    }
+  );
 
   useEffect(() => {
     dispatch(
@@ -42,7 +39,9 @@ const JobSearchPage = () => {
         currentPage: 1,
         title,
         jobLocation,
-        jobType
+        jobType,
+        experience,
+        isRemote
       })
     );
   }, [page]);
@@ -50,19 +49,20 @@ const JobSearchPage = () => {
   const { data, isError, isFetching } = useGetSearchQuery({
     name: `${title},${jobLocation}`,
     employmentTypes: jobType,
-    currentPage: page
+    currentPage: page,
+    experience,
+    isRemote
   });
 
-  if (isFetching) return <Loader />;
   if (isError) return <NotFound />;
-  console.log(data.data);
+
   return (
     <Grid container spacing={5}>
       <Grid item xs={12}>
         <Typography variant='h1' mb='12px'>
           Let’s find your dream job
         </Typography>
-        <Typography variant=' bodyL_2' color='text.secondary'>
+        <Typography variant='h6' color='text.secondary'>
           {date}
         </Typography>
       </Grid>
@@ -103,30 +103,43 @@ const JobSearchPage = () => {
             <img src={icons.cheveron} alt='cheveron' />
           </Stack>
         </Stack>
-
-        {data?.data.map((job, i) => (
-          <Grid item sm={12} mb='15px' key={i}>
-            <JobCard
-              delay={i * 100}
-              jobDesc={job.job_description}
-              actionButton={
-                <IconButton aria-label='settings'>
-                  <img src={icons.isMore} alt='isMore' />
-                </IconButton>
-              }
-              maxSalary={200}
-              minSalary={300}
-              jobId={job.job_id}
-              logo={job.employer_logo ? job.employer_logo : placeholder}
-              title={job.job_title}
-              btnText={'Apply Now'}
-              requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
-              variant={'primaryLighter'}
-              companyName={job.employer_name}
-              companyAdress={`${job.job_city},${job.job_country}`}
-            />
-          </Grid>
-        ))}
+        {isFetching ? (
+          <Box
+            sx={{
+              width: isMobile ? '100%' : '90%',
+              margin: '0 auto',
+              height: '100%',
+              display: 'flex',
+              justifyContent: 'center'
+            }}
+          >
+            <CircularProgress color='primary' />
+          </Box>
+        ) : (
+          data?.data.map((job, i) => (
+            <Grid item sm={12} mb='15px' key={i}>
+              <JobCard
+                delay={i * 100}
+                jobDesc={job.job_description}
+                actionButton={
+                  <IconButton aria-label='settings'>
+                    <img src={icons.isMore} alt='isMore' />
+                  </IconButton>
+                }
+                maxSalary={200}
+                minSalary={300}
+                jobId={job.job_id}
+                logo={job.employer_logo ? job.employer_logo : placeholder}
+                title={job.job_title}
+                btnText={'Apply Now'}
+                requiredTech={['PHP', 'LARAVEL', 'JAVASCRIPT', 'REACT']}
+                variant={'primaryLighter'}
+                companyName={job.employer_name}
+                companyAdress={`${job.job_city},${job.job_country}`}
+              />
+            </Grid>
+          ))
+        )}
 
         <Pagination
           count={20}

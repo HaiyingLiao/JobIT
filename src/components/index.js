@@ -21,3 +21,4 @@ export { default as ChartHeader } from './ChartHeader/ChartHeader';
 export { default as EstSalariesForm } from './EstSalariesForm/EstSalariesForm';
 export { default as EstSalariesHeader } from './EstSalariesHeader/EstSalariesHeader';
 export { default as FilterSideBar } from './FilterSideBar/FilterSideBar';
+export { default as Circular } from './Loader/Circular';

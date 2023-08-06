@@ -28,8 +28,8 @@ export const jSearchApi = createApi({
     }),
 
     getSearch: builder.query({
-      query: ({ name, currentPage, employmentTypes }) => {
-        return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}`;
+      query: ({ name, currentPage, employmentTypes, experience, isRemote }) => {
+        return `search?query=${name}&page=${currentPage}&employment_types=${employmentTypes}&remote_jobs_only=${isRemote}&job_requirements=${experience}`;
       }
     }),
 

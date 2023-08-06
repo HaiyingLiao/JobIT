@@ -8,13 +8,13 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import { placeholder } from '../../assets/images';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
-
 import { formatCurrency } from '../../Utils/numberFormat';
-import { Link } from 'react-router-dom';
+
 const bull = (
   <Box
     component='span'
@@ -134,7 +134,11 @@ const InlineJobCard = ({ type, data }) => {
               sx={{ minWidth: '18px' }}
             />
 
-            <CustomButton variant='primaryLighter' title='View' />
+            <CustomButton
+              variant='primaryLighter'
+              title='View'
+              href={`/job/${data?.job_id}`}
+            />
           </Box>
         </CardActions>
       )}
