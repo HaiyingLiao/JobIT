@@ -11,12 +11,12 @@ const NavMenuDesktop = () => {
       value={location.pathname}
       TabIndicatorProps={{
         style: {
-          backgroundColor: 'primary',
-        },
+          backgroundColor: 'primary'
+        }
       }}
       sx={{ marginLeft: 'auto', marginRight: 'auto' }}
     >
-      {navMenuItems.map((menuItem) => (
+      {navMenuItems.map(menuItem => (
         <Tab
           key={menuItem.name}
           label={menuItem.name}
@@ -32,8 +32,8 @@ const NavMenuDesktop = () => {
             lineHeight: '24px',
             color: 'secondary.contrastText',
             '&.Mui-selected': {
-              color: '#0BAB7C',
-            },
+              color: '#0BAB7C'
+            }
           }}
           aria-label={`Go to ${menuItem.name} page`}
         />

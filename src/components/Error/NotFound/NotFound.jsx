@@ -9,7 +9,7 @@ export default function NotFound() {
     <Box
       sx={{
         width: '100%',
-        height: '100%',
+        height: 'auto',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -23,11 +23,16 @@ export default function NotFound() {
           alignItems: 'center',
           justifyContent: 'center',
           maxWidth: '500px',
-          margin: '0 auto',
-          padding: '1rem'
+          margin: '0 auto'
         }}
       >
-        <NotFoundImage src='/404.svg' alt='404 image' />
+        <NotFoundImage
+          src='/404.svg'
+          alt='404 image'
+          style={{
+            maxHeight: '400px'
+          }}
+        />
         <Typography paragraph align='center'>
           We can not find a page that you looking for
         </Typography>

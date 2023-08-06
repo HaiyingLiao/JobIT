@@ -14,15 +14,15 @@ export default function CompanyDetail({
   country,
   naicsName,
   recentJobs,
-  companyImage,
+  companyImage
 }) {
   return (
     <Box
       sx={{
         maxWidth: {
           xs: '100%',
-          lg: '53.5rem',
-        },
+          lg: '53.5rem'
+        }
       }}
     >
       <CardHeader logo={companyImage ?? placeholder} />
@@ -34,7 +34,7 @@ export default function CompanyDetail({
           display: 'flex',
           justifyContent: 'space-between',
           flexWrap: 'wrap',
-          alignItems: 'center',
+          alignItems: 'center'
         }}
       >
         <div style={{ padding: '5px' }}>
@@ -43,10 +43,10 @@ export default function CompanyDetail({
             sx={{
               typography: {
                 xs: 'bodyM',
-                sm: 'h1',
+                sm: 'h1'
               },
               paddingBottom: '0.62rem',
-              lineHeight: '2.5rem',
+              lineHeight: '2.5rem'
             }}
           >
             {handleFalsy(companyName, 'N/A')}
@@ -57,9 +57,9 @@ export default function CompanyDetail({
               sx={{
                 typography: {
                   xs: 'bodyM3_4',
-                  sm: 'bodyL_3',
+                  sm: 'bodyL_3'
                 },
-                lineHeight: '1.5rem',
+                lineHeight: '1.5rem'
               }}
             >
               {handleFalsy(companyType, 'N/A')}
@@ -71,10 +71,10 @@ export default function CompanyDetail({
               sx={{
                 typography: {
                   xs: 'bodyM4_4',
-                  sm: 'bodyM_3',
+                  sm: 'bodyM_3'
                 },
                 lineHeight: '1.5rem',
-                paddingTop: '0.5rem',
+                paddingTop: '0.5rem'
               }}
             >
               {handleFalsy(naicsName, 'N/A')}
@@ -86,14 +86,21 @@ export default function CompanyDetail({
           sx={{
             width: {
               xs: '100%',
-              sm: 'auto',
+              sm: 'auto'
             },
             display: 'flex',
             flexDirection: 'column',
-            alignItems: 'start',
+            alignItems: 'start'
           }}
         >
-          <AvatarGroup max={3} sx={{ marginBottom: '1.25rem' }}>
+          <AvatarGroup
+            max={3}
+            sx={{
+              marginBottom: '1.25rem',
+              display: 'flex',
+              justifyContent: 'end'
+            }}
+          >
             {[1, 2, 3, 4].map(() => (
               <Avatar alt='Remy Sharp' src={user} key={Math.random() * 53657} />
             ))}
@@ -103,7 +110,7 @@ export default function CompanyDetail({
             title='Follow'
             sx={{
               width: ' 9.0625rem',
-              padding: ' 0.4375rem 0.625rem',
+              padding: ' 0.4375rem 0.625rem'
             }}
             startIcon={<img src={icons.plus} alt='plus icon' />}
           />

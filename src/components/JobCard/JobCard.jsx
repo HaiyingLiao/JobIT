@@ -7,7 +7,6 @@ import {
   Box
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-
 import { fadeIn } from '../SimilarCompany/style';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
@@ -40,16 +39,14 @@ const JobCard = props => {
   );
 
   const salaries = formatCurrency(salary?.min, salary?.max, currency);
-  // const techLength = slicedRequiredtech.map(tech => tech.split(' ').length);
 
   return (
     <Card
       sx={theme => ({
-        padding: '1.25rem',
+        padding: '10px',
         width: '100%',
         maxWidth: '100%',
         height: '100%',
-        opacity: '0',
         borderRadius: '15px',
         transition: 'opacity 500ms ease',
         animation: `${fadeIn} 1s linear ${delay}ms forwards`,
@@ -61,17 +58,12 @@ const JobCard = props => {
       })}
     >
       <CardHeader
-        id='header'
         sx={{
           paddingBottom: '30px !important',
           '&.MuiCardHeader-root': {
             padding: '0'
           },
           overflow: 'hidden',
-          flexDirection: {
-            sm: 'row',
-            xs: 'column'
-          },
           alignItems: {
             xs: 'start'
           }
@@ -84,33 +76,34 @@ const JobCard = props => {
               src={logo ?? placeholder}
               alt='logo'
               style={{
-                backgroundColor: 'rgba(23, 23, 37, 0.06)',
                 objectFit: 'inherit',
                 borderRadius: '5px',
                 maxWidth: '46px',
                 height: '46px',
                 aspectRatio: '1/1',
-                padding: '5px',
-                marginTop: '10px'
+                marginTop: '10px',
+                backgroundColor: '#fff'
               }}
             />
           </Link>
         }
         title={
           <Typography
+            name={title}
+            title={title}
             color='text.primary'
             sx={{
               typography: {
                 xs: 'bodyM_2',
                 lg: 'bodyL_2'
               },
-              paddingTop: '1px',
+              paddingTop: '8px',
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               whiteSpace: 'nowrap',
               maxWidth: {
-                xs: '200px',
-                md: '250px'
+                xs: '160px',
+                sm: '250px'
               }
             }}
           >
@@ -122,13 +115,13 @@ const JobCard = props => {
             slicedRequiredtech?.map((tech, i) => (
               <CustomButton
                 sx={{
-                  marginX: '2px',
+                  marginX: '1px',
                   maxWidth: '40px',
                   direction: 'ltr',
                   textOverflow: 'ellipsis',
                   overflow: 'hidden',
                   textAlign: 'center !important',
-                  padding: '5px',
+                  padding: '3px',
                   display: tech.length > 15 ? 'inline-block' : 'inline',
                   whiteSpace: 'nowrap',
                   fontSize: '10px',
@@ -178,51 +171,76 @@ const JobCard = props => {
         <CardContent
           sx={{
             display: 'flex',
-            justifyContent: 'space-between',
-            paddingTop: '30px'
+            justifyContent: 'start',
+            gap: '10px',
+            paddingTop: '30px',
+            '&.MuiCardContent-root': {
+              paddingX: '0'
+            }
           }}
         >
           <CustomButton
             variant='small'
             title='Full time'
             sx={{
-              maxWidth: '80px',
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               textAlign: 'left',
-              padding: '5px 10px',
               whiteSpace: 'nowrap',
               fontSize: '10px'
             }}
-            startIcon={<img src={icons.briefcase} alt='briefcase' />}
+            startIcon={
+              <img
+                src={icons.briefcase}
+                alt='briefcase'
+                style={{
+                  padding: '3px',
+                  width: 25
+                }}
+              />
+            }
           />
           <CustomButton
             variant='small'
             title='45 applied'
             sx={{
-              maxWidth: '80px',
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               textAlign: 'left',
-              padding: '5px 10px',
               whiteSpace: 'nowrap',
               fontSize: '10px'
             }}
-            startIcon={<img src={icons.people} alt='people' />}
+            startIcon={
+              <img
+                src={icons.people}
+                alt='people'
+                style={{
+                  padding: '3px',
+                  width: 25
+                }}
+              />
+            }
           />
           <CustomButton
             variant='small'
             title={sinceLeft}
             sx={{
-              maxWidth: '80px',
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               textAlign: 'left',
-              padding: '5px 10px',
               whiteSpace: 'nowrap',
               fontSize: '10px'
             }}
-            startIcon={<img src={icons.clock} alt='clock' />}
+            startIcon={
+              <img
+                src={icons.clock}
+                alt='clock'
+                style={{
+                  padding: '3px',
+                  width: 25
+                }}
+              />
+            }
           />
         </CardContent>
       )}

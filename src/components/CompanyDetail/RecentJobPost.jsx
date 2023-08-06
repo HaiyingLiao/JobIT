@@ -196,7 +196,7 @@ export default function RecentJobPost({ recentJobs, company }) {
         <CustomButton
           onClick={() => {
             setClicked(!clicked);
-            clicked ? scrollToTop() : undefined;
+            clicked && scrollToTop();
           }}
           title={clicked ? 'Hide' : 'See All Jobs'}
           variant='secondaryOutlined'

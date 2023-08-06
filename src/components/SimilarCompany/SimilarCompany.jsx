@@ -1,4 +1,4 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, useMediaQuery } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import CustomButton from '../CustomButton/CustomButton';
@@ -10,13 +10,18 @@ export default function SimilarCompany({
   delay,
   companyName,
   logo,
-  companyType,
+  companyType
 }) {
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const array = [1, 2, 3, 4, 5, 6]
+    .map(num => num)
+    .sort((a, b) => a - b)
+    .slice(0, 3);
   return (
     <Box
       sx={{
         width: '100% !important',
-        height: '78px',
+        height: isMobile ? '100%' : '78px',
         opacity: '0',
         transition: 'opacity 500ms ease-in',
         animation: `${fadeIn} 1s linear ${delay}ms forwards`,
@@ -26,8 +31,8 @@ export default function SimilarCompany({
         gap: '1rem',
         minWidth: {
           xs: '100%',
-          md: '350px',
-        },
+          md: '350px'
+        }
       }}
     >
       <Link
@@ -39,8 +44,9 @@ export default function SimilarCompany({
           padding: '1.25rem',
           alignItems: 'center',
           justifyContent: 'space-between',
+          flexDirection: isMobile ? 'column' : 'row',
           textDecoration: 'none',
-          color: 'text.primary',
+          color: 'text.primary'
         }}
       >
         <Box
@@ -48,7 +54,7 @@ export default function SimilarCompany({
             display: 'flex',
             gap: '1rem',
             alignItems: 'center',
-            width: '100%',
+            width: '100%'
           }}
         >
           <img
@@ -63,7 +69,7 @@ export default function SimilarCompany({
               maxWidth: '46px',
               height: '46px',
               aspectRatio: '1/1',
-              padding: '5px',
+              padding: '5px'
             }}
           />
 
@@ -72,18 +78,18 @@ export default function SimilarCompany({
               sx={{
                 typography: {
                   xs: 'bodyM_3',
-                  sm: 'bodyL_2',
+                  sm: 'bodyL_2'
                 },
                 color: 'text.primary',
                 maxWidth: {
                   xs: '100px',
                   sm: '300px',
                   md: '450px',
-                  lg: '100px',
+                  lg: '100px'
                 },
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
-                textOverflow: 'ellipsis',
+                textOverflow: 'ellipsis'
               }}
             >
               {companyName}
@@ -93,7 +99,7 @@ export default function SimilarCompany({
               sx={{
                 typography: 'bodyM3_3',
                 color: 'text.secondary',
-                fontWeight: '400',
+                fontWeight: '400'
               }}
             >
               {companyType}
@@ -106,6 +112,7 @@ export default function SimilarCompany({
           sx={{
             minWidth: '6.125rem',
             padding: '0.375rem 0.625rem',
+            width: isMobile ? '100%' : 'auto'
           }}
           startIcon={<img src={icons.plus} alt='plus icon' />}
         />
