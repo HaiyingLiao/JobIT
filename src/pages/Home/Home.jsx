@@ -134,7 +134,7 @@ const Home = () => {
                   margin: '30px 0'
                 })}
               >
-                Featuted Companies
+                Featured Companies
               </Typography>
               <Grid
                 container
