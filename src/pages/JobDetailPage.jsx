@@ -33,7 +33,6 @@ const JobDetailPage = () => {
 
   if (isFetching || similarJobisFetching) return <Loader />;
   if (isError || similarJobisError) return <NotFound />;
-  console.log(similarJobData.data);
 
   return (
     <Grid container spacing={5}>

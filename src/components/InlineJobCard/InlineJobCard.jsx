@@ -22,7 +22,6 @@ const bull = (
 );
 
 const InlineJobCard = ({ type, data }) => {
-  console.log(data);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeInlineCard';
