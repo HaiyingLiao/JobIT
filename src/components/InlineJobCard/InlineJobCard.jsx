@@ -8,10 +8,13 @@ import {
   useTheme,
   useMediaQuery
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import { placeholder } from '../../assets/images';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
+import { formatCurrency } from '../../Utils/numberFormat';
+
 const bull = (
   <Box
     component='span'
@@ -26,6 +29,12 @@ const InlineJobCard = ({ type, data }) => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const cardType = type === 'homeInlineCard';
 
+  const salaries = formatCurrency(
+    data?.job_min_salary,
+    data?.job_max_salary,
+    data?.job_salary_currency ?? 'USD'
+  );
+
   return (
     <Card
       sx={{
@@ -33,59 +42,76 @@ const InlineJobCard = ({ type, data }) => {
         backgroundColor: cardType
           ? 'customColor.requirementBg'
           : 'customColor.jobCardBg',
-        padding: '10px ',
-        margin: '20px 0px',
         borderRadius: '10px',
-        width: '100%'
+        width: '100%',
+        margin: '10px auto',
+        boxShadow: 'unset'
       }}
     >
       <CardContent
         sx={{
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'space-between',
+          // justifyContent: 'space-between',
           gap: '10px'
         }}
       >
         <Box>
-          <img
-            src={data?.employer_logo ? data?.employer_logo : placeholder}
-            alt='logo'
-            width={40}
-            height={40}
-          />
+          <Link to={`/company/${data?.employer_name}`}>
+            <img
+              src={data?.employer_logo ? data?.employer_logo : placeholder}
+              alt='logo'
+              width={40}
+              height={40}
+            />
+          </Link>
         </Box>
 
-        <Stack spacing={1}>
+        <Stack spacing={1} sx={{ width: '60%', maxWidth: '100%' }}>
           <Typography variant={isMobile ? 'bodyM2_2' : 'bodyM_2'}>
-            {data?.job_title}
+            <Link
+              style={{ textDecoration: 'none', color: 'unset' }}
+              to={`/job/${data?.job_id}`}
+            >
+              {data?.job_title.slice(0, 20)}
+            </Link>
           </Typography>
 
           <Typography
             variant={isMobile ? 'bodyM4_4' : 'bodyM3_4'}
             color='text.secondary'
           >
-            {data?.employer_name}
+            {data?.employer_name.slice(0, 20)}
             {bull}
             {`${data?.job_city},${data?.job_country}`}
           </Typography>
         </Stack>
 
-        <Stack spacing={1}>
+        <Stack
+          spacing={1}
+          sx={{
+            width: '30%',
+            maxWidth: '100%',
+
+            textAlign: 'right'
+          }}
+        >
           <Typography variant={isMobile ? 'bodyM4_2' : 'bodyM3_3'}>
-            $70-80
+            {salaries?.min && salaries.max
+              ? salaries?.min - salaries?.max
+              : salaries}
             <Typography
               variant={isMobile ? 'bodyM4_4' : 'bodyM3_4'}
               component='span'
               color='text.secondary'
-            >
-              / Hr
-            </Typography>
+            ></Typography>
           </Typography>
 
           {cardType ? (
             <Typography variant={isMobile ? 'bodyM4_4' : 'bodyM3_4'}>
-              Full-Time
+              {`${data?.job_employment_type[0]}${data.job_employment_type
+                .slice(1)
+                .toLowerCase()}`}
             </Typography>
           ) : (
             <Box height='18px'></Box>

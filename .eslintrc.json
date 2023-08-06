@@ -13,7 +13,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  "plugins": ["react"],
+  "plugins": ["react", "snakecasejs"],
   "settings": {
     "react": {
       "version": "detect"
