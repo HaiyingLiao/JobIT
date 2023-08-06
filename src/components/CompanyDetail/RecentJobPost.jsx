@@ -11,8 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { getSearchValue } from '../../slice/searchSlice';
 import { useGetSearchQuery } from '../../services/JSearch';
-import CircularLoader from '../Loader/Circular';
-import { CustomButton, JobCard } from '../../components';
+import { CustomButton, JobCard, Circular } from '../../components';
 import SearchInput from './SearchInput';
 import icons from '../../assets/icons';
 
@@ -50,7 +49,7 @@ export default function RecentJobPost({ recentJobs, company }) {
     }
   };
 
-  if (isFetching) return <CircularLoader />;
+  if (isFetching) return <Circular />;
 
   if (isError)
     return (

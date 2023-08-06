@@ -79,6 +79,7 @@ export default function Chart({ isMobile, data, error, isFetching }) {
       const samePublisherList = data.data.filter(
         (job) => job.publisher_name === label
       );
+
       const publishersSalaries = samePublisherList.reduce((acc, job) => {
         barsToDisplay.forEach((barType, i) => {
           acc[i] = (acc[i] || 0) + job[barType];

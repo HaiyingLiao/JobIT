@@ -9,7 +9,8 @@ export default function JobInfo({
   title,
   company,
   JobUrlData,
-  companyAddress
+  companyAddress,
+  data
 }) {
   const isMobile = useMediaQuery('(max-width:792px)');
 
@@ -74,7 +75,7 @@ export default function JobInfo({
             </MoreButton>
           </ButtonWrapper>
         )}
-        <Requirement />
+        <Requirement data={data} />
         {isMobile && (
           <Box sx={{ display: 'flex', gap: '5px', marginTop: '10px' }}>
             <CustomButton

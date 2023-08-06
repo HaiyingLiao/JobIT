@@ -25,6 +25,7 @@ const JobCard = props => {
     jobDesc,
     delay,
     jobId,
+    sinceLeft,
     salary,
     btnText,
     currency,
@@ -226,7 +227,7 @@ const JobCard = props => {
           />
           <CustomButton
             variant='small'
-            title='3 days left'
+            title={sinceLeft}
             sx={{
               textOverflow: 'ellipsis',
               overflow: 'hidden',

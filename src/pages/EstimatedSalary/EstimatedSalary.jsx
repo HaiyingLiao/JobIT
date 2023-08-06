@@ -6,7 +6,7 @@ import {
   useMediaQuery,
   Typography,
   TextField,
-  FormHelperText
+  FormHelperText,
 } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,7 +16,7 @@ import {
   Chart,
   ChartLegend,
   ChartHeader,
-  EstSalariesHeader
+  EstSalariesHeader,
 } from '../../components';
 import useDebounce from '../../Utils/debounce';
 
@@ -25,28 +25,35 @@ const EstimatedSalary = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
   useEffect(() => {
-    fetch('https://api.ipify.org/?format=json')
-      .then(response => response.json())
-      .then(data => {
-        const ipAddress = data.ip;
-        fetch(`https://ipapi.co/${ipAddress}/json/`)
-          .then(response => response.json())
-          .then(locationData => {
-            const city = locationData.city;
-            const region = locationData.region;
-            const country = locationData.country_name;
-            dispatch(
-              setSalaryFormState({
-                name: 'location',
-                value: `${city}, ${region}, ${country}`
-              })
-            );
-          });
-      });
+    const fetchData = async () => {
+      try {
+        const response1 = await fetch('https://api.ipify.org/?format=json');
+        const data1 = await response1.json();
+        const ipAddress = data1.ip;
+
+        const response2 = await fetch(`https://ipapi.co/${ipAddress}/json/`);
+        const locationData = await response2.json();
+
+        const city = locationData.city;
+        const region = locationData.region;
+        const country = locationData.country_name;
+
+        dispatch(
+          setSalaryFormState({
+            name: 'location',
+            value: `${city}, ${region}, ${country}`,
+          })
+        );
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
   }, []);
 
   const dispatch = useDispatch();
-  const { title, location, radius } = useSelector(state => {
+  const { title, location, radius } = useSelector((state) => {
     return state.currentEstimatedSalaries;
   });
 
@@ -58,17 +65,17 @@ const EstimatedSalary = () => {
     {
       title: debouncedTitle,
       location: debouncedLocation,
-      radius: debouncedRadius
+      radius: debouncedRadius,
     },
     { skip: !debouncedTitle || !debouncedLocation || !debouncedRadius }
   );
 
-  const handleChange = e => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     dispatch(
       setSalaryFormState({
         name,
-        value
+        value,
       })
     );
   };
@@ -80,15 +87,15 @@ const EstimatedSalary = () => {
     alignItems: 'flex-start',
     bgcolor: 'customColor.jobCardBg',
     borderRadius: '10px',
-    padding: '36px 10px',
-    marginTop: isMobile ? '0' : '45px'
+    padding: '25px 20px',
+    marginTop: isMobile ? '0' : '45px',
   };
 
   const textFieldStyles = {
     borderRadius: '12px',
     mt: '12px',
     bgcolor: 'customColor.toggleBtn',
-    border: '1px solid rgba(226, 226, 234, 0.60)'
+    border: '1px solid rgba(226, 226, 234, 0.60)',
   };
 
   return (
@@ -96,20 +103,27 @@ const EstimatedSalary = () => {
       sx={{
         // backgroundColor: 'customColor.pageBG',
         minHeight: '100vh',
-        fontFamily: '"Manrope", sans-serif'
+        fontFamily: '"Manrope", sans-serif',
         // padding: { xs: '80px 20px 80px 20px', lg: '80px' }
       }}
     >
       <Grid
         container
-        // spacing={2}
         sx={{
           // padding: '20px 0 0 0',
-          width: '100%'
+          width: '100%',
         }}
       >
         {/* First Column - Form */}
-        <Grid item sm={6} xs={12} sx={{ paddingBottom: '5%' }}>
+        <Grid
+          item
+          sm={6}
+          xs={12}
+          sx={{
+            paddingBottom: '5%',
+            paddingRight: { xs: 0, sm: '5%' },
+          }}
+        >
           <EstSalariesHeader isMobile={isMobile} />
           {/* Form */}
           <Grid
@@ -124,7 +138,7 @@ const EstimatedSalary = () => {
                 sx={{
                   lineHeight: '24px',
                   fontSize: isMobile ? '15px' : '14px',
-                  fontWeight: '600'
+                  fontWeight: '600',
                 }}
               >
                 Job Title
@@ -140,8 +154,8 @@ const EstimatedSalary = () => {
                     py: '4.5px',
                     fontSize: '14px',
                     fontWeight: '600',
-                    borderRadius: '10px'
-                  }
+                    borderRadius: '10px',
+                  },
                 }}
                 value={title}
                 onChange={handleChange}
@@ -151,7 +165,7 @@ const EstimatedSalary = () => {
                   bgcolor: 'customColor.pageBG',
                   color: '#FF0000',
                   mx: '0',
-                  fontSize: '12px'
+                  fontSize: '12px',
                 }}
               >
                 {debouncedTitle.length === 0 ? 'Please add a job title' : ''}
@@ -164,7 +178,7 @@ const EstimatedSalary = () => {
                 sx={{
                   lineHeight: '24px',
                   fontSize: isMobile ? '15px' : '14px',
-                  fontWeight: '600'
+                  fontWeight: '600',
                 }}
               >
                 Location
@@ -180,8 +194,8 @@ const EstimatedSalary = () => {
                     py: '4.5px',
                     fontSize: isMobile ? '14px' : '13px',
                     fontWeight: isMobile ? '600' : '700',
-                    borderRadius: '10px'
-                  }
+                    borderRadius: '10px',
+                  },
                 }}
                 value={location}
                 onChange={handleChange}
@@ -191,7 +205,7 @@ const EstimatedSalary = () => {
                   bgcolor: 'customColor.pageBG',
                   color: '#FF0000',
                   mx: '0',
-                  fontSize: '12px'
+                  fontSize: '12px',
                 }}
               >
                 {debouncedLocation.length === 0 ? 'Please add a location' : ''}
@@ -203,7 +217,7 @@ const EstimatedSalary = () => {
                 sx={{
                   lineHeight: '24px',
                   fontSize: isMobile ? '15px' : '14px',
-                  fontWeight: '600'
+                  fontWeight: '600',
                 }}
               >
                 Radius
@@ -220,8 +234,8 @@ const EstimatedSalary = () => {
                     py: '4.5px',
                     fontSize: isMobile ? '14px' : '13px',
                     fontWeight: isMobile ? '600' : '700',
-                    borderRadius: '10px'
-                  }
+                    borderRadius: '10px',
+                  },
                 }}
                 value={radius}
                 onChange={handleChange}
@@ -231,7 +245,7 @@ const EstimatedSalary = () => {
                   bgcolor: 'customColor.pageBG',
                   color: '#FF0000',
                   mx: '0',
-                  fontSize: '12px'
+                  fontSize: '12px',
                 }}
               >
                 {debouncedRadius.length === 0 ? 'Please add a radius' : ''}

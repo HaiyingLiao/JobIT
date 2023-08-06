@@ -4,7 +4,7 @@ export function formatSalary(currency) {
     useGrouping: false,
     maximumFractionDigits: 0,
     minimumFractionDigits: 0,
-    notation: 'compact',
+    notation: 'compact'
   }).format(currency);
   return result;
 }
@@ -14,7 +14,7 @@ export function getJobResponsibilities(responsibilities) {
   if (!responsibilities) {
     return 'No responsibilities specified';
   }
-  return responsibilities.map((item) => <li key={item}>{item}</li>);
+  return responsibilities.map(item => <li key={item}>{item}</li>);
 }
 
 // requiredSkills
@@ -22,7 +22,7 @@ export function requiredSkills(requiredSkills) {
   if (!requiredSkills) {
     return 'No required skills specified';
   }
-  return requiredSkills.map((item) => <li key={item}>{item}</li>);
+  return requiredSkills.map(item => <li key={item}>{item}</li>);
 }
 
 // shortenDescirption - here I have padded it with empty spaces at the end... if the description supplied is too short (so the height of the box stays the same) - but not sure if it will work well.
@@ -69,3 +69,36 @@ export function jobId(jobId) {
 
 export const handleFalsy = (value, defaultValue) =>
   value !== undefined && value !== null ? value : defaultValue;
+
+export const sinceDays = dateData => {
+  // Step 1: Parse the given date string into a Date object
+  const givenDate = new Date(dateData);
+
+  // Step 2: Get the current date
+  const currentDate = new Date();
+
+  // Step 3: Calculate the time difference between the two dates in milliseconds
+  const timeDifference = currentDate - givenDate;
+
+  // Step 4: Calculate the number of days, hours, and seconds
+  const numDays = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+  const numHours = Math.floor(
+    (timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  );
+  const numMinutes = Math.floor(
+    (timeDifference % (1000 * 60 * 60)) / (1000 * 60)
+  );
+  const numSeconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+  if (numDays >= 1) {
+    return `${numDays} days`;
+  }
+  if (numHours >= 1) {
+    return `${numHours} hours `;
+  }
+  if (numMinutes >= 1) {
+    return `${numMinutes} minutes `;
+  } else {
+    return `${numSeconds} seconds`;
+  }
+};

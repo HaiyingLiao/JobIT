@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Tabs, Tab } from '@mui/material';
 import { Link, useLocation } from 'react-router-dom';
 
@@ -6,37 +5,23 @@ import { navMenuItems } from '../../constants';
 
 const NavMenuDesktop = () => {
   const location = useLocation();
-  const [activeTabValue, setActiveTabValue] = useState(
-    getActiveTabValueFromPath(location.pathname)
-  );
-
-  function getActiveTabValueFromPath(pathname) {
-    const activeIndex = navMenuItems.findIndex(
-      menuItem => menuItem.link === pathname
-    );
-    return activeIndex !== -1 ? activeIndex : null;
-  }
-
-  const handleTabChange = (_event, value) => {
-    setActiveTabValue(value);
-  };
 
   return (
     <Tabs
-      value={activeTabValue}
+      value={location.pathname}
       TabIndicatorProps={{
         style: {
           backgroundColor: 'primary'
         }
       }}
       sx={{ marginLeft: 'auto', marginRight: 'auto' }}
-      onChange={handleTabChange}
     >
       {navMenuItems.map(menuItem => (
         <Tab
           key={menuItem.name}
           label={menuItem.name}
           component={Link}
+          value={menuItem.link}
           to={menuItem.link}
           sx={{
             textTransform: 'capitalize',
@@ -50,7 +35,7 @@ const NavMenuDesktop = () => {
               color: '#0BAB7C'
             }
           }}
-          aria-label={`Go to ${menuItem} page`}
+          aria-label={`Go to ${menuItem.name} page`}
         />
       ))}
     </Tabs>

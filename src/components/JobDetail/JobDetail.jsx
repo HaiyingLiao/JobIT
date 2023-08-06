@@ -37,6 +37,7 @@ export default function JobDetail({ data }) {
           companyAddress={companyAddress}
           title={data[0]?.job_title}
           JobUrlData={data[0]?.job_apply_link}
+          data={data}
         />
         <section style={{ marginTop: '30px' }}>
           <Typography
