@@ -40,7 +40,7 @@ const JobDetailPage = () => {
         <Typography variant='h1' mb='12px'>
           Let’s find your dream job
         </Typography>
-        <Typography variant=' bodyL_2' color='text.secondary'>
+        <Typography variant='h6' color='text.secondary'>
           {date}
         </Typography>
       </Grid>
@@ -62,7 +62,7 @@ const JobDetailPage = () => {
       </Grid>
 
       <Grid item xs={12} lg={4}>
-        <Typography variant='bodyL'>Similar Job</Typography>
+        <Typography variant='bodyL'>Similar Jobs</Typography>
 
         {similarJobData?.data.map((job, i) => (
           <InlineJobCard key={i} data={job} />
