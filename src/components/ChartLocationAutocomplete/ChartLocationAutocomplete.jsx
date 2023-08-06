@@ -5,7 +5,7 @@ const ChartLocationAutocomplete = () => {
   const [value, setValue] = useState('');
   const [suggestions, setSuggestions] = useState([]);
 
-  const handleInputChange = async (event) => {
+  const handleInputChange = async event => {
     const { value } = event.target;
     setValue(value);
 
@@ -14,18 +14,18 @@ const ChartLocationAutocomplete = () => {
       method: 'GET',
       headers: {
         'X-RapidAPI-Key': 'KJwZZIJSFimshuivMSVGaiYzkRomp15f2vKjsnK4bKzuUzVLzA',
-        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com',
-      },
+        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+      }
     };
 
     try {
       const response = await fetch(url, options);
       const result = await response.json();
 
-      const suggestions = result.data.map((location) => ({
+      const suggestions = result.data.map(location => ({
         city: location.name,
         region: location.region,
-        country: location.country,
+        country: location.country
       }));
       console.log({ suggestions });
 
@@ -40,13 +40,13 @@ const ChartLocationAutocomplete = () => {
       <Autocomplete
         value={value}
         options={suggestions}
-        getOptionLabel={(option) =>
+        getOptionLabel={option =>
           `${option.city}, ${option.region}, ${option.country}`
         }
         onChange={(_, newValue) => {
           setValue(newValue?.city || '');
         }}
-        renderInput={(params) => (
+        renderInput={params => (
           <TextField {...params} label='City' onChange={handleInputChange} />
         )}
       />

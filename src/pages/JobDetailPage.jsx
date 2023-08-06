@@ -1,35 +1,46 @@
 import { Grid, Typography, useTheme, useMediaQuery } from '@mui/material';
+import { useParams } from 'react-router-dom';
 
 import {
   JobDetail,
   InlineJobCard,
   CustomButton,
   SearchBar,
+  Loader,
+  NotFound
 } from '../components';
 import icons from '../assets/icons';
-
-const demoData = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+import { useGetJobByIdQuery, useGetSearchQuery } from '../services/JSearch';
+import getDate from '../Utils/getDate';
 
 const JobDetailPage = () => {
+  const date = getDate();
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const { jobId } = useParams();
+  const { data, isFetching, isError } = useGetJobByIdQuery({ id: jobId });
+  const {
+    data: similarJobData,
+    isError: similarJobisError,
+    isFetching: similarJobisFetching
+  } = useGetSearchQuery({
+    name: 'developer',
+    currentPage: '1',
+    employmentTypes: 'FULLTIME'
+  });
+
+  if (isFetching || similarJobisFetching) return <Loader />;
+  if (isError || similarJobisError) return <NotFound />;
+  console.log(similarJobData.data);
 
   return (
-    <Grid
-      container
-      spacing={5}
-      sx={{
-        marginTop: '70px',
-        backgroundColor: 'customColor.pageBG',
-        padding: { xs: '0px 24px', md: '0px 50px' },
-      }}
-    >
-      <Grid item xs={12} sm={12}>
+    <Grid container spacing={5}>
+      <Grid item xs={12}>
         <Typography variant='h1' mb='12px'>
           Let’s find your dream job
         </Typography>
         <Typography variant=' bodyL_2' color='text.secondary'>
-          Monday, 13 Jan 2023
+          {date}
         </Typography>
       </Grid>
 
@@ -37,7 +48,7 @@ const JobDetailPage = () => {
         <SearchBar />
       </Grid>
 
-      <Grid item sm={12} md={12} lg={8}>
+      <Grid item xs={12} lg={8}>
         {!isMobile && (
           <CustomButton
             variant='secondary'
@@ -46,18 +57,14 @@ const JobDetailPage = () => {
             sx={{ padding: '7px 10px', marginBottom: '10px' }}
           />
         )}
-        <JobDetail />
+        <JobDetail data={data?.data} />
       </Grid>
 
-      <Grid container item xs={12} sm={12} md={12} lg={4}>
-        <Typography variant='bodyL' mb='20px'>
-          Similar Job
-        </Typography>
+      <Grid item xs={12} lg={4}>
+        <Typography variant='bodyL'>Similar Job</Typography>
 
-        {demoData.map((_, i) => (
-          <Grid item sm={12} mb='15px' key={i}>
-            <InlineJobCard />
-          </Grid>
+        {similarJobData?.data.map((job, i) => (
+          <InlineJobCard key={i} data={job} />
         ))}
       </Grid>
     </Grid>

@@ -7,13 +7,13 @@ import {
   Loader,
   NotFound,
   ServerError,
-  SimilarCompany,
+  SimilarCompany
 } from '../../components';
 
 import icons from '../../assets/icons';
 import {
   useGetCompanyDetailQuery,
-  useGetJobListingsQuery,
+  useGetJobListingsQuery
 } from '../../services/JSearch';
 
 export default function CompanyDetailPage() {
@@ -22,17 +22,17 @@ export default function CompanyDetailPage() {
   const { isError, isFetching, data } = useGetCompanyDetailQuery(name);
 
   const compantyTypes = data?.data
-    ?.filter((job) => job?.employer_company_type !== null)
-    .map((company) => company?.employer_company_type);
+    ?.filter(job => job?.employer_company_type !== null)
+    .map(company => company?.employer_company_type);
 
   const {
     isError: similarCompaniesError,
     data: similarCompanies,
-    isFetching: similarCompaniesIsFetching,
+    isFetching: similarCompaniesIsFetching
   } = useGetJobListingsQuery({
     query: compantyTypes && compantyTypes[0],
     page: '1',
-    num_pages: '1',
+    num_pages: '1'
   });
 
   if (isFetching || similarCompaniesIsFetching) return <Loader />;
@@ -44,24 +44,15 @@ export default function CompanyDetailPage() {
   return (
     <Box
       sx={{
-        width: '100%',
-        backgroundColor: 'customColor.pageBG',
-        padding: {
-          xs: ' 8px',
-          sm: ' 30px',
-        },
+        width: '100%'
+        // backgroundColor: 'customColor.pageBG',
+        // padding: {
+        //   xs: ' 8px',
+        //   sm: ' 30px'
+        // }
       }}
     >
-      <Box
-        sx={{
-          maxWidth: {
-            xs: '100%',
-            sm: '90rem',
-          },
-          paddingTop: '100px',
-          margin: '0 auto',
-        }}
-      >
+      <Box>
         <CustomButton
           onClick={() => navigate(-1)}
           title='Back'
@@ -70,15 +61,15 @@ export default function CompanyDetailPage() {
             marginLeft: '10px ',
             marginBottom: '20px',
             ':hover': {
-              color: '#fff',
-            },
+              color: '#fff'
+            }
           }}
           startIcon={
             <img
               alt='arrow icon'
               src={icons.cheveron}
               style={{
-                transform: 'rotate(90deg)',
+                transform: 'rotate(90deg)'
               }}
             />
           }
@@ -88,11 +79,11 @@ export default function CompanyDetailPage() {
             display: 'flex',
             flexWrap: {
               xs: 'wrap',
-              lg: 'nowrap',
+              lg: 'nowrap'
             },
             width: '100%',
             gap: '40px',
-            justifyContent: 'space-between',
+            justifyContent: 'space-between'
           }}
         >
           <Box>
@@ -115,14 +106,14 @@ export default function CompanyDetailPage() {
               padding: '15px',
               width: {
                 xs: '100%',
-                lg: 'fit-content',
-              },
+                lg: 'fit-content'
+              }
             }}
           >
             <Typography
               sx={{
                 typography: 'h4',
-                paddingBottom: '20px',
+                paddingBottom: '20px'
               }}
             >
               Similar companies
@@ -131,7 +122,7 @@ export default function CompanyDetailPage() {
               sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                gap: '1rem',
+                gap: '1rem'
               }}
             >
               {similarCompanies?.data?.map((company, i) => (

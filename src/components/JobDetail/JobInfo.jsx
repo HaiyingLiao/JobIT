@@ -1,14 +1,25 @@
-import { Typography } from '@mui/material';
+import { Typography, Box, useMediaQuery } from '@mui/material';
 
 import { CardTitleWrapper, ButtonWrapper, MoreButton, Wrapper } from './style';
 import Requirement from './Requirement';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
 
-export default function JobInfo({ title, address }) {
+export default function JobInfo({
+  title,
+  company,
+  JobUrlData,
+  companyAddress
+}) {
+  const isMobile = useMediaQuery('(max-width:792px)');
+
   return (
     <div style={{ display: 'flex', alignItems: 'center', width: '100%' }}>
-      <Wrapper wrap={'true'} width='100%' justifyContent='space-between'>
+      <Wrapper
+        wrap={'false'}
+        width='100%'
+        justifyContent={isMobile ? 'start' : 'space-between'}
+      >
         <CardTitleWrapper>
           <div>
             <Typography
@@ -16,8 +27,8 @@ export default function JobInfo({ title, address }) {
               sx={{
                 typography: {
                   xs: 'bodyM',
-                  sm: 'h2',
-                },
+                  sm: 'h2'
+                }
               }}
             >
               {title}
@@ -28,12 +39,14 @@ export default function JobInfo({ title, address }) {
               sx={{
                 typography: {
                   xs: 'bodyM4_4',
-                  sm: 'bodyM_3',
+                  sm: 'bodyM_3'
                 },
-                lineHeight: '32px',
+                lineHeight: '32px'
               }}
             >
-              {address} - 3 days ago
+              {company} <img src={icons.oval1} alt='oval gray icon' />{' '}
+              {companyAddress} <img src={icons.oval1} alt='oval gray icon' /> 3
+              days ago
             </Typography>
           </div>
           <MoreButton>
@@ -44,34 +57,40 @@ export default function JobInfo({ title, address }) {
               width={20}
               height={20}
             />
+            {isMobile && <img src={icons.moreVertical} alt='more icon' />}
           </MoreButton>
         </CardTitleWrapper>
-        <ButtonWrapper>
-          <CustomButton
-            variant='primary'
-            title='Apply Now'
-            sx={{
-              width: {
-                xs: '100%',
-                md: 'auto',
-              },
-            }}
-          />
-          <CustomButton
-            variant='primaryOutlined'
-            title='Message'
-            sx={{
-              width: {
-                xs: '100%',
-                md: 'auto',
-              },
-            }}
-          />
-        </ButtonWrapper>
-        <MoreButton>
-          <img src={icons.moreVertical} alt='more icon' />
-        </MoreButton>
+        {!isMobile && (
+          <ButtonWrapper>
+            <CustomButton
+              variant='primary'
+              title='Apply Now'
+              href={JobUrlData}
+              target='_blank'
+            />
+            <CustomButton variant='secondaryOutlined' title='Message' />
+            <MoreButton>
+              <img src={icons.moreVertical} alt='more icon' />
+            </MoreButton>
+          </ButtonWrapper>
+        )}
         <Requirement />
+        {isMobile && (
+          <Box sx={{ display: 'flex', gap: '5px', marginTop: '10px' }}>
+            <CustomButton
+              variant='primary'
+              title='Apply Now'
+              href={JobUrlData}
+              target='_blank'
+              sx={{ minWidth: '136px' }}
+            />
+            <CustomButton
+              variant='secondaryOutlined'
+              title='Message'
+              sx={{ minWidth: '136px' }}
+            />
+          </Box>
+        )}
       </Wrapper>
     </div>
   );
