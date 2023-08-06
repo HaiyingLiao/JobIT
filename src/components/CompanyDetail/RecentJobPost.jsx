@@ -27,7 +27,9 @@ export default function RecentJobPost({ recentJobs, company }) {
     {
       name: query,
       currentPage: '1',
-      employmentTypes: 'FULLTIME'
+      employmentTypes: 'FULLTIME',
+      isRemote: false,
+      experience: ''
     },
     {
       skip: value === '',
