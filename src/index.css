@@ -8,3 +8,6 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+.MuiButton-startIcon{
+  margin-right: 3px !important;
+}

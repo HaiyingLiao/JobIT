@@ -7,7 +7,6 @@ import {
   Box
 } from '@mui/material';
 import { Link } from 'react-router-dom';
-
 import { fadeIn } from '../SimilarCompany/style';
 import { CustomButton } from '..';
 import icons from '../../assets/icons';
@@ -44,11 +43,10 @@ const JobCard = props => {
   return (
     <Card
       sx={theme => ({
-        padding: '1rem',
+        padding: '10px',
         width: '100%',
         maxWidth: '100%',
         height: '100%',
-        opacity: '0',
         borderRadius: '15px',
         transition: 'opacity 500ms ease',
         animation: `${fadeIn} 1s linear ${delay}ms forwards`,
@@ -188,7 +186,6 @@ const JobCard = props => {
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               textAlign: 'left',
-              padding: '5px 10px',
               whiteSpace: 'nowrap',
               fontSize: '10px'
             }}
@@ -210,7 +207,6 @@ const JobCard = props => {
               textOverflow: 'ellipsis',
               overflow: 'hidden',
               textAlign: 'left',
-              padding: '5px 10px',
               whiteSpace: 'nowrap',
               fontSize: '10px'
             }}

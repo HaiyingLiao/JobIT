@@ -31,21 +31,6 @@ export default function Requirement({ data }) {
   const exampleData = [
     {
       title: 'Experience',
-<<<<<<< HEAD
-      value: 'Minimum 1 year'
-    },
-    {
-      title: 'Work Level',
-      value: 'Senior Level'
-    },
-    {
-      title: 'Employee Type',
-      value: 'Full Time Jobs'
-    },
-    {
-      title: 'Offer Salary',
-      value: '$2150.0 / month'
-=======
       value: getExperiencesYear(data[0]?.job_required_experience)
     },
     {
@@ -66,7 +51,6 @@ export default function Requirement({ data }) {
         data[0]?.job_max_salary,
         '$'
       )
->>>>>>> main
     }
   ];
   const {
